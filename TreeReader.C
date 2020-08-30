@@ -1,4 +1,4 @@
-#include "controlplotvars_CHS.h"
+#include "variables_test.h"
 #include "utils.C" // Tokenize
 
 void TreeReader(){
@@ -25,7 +25,7 @@ void TreeReader(){
 
   for (int ivar=0; ; ivar++)
   {
-    plotVar_t pv = commonplotvars_chs[ivar];
+    plotVar_t pv = commonplotvars_test[ivar];
     if ( !pv.plotvar.Length() ) break;
 
     variable.push_back(pv.plotvar);

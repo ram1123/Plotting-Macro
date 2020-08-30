@@ -1,5 +1,5 @@
-#ifndef _COMMONCONTROLPLOTVARS_TEST_H
-#define _COMMONCONTROLPLOTVARS_TEST_H
+#ifndef _VARIABLES_TEST_H
+#define _VARIABLES_TEST_H
 
 #include "plotvar_t.h"
 

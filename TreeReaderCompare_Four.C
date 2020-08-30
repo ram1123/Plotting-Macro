@@ -1,4 +1,6 @@
-#include "controlplotvars_CHS.h"
+#include "variables_test.h"
+#include "variables_genParticls.h"
+#include "variables_AllResolvedAk4.h"
 #include "utils.C" // Tokenize
 
 TTreeReader * ReadFiles(TString inputFile, TString TreeName)
@@ -11,7 +13,7 @@ TTreeReader * ReadFiles(TString inputFile, TString TreeName)
   return reader;
 }
 
-void TreeReaderCompare_Four(){
+void TreeReaderCompare_Four(const plotVar_t plotvars[] = commonplotvars_genParticles){
 
   // Create a canvas
   auto c1 = new TCanvas("c1");
@@ -60,7 +62,7 @@ void TreeReaderCompare_Four(){
 
   for (int ivar=0; ; ivar++)
   {
-    plotVar_t pv = commonplotvars_chs[ivar];
+    plotVar_t pv = plotvars[ivar];
     if ( !pv.plotvar.Length() ) break;
 
     variable.push_back(pv.plotvar);
@@ -110,10 +112,6 @@ void TreeReaderCompare_Four(){
     TTreeReaderValue<double> tempTreeBranch4 = {*myReader4,pv.plotvar};
     vtree4.push_back(tempTreeBranch4);  
   }
-
-  // Access branch of trees for cuts
-  myReaderTree1->SetBranchStatus("",1);
-  TTreeReaderValue<double> tempTreeBranch1 = {*myReader1,pv.plotvar};  
 
   // Loop over all entries of the TTree or TChain.
   while (myReader1->Next()) {

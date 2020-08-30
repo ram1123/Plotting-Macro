@@ -1,4 +1,6 @@
-#include "controlplotvars_test.h"
+#include "variables_test.h"
+#include "variables_genParticls.h"
+#include "variables_AllResolvedAk4.h"
 #include "utils.C" // Tokenize
 
 TTreeReader * ReadFiles(TString inputFile, TString TreeName)

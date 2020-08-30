@@ -1,4 +1,6 @@
-#include "controlplotvars_CHS.h"
+#include "variables_test.h"
+#include "variables_genParticls.h"
+#include "variables_AllResolvedAk4.h"
 #include "utils.C" // Tokenize
 
 
@@ -40,7 +42,7 @@ void loadCutString(const char *filename, TString& cutstring, std::vector<TTreeRe
     assert (fields.size()==7);
 
     // cutstring += TString(fields.at(2));
-    cutstring += TString(*cutBranches[i]+fields.at(4)+fields.at(6));
+    // cutstring += TString(*cutBranches[i]+fields.at(4)+fields.at(6));
   }
   std::cout << "cutstring: " << cutstring << std::endl;
 }                                                       // loadCutString
@@ -71,7 +73,7 @@ void TreeReaderExternalFile(){
 
   for (int ivar=0; ; ivar++)
   {
-   plotVar_t pv = commonplotvars_chs[ivar];
+   plotVar_t pv = commonplotvars_test[ivar];
    if ( !pv.plotvar.Length() ) break;
 
    // std::cout << "plotvar: " << pv.plotvar << ",\t" << pv.xlabel << ",\t" << pv.NBINS << ",\t" << pv.MINRange << ",\t" << pv.MAXRange << ", slog:" << pv.slog << std::endl;

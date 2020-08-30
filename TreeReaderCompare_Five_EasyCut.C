@@ -1,6 +1,6 @@
-#include "controlplotvars_genParticls.h"
-#include "controlplotvars_AllResolvedAk4.h"
-#include "controlplotvars_test.h"
+#include "variables_test.h"
+#include "variables_genParticls.h"
+#include "variables_AllResolvedAk4.h"
 #include "utils.C" // Tokenize
 #include "TreeReaderClass.cpp"
 
