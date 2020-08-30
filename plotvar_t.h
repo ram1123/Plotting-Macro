@@ -2,11 +2,11 @@
 #define _PLOTVAR_T_H
 
 #if 0
-PlotVar_t(char *inpv, int innbin, double inminr,double inmaxr,char *inxl,char *inoutf,int inslog,int indl) :
+PlotVar_t(char *inpv, int innbin, double inminr,double inmaxr,char *inxl,char *inoutf,int inslog,int indl,int legPos) :
   plotvar(inpv),
   NBINS(innbin),MINRange(inminr),MAXRange(inmaxr),
   xlabel(inxl),outfile(inoutf),
-  slog(inslog),drawleg(indl) {}
+  slog(inslog),drawleg(indl), LegPosition(legPos) {}
 #endif
 struct plotVar_t {
   TString plotvar;
@@ -17,6 +17,7 @@ struct plotVar_t {
   TString outfile;
   int    slog;
   int  drawleg;
+  int LegPosition;
 };
 
 #endif // _PLOTVAR_T_H

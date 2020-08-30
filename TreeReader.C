@@ -28,11 +28,8 @@ void TreeReader(){
     plotVar_t pv = commonplotvars_chs[ivar];
     if ( !pv.plotvar.Length() ) break;
 
-    // std::cout << "plotvar: " << pv.plotvar << ",\t" << pv.xlabel << ",\t" << pv.NBINS << ",\t" << pv.MINRange << ",\t" << pv.MAXRange << ", slog:" << pv.slog << std::endl;
-
     variable.push_back(pv.plotvar);
 
-    // TH1F* tempHist = new TH1F(pv.plotvar, pv.plotvar, pv.NBINS, pv.MINRange, pv.MAXRange);
     TH1F* tempHist = new TH1F(pv.plotvar, ";"+pv.xlabel+";", pv.NBINS, pv.MINRange, pv.MAXRange);
     tempHist->SetStats(0);
 
@@ -43,7 +40,6 @@ void TreeReader(){
     TTreeReaderValue<double> tempTreeBranch = {myReader,pv.plotvar};
     vtree.push_back(tempTreeBranch);
   }
-
 
   // Loop over all entries of the TTree or TChain.
   while (myReader.Next()) {
