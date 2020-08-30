@@ -1,21 +1,13 @@
 #include "controlplotvars_genParticls.h"
 #include "controlplotvars_AllResolvedAk4.h"
+#include "controlplotvars_test.h"
 #include "utils.C" // Tokenize
+#include "TreeReaderClass.cpp"
 
 // TODO: 
 //  1. add runtime information.
 
-TTreeReader * ReadFiles(TString inputFile, TString TreeName)
-{
-  TChain * chain = new TChain(TreeName);
-
-  chain->AddFile( inputFile );
-
-  TTreeReader * reader = new TTreeReader(chain);
-  return reader;
-}
-
-void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParticles)
+void TreeReaderCompare_Five_v3(const plotVar_t plotvars[] = commonplotvars_genParticles)
 {
 
   // Create a canvas
@@ -35,23 +27,28 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
   LegendString.push_back("M1000");
   LegendString.push_back("M1500");
 
-  TTreeReader *myReader1 = ReadFiles(inputFile1, TreeName);
+  TreeReaderClass TreeReaderClassT1(inputFile1, TreeName);
+  TTreeReader *myReader1 = TreeReaderClassT1.reader();
   TTree * myReaderTree1 = myReader1->GetTree();
   myReaderTree1->SetBranchStatus("*",0);
 
-  TTreeReader *myReader2 = ReadFiles(inputFile2, TreeName);
+  TreeReaderClass TreeReaderClassT2(inputFile2, TreeName);
+  TTreeReader *myReader2 = TreeReaderClassT2.reader();
   TTree * myReaderTree2 = myReader2->GetTree();
   myReaderTree2->SetBranchStatus("*",0);
 
-  TTreeReader *myReader3 = ReadFiles(inputFile3, TreeName);
+  TreeReaderClass TreeReaderClassT3(inputFile3, TreeName);
+  TTreeReader *myReader3 = TreeReaderClassT3.reader();
   TTree * myReaderTree3 = myReader3->GetTree();
   myReaderTree3->SetBranchStatus("*",0);
 
-  TTreeReader *myReader4 = ReadFiles(inputFile4, TreeName);
+  TreeReaderClass TreeReaderClassT4(inputFile4, TreeName);
+  TTreeReader *myReader4 = TreeReaderClassT4.reader();
   TTree * myReaderTree4 = myReader4->GetTree();
   myReaderTree4->SetBranchStatus("*",0);
 
-  TTreeReader *myReader5 = ReadFiles(inputFile5, TreeName);
+  TreeReaderClass TreeReaderClassT5(inputFile5, TreeName);
+  TTreeReader *myReader5 = TreeReaderClassT5.reader();
   TTree * myReaderTree5 = myReader5->GetTree();
   myReaderTree5->SetBranchStatus("*",0);
 
@@ -134,63 +131,64 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
     vtree5.push_back(tempTreeBranch5);    
   }
 
-  // access branch for application of cuts
-  myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_leading_WpJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_onShellJet1_Pt"};
-  myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_leading_WmJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_onShellJet2_Pt"};
-  myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WpJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_offShellJet1_Pt"};
-  myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  // // access branch for application of cuts
+  // myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_onShellJet1_Pt"};
+  // myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_onShellJet2_Pt"};
+  // myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_offShellJet1_Pt"};
+  // myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_offShellJet2_Pt"};  
 
-  // access branch for application of cuts
-  myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_leading_WpJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_onShellJet1_Pt"};
-  myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_leading_WmJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_onShellJet2_Pt"};
-  myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WpJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_offShellJet1_Pt"};
-  myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  // // access branch for application of cuts
+  // myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_onShellJet1_Pt"};
+  // myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_onShellJet2_Pt"};
+  // myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_offShellJet1_Pt"};
+  // myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_offShellJet2_Pt"};  
 
-  // access branch for application of cuts
-  myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_leading_WpJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_onShellJet1_Pt"};
-  myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_leading_WmJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_onShellJet2_Pt"};
-  myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WpJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_offShellJet1_Pt"};
-  myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  // // access branch for application of cuts
+  // myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_onShellJet1_Pt"};
+  // myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_onShellJet2_Pt"};
+  // myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_offShellJet1_Pt"};
+  // myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_offShellJet2_Pt"};  
 
-  // access branch for application of cuts
-  myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_leading_WpJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_onShellJet1_Pt"};
-  myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_leading_WmJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_onShellJet2_Pt"};
-  myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WpJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_offShellJet1_Pt"};
-  myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  // // access branch for application of cuts
+  // myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_onShellJet1_Pt"};
+  // myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_onShellJet2_Pt"};
+  // myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_offShellJet1_Pt"};
+  // myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_offShellJet2_Pt"};  
 
-  // access branch for application of cuts
-  myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_leading_WpJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_onShellJet1_Pt"};
-  myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_leading_WmJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_onShellJet2_Pt"};
-  myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WpJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_offShellJet1_Pt"};
-  myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  // // access branch for application of cuts
+  // myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_onShellJet1_Pt"};
+  // myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_onShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_onShellJet2_Pt"};
+  // myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_offShellJet1_Pt"};
+  // myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_offShellJet2_Pt"};  
 
   // Loop over all entries of the TTree or TChain.
   while (myReader1->Next()) {
     {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt1>15 && *gen_leading_WmJets_Pt1>15 && *gen_Subleading_WpJets_Pt1>15 && *gen_Subleading_WmJets_Pt1>15)
-        vectorOfTH1F1[i]->Fill(*vtree1[i]);
+        // if ( *TreeReaderClassT1::gen_leading_WpJets_Pt>15 && *TreeReaderClassT1::gen_leading_WmJets_Pt>15 && *TreeReaderClassT1::gen_Subleading_WpJets_Pt>15 && *TreeReaderClassT1::gen_Subleading_WmJets_Pt>15)
+        // if (*gen_leading_WpJets_Pt>15)
+          vectorOfTH1F1[i]->Fill(*vtree1[i]);
       }
     }
   }
@@ -198,7 +196,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
   while (myReader2->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt2>15 && *gen_leading_WmJets_Pt2>15 && *gen_Subleading_WpJets_Pt2>15 && *gen_Subleading_WmJets_Pt2>15)
+        // if ( *gen_leading_WpJets_Pt2>15 && *gen_leading_WmJets_Pt2>15 && *gen_Subleading_WpJets_Pt2>15 && *gen_Subleading_WmJets_Pt2>15)
         vectorOfTH1F2[i]->Fill(*vtree2[i]);
       }
   }
@@ -206,7 +204,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
   while (myReader3->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt3>15 && *gen_leading_WmJets_Pt3>15 && *gen_Subleading_WpJets_Pt3>15 && *gen_Subleading_WmJets_Pt3>15)
+        // if ( *gen_leading_WpJets_Pt3>15 && *gen_leading_WmJets_Pt3>15 && *gen_Subleading_WpJets_Pt3>15 && *gen_Subleading_WmJets_Pt3>15)
         vectorOfTH1F3[i]->Fill(*vtree3[i]);
       }
   }
@@ -214,7 +212,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
   while (myReader4->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt4>15 && *gen_leading_WmJets_Pt4>15 && *gen_Subleading_WpJets_Pt4>15 && *gen_Subleading_WmJets_Pt4>15)
+        // if ( *gen_leading_WpJets_Pt4>15 && *gen_leading_WmJets_Pt4>15 && *gen_Subleading_WpJets_Pt4>15 && *gen_Subleading_WmJets_Pt4>15)
         vectorOfTH1F4[i]->Fill(*vtree4[i]);
       }
   }  
@@ -222,7 +220,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
   while (myReader5->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt5>15 && *gen_leading_WmJets_Pt5>15 && *gen_Subleading_WpJets_Pt5>15 && *gen_Subleading_WmJets_Pt5>15)
+        // if ( *gen_leading_WpJets_Pt5>15 && *gen_leading_WmJets_Pt5>15 && *gen_Subleading_WpJets_Pt5>15 && *gen_Subleading_WmJets_Pt5>15)
         vectorOfTH1F5[i]->Fill(*vtree5[i]);
       }
   } 
