@@ -131,6 +131,66 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
     TTreeReaderValue<double> tempTreeBranch5 = {*myReader5,pv.plotvar};
     vtree5.push_back(tempTreeBranch5);    
   }
+//######################################################################################
+//
+//            CUT on the GEN-JETS
+//
+//######################################################################################
+  // // access branch for application of cuts
+  // myReaderTree1->SetBranchStatus("gen_leading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt1 = {*myReader1,"gen_leading_WpJets_Pt"};
+  // myReaderTree1->SetBranchStatus("gen_leading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt1 = {*myReader1,"gen_leading_WmJets_Pt"};
+  // myReaderTree1->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt1 = {*myReader1,"gen_Subleading_WpJets_Pt"};
+  // myReaderTree1->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt1 = {*myReader1,"gen_Subleading_WmJets_Pt"};  
+
+  // // access branch for application of cuts
+  // myReaderTree2->SetBranchStatus("gen_leading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt2 = {*myReader2,"gen_leading_WpJets_Pt"};
+  // myReaderTree2->SetBranchStatus("gen_leading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt2 = {*myReader2,"gen_leading_WmJets_Pt"};
+  // myReaderTree2->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt2 = {*myReader2,"gen_Subleading_WpJets_Pt"};
+  // myReaderTree2->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt2 = {*myReader2,"gen_Subleading_WmJets_Pt"};  
+
+  // // access branch for application of cuts
+  // myReaderTree3->SetBranchStatus("gen_leading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt3 = {*myReader3,"gen_leading_WpJets_Pt"};
+  // myReaderTree3->SetBranchStatus("gen_leading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt3 = {*myReader3,"gen_leading_WmJets_Pt"};
+  // myReaderTree3->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt3 = {*myReader3,"gen_Subleading_WpJets_Pt"};
+  // myReaderTree3->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt3 = {*myReader3,"gen_Subleading_WmJets_Pt"};  
+
+  // // access branch for application of cuts
+  // myReaderTree4->SetBranchStatus("gen_leading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt4 = {*myReader4,"gen_leading_WpJets_Pt"};
+  // myReaderTree4->SetBranchStatus("gen_leading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt4 = {*myReader4,"gen_leading_WmJets_Pt"};
+  // myReaderTree4->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt4 = {*myReader4,"gen_Subleading_WpJets_Pt"};
+  // myReaderTree4->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt4 = {*myReader4,"gen_Subleading_WmJets_Pt"};  
+
+  // // access branch for application of cuts
+  // myReaderTree5->SetBranchStatus("gen_leading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WpJets_Pt5 = {*myReader5,"gen_leading_WpJets_Pt"};
+  // myReaderTree5->SetBranchStatus("gen_leading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_leading_WmJets_Pt5 = {*myReader5,"gen_leading_WmJets_Pt"};
+  // myReaderTree5->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WpJets_Pt5 = {*myReader5,"gen_Subleading_WpJets_Pt"};
+  // myReaderTree5->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt5 = {*myReader5,"gen_Subleading_WmJets_Pt"};  
+  
+//######################################################################################
+//
+//            CUT on the GEN-JETS
+//
+//######################################################################################
 
   // access branch for application of cuts
   myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
