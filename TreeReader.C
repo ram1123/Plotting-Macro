@@ -1,7 +1,7 @@
 #include "controlplotvars_CHS.h"
 #include "utils.C" // Tokenize
 
-void TreeReaderExternalFile_v2(){
+void TreeReader(){
 
   // Create a canvas
   auto c1 = new TCanvas("c1");
@@ -45,52 +45,7 @@ void TreeReaderExternalFile_v2(){
   }
 
 
-  ///////////////////////////////////////////////////////////////////////////////////
-  const char * filename = "cutString.txt";
-  TString CutString;
-  FILE *fp = fopen(filename,"r");
-  if (!fp) {
-    cout << "Error, file " << TString(filename) << " not found." << endl;
-    exit(-1);
-  }
-
-  char line[512];
-
-  for (int i=0; !feof(fp) && fgets(line,512,fp); i++) {
-    if (!strlen(line) || line[0]=='#') continue; // comments are welcome
-
-    if (CutString.Length()) CutString += " && ";
-
-    string strline(line);
-    std::cout << "LINE: " << line << std::endl;
-    strline.pop_back();     // shed the \n
-    vector<string> fields;
-
-    // expect columns with fields cutname, cutvalue, possible embedded spaces both
-    // within and between, so " " or "\t" cannot be used as delimiters. Require quotes
-    // instead.
-    //
-    Tokenize(strline,fields, "\"");
-
-    for (size_t j=0; j<fields.size(); j++)
-      cout << j << ": \"" << fields[j] << "\"" << endl;
-
-    TTreeReaderValue<double> tempTreeBranch = {myReader,(TString)fields.at(2)};
-    cutBranches.push_back(tempTreeBranch);
-
-    assert (fields.size()==7);
-
-    // std::cout << "tempTreeBranch: " << tempTreeBranch << std::endl;
-
-    // CutString += TString(fields.at(2));
-    // CutString += TString(*cutBranches[i] fields.at(4) fields.at(6));
-  }
-  std::cout << "CutString: " << CutString << std::endl;
-/////////////////////////////////////////////////////////////////////////////////////    
-
-  std::cout << "Test: " << CutString << std::endl;
-
-// Loop over all entries of the TTree or TChain.
+  // Loop over all entries of the TTree or TChain.
   while (myReader.Next()) {
     {
       for (int i = 0; i < vectorOfTH1F.size(); ++i)
@@ -106,7 +61,7 @@ void TreeReaderExternalFile_v2(){
       vectorOfTH1F[i]->Draw();
 
       c1->SaveAs(outFileName[i]+".png");
-      // c1->SaveAs(outFileName[i]+".pdf");
+      c1->SaveAs(outFileName[i]+".pdf");
       c1->Clear();
    }
 
