@@ -1,4 +1,4 @@
-#include "controlplotvars_CHS.h"
+#include "controlplotvars_test.h"
 #include "utils.C" // Tokenize
 
 TTreeReader * ReadFiles(TString inputFile, TString TreeName)
@@ -43,7 +43,7 @@ void TreeReaderCompare_Two(){
 
   for (int ivar=0; ; ivar++)
   {
-    plotVar_t pv = commonplotvars_chs[ivar];
+    plotVar_t pv = commonplotvars_test[ivar];
     if ( !pv.plotvar.Length() ) break;
 
     variable.push_back(pv.plotvar);

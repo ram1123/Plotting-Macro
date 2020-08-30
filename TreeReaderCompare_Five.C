@@ -1,19 +1,12 @@
 #include "controlplotvars_genParticls.h"
 #include "controlplotvars_AllResolvedAk4.h"
+#include "controlplotvars_test.h"
 #include "utils.C" // Tokenize
+#include "TreeReaderClass.cpp"
+// #include "branches.h"
 
 // TODO: 
 //  1. add runtime information.
-
-TTreeReader * ReadFiles(TString inputFile, TString TreeName)
-{
-  TChain * chain = new TChain(TreeName);
-
-  chain->AddFile( inputFile );
-
-  TTreeReader * reader = new TTreeReader(chain);
-  return reader;
-}
 
 void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParticles)
 {
@@ -35,23 +28,28 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
   LegendString.push_back("M1000");
   LegendString.push_back("M1500");
 
-  TTreeReader *myReader1 = ReadFiles(inputFile1, TreeName);
+  TreeReaderClass TreeReaderClassT1(inputFile1, TreeName);
+  TTreeReader *myReader1 = TreeReaderClassT1.reader();
   TTree * myReaderTree1 = myReader1->GetTree();
   myReaderTree1->SetBranchStatus("*",0);
 
-  TTreeReader *myReader2 = ReadFiles(inputFile2, TreeName);
+  TreeReaderClass TreeReaderClassT2(inputFile2, TreeName);
+  TTreeReader *myReader2 = TreeReaderClassT2.reader();
   TTree * myReaderTree2 = myReader2->GetTree();
   myReaderTree2->SetBranchStatus("*",0);
 
-  TTreeReader *myReader3 = ReadFiles(inputFile3, TreeName);
+  TreeReaderClass TreeReaderClassT3(inputFile3, TreeName);
+  TTreeReader *myReader3 = TreeReaderClassT3.reader();
   TTree * myReaderTree3 = myReader3->GetTree();
   myReaderTree3->SetBranchStatus("*",0);
 
-  TTreeReader *myReader4 = ReadFiles(inputFile4, TreeName);
+  TreeReaderClass TreeReaderClassT4(inputFile4, TreeName);
+  TTreeReader *myReader4 = TreeReaderClassT4.reader();
   TTree * myReaderTree4 = myReader4->GetTree();
   myReaderTree4->SetBranchStatus("*",0);
 
-  TTreeReader *myReader5 = ReadFiles(inputFile5, TreeName);
+  TreeReaderClass TreeReaderClassT5(inputFile5, TreeName);
+  TTreeReader *myReader5 = TreeReaderClassT5.reader();
   TTree * myReaderTree5 = myReader5->GetTree();
   myReaderTree5->SetBranchStatus("*",0);
 
@@ -256,17 +254,14 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
     float xmin = 0.6, xmax = 0.9, ymin = 0.48, ymax = 0.9;
     if (SetLegendPosition[i]==0)  /* Left */
     {
-      cout << "Left" << endl;
       xmin = 0.1; xmax = 0.4; ymin = 0.48;  ymax = 0.9;
     }
     if (SetLegendPosition[i]==1) /* Center */
     {
-      cout << "Center" << endl;
       xmin = 0.4; xmax = 0.7; ymin = 0.48;  ymax = 0.9;
     }
     if (SetLegendPosition[i]==2)  /* Right  */
     {
-      cout << "Right" << endl;
       xmin = 0.6; xmax = 0.9; ymin = 0.48;  ymax = 0.9;
     }                
     TLegend *legend = new TLegend(xmin, ymin, xmax, ymax);
@@ -289,5 +284,6 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
     c1->SaveAs("plots/"+outFileName[i]+"_log.pdf");
     c1->SetLogy(0);
     c1->Clear();
+    std::cout << "\n";
   }
 }

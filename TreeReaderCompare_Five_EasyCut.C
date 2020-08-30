@@ -7,7 +7,7 @@
 // TODO: 
 //  1. add runtime information.
 
-void TreeReaderCompare_Five_v3(const plotVar_t plotvars[] = commonplotvars_genParticles)
+void TreeReaderCompare_Five_EasyCut(const plotVar_t plotvars[] = commonplotvars_genParticles)
 {
 
   // Create a canvas
