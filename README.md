@@ -12,6 +12,12 @@ root -l -b -q TreeReaderCompare_Five.C\(commonplotvars_genParticles\)
 root -l -b -q TreeReaderCompare_Five.C\(commonplotvars_allResolved\)
 ```
 
+### Two D plot
+
+```bash
+root -l -b -q TreeReader_TwoDPlots.C
+```
+
 # Macro under development
 
 ```bash

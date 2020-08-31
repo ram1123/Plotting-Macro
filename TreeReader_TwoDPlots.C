@@ -1,17 +1,17 @@
 #include "variables_test_2D.h"
 #include "utils.C" // Tokenize
 
-void TreeReader_TwoDPlots(){
+void TreeReader_TwoDPlots(TString InputFile = "test.txt"){
 
   // Create a canvas
   auto c1 = new TCanvas("c1","c1",1000,800);
 
   // Open the file containing the tree.
-  // TString InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M260_LHEBqrk.root";
-  // TString InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
-  TString InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M500_LHEBqrk.root";
-  // TString InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1000_LHEBqrk.root";
-  // TString InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1500_LHEBqrk.root";
+   InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M260_LHEBqrk.root";
+   // InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
+   // InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M500_LHEBqrk.root";
+   // InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1000_LHEBqrk.root";
+   // InputFile = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1500_LHEBqrk.root";
   
   //------------------------------------------
   //  Grab Filename short string
@@ -21,6 +21,8 @@ void TreeReader_TwoDPlots(){
   fields.clear();
   Tokenize(FileName,fields,"_");
   TString title = fields[3];  // This should give use M260 kind of string
+  // std::cout << "lenght of title: " << title.Length() << endl;
+  if (title.Length()==4) title.ReplaceAll("M","M0");
   //------------------------------------------
 
   auto myFile = TFile::Open(InputFile);
@@ -83,8 +85,12 @@ void TreeReader_TwoDPlots(){
       vectorOfTH2F[i]->Scale(1./vectorOfTH2F[i]->GetEntries());
       vectorOfTH2F[i]->Draw("colz");
 
-      c1->SaveAs(outFileName[i]+"_"+title+".png");
-      c1->SaveAs(outFileName[i]+"_"+title+".pdf");
+      // c1->SaveAs(outFileName[i]+"_"+title+".png");
+      c1->SaveAs("TwoDPlots/"+outFileName[i]+"_"+title+".png");
+      c1->SaveAs("TwoDPlots/"+outFileName[i]+"_"+title+".pdf");
+      // c1->SetLogy(1);
+      // c1->SaveAs("TwoDPlots/"+outFileName[i]+"_"+title+"_log.pdf");
+      c1->SetLogy(0);
       c1->Clear();
    }
 
