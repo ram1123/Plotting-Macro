@@ -1,5 +1,5 @@
-#include "variables_test.h"
-#include "utils.C" // Tokenize
+#include "variableToRead/variables_test.h"
+#include "interface/utils.C" // Tokenize
 
 void TreeReader(){
 

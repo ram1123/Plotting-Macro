@@ -1,5 +1,5 @@
-#include "variables_test_2D.h"
-#include "utils.C" // Tokenize
+#include "variableToRead/variables_test_2D.h"
+#include "interface/utils.C" // Tokenize
 
 void TreeReader_TwoDPlots(TString InputFile = "test.txt"){
 

@@ -1,7 +1,7 @@
 #ifndef _VARIABLES_TEST_2D_H
 #define _VARIABLES_TEST_2D_H
 
-#include "plotvar2D_t.h"
+#include "../interface/plotvar2D_t.h"
 
 const plotVar_t commonplotvars_test_2d[] = {
 ////    plotvar NBINS   MINRange  MAXRange  xlabel outfile  slog drawleg, legendPosition(LCR::0/1/2)

@@ -1,20 +1,22 @@
-#include "variables_test.h"
-#include "variables_genParticls.h"
-#include "variables_AllResolvedAk4.h"
-#include "utils.C" // Tokenize
-#include "TreeReaderClass.cpp"
+#include "variableToRead/variables_test.h"
+#include "variableToRead/variables_genParticls.h"
+#include "variableToRead/variables_AllResolvedAk4.h"
+#include "interface/utils.C" // Tokenize
+#include "interface/TreeReaderClass.cpp"
 // #include "branches.h"
 
 // TODO: 
 //  1. add runtime information.
 
-void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParticles)
+void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
 {
 
   // Create a canvas
   auto c1 = new TCanvas("c1");
 
-  TString inputFile1 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M260_LHEBqrk.root";
+  // ToDo : update the 260 root file
+  // To Do : update the 260 root file
+  TString inputFile1 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
   TString inputFile2 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
   TString inputFile3 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M500_LHEBqrk.root";
   TString inputFile4 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1000_LHEBqrk.root";
@@ -343,11 +345,11 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
     }
 
     c1->SaveAs("plots/"+outFileName[i]+".png");
-    c1->SaveAs("plots/"+outFileName[i]+".pdf");
-    c1->SetLogy(1);
+    // c1->SaveAs("plots/"+outFileName[i]+".pdf");
+    // c1->SetLogy(1);
     // c1->SaveAs("plots/Log/"+outFileName[i]+"_log.png");
-    c1->SaveAs("plots/"+outFileName[i]+"_log.pdf");
-    c1->SetLogy(0);
+    // c1->SaveAs("plots/"+outFileName[i]+"_log.pdf");
+    // c1->SetLogy(0);
     c1->Clear();
     std::cout << "\n";
   }

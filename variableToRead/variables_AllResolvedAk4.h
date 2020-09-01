@@ -1,7 +1,7 @@
 #ifndef _VARIABLES_ALLRESOLVEDAK4_H
 #define _VARIABLES_ALLRESOLVEDAK4_H
 
-#include "plotvar_t.h"
+#include "../interface/plotvar_t.h"
 
 const plotVar_t commonplotvars_allResolved[] = {
 ////    plotvar NBINS	MINRange  MAXRange	xlabel outfile  slog drawleg, legendPosition(LCR::0/1/2)
