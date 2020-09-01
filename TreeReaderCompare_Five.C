@@ -243,44 +243,49 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_genParti
   TTreeReaderValue<double> gen_Subleading_WmJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_offShellJet2_Pt"};  
 
   // Loop over all entries of the TTree or TChain.
+  std::cout << "Reading first file..." << std::endl;
   while (myReader1->Next()) {
     {
       for (int i = 0; i < variable.size(); ++i)
       {
-        // if ( *gen_leading_WpJets_Pt1>15 && *gen_leading_WmJets_Pt1>15 && *gen_Subleading_WpJets_Pt1>15 && *gen_Subleading_WmJets_Pt1>15)
+        if ( *gen_leading_WpJets_Pt1>15 && *gen_leading_WmJets_Pt1>15 && *gen_Subleading_WpJets_Pt1>15 && *gen_Subleading_WmJets_Pt1>15)
         vectorOfTH1F1[i]->Fill(*vtree1[i]);
       }
     }
   }
   // Loop over all entries of the TTree or TChain.
+  std::cout << "Reading second file..." << std::endl;
   while (myReader2->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        // if ( *gen_leading_WpJets_Pt2>15 && *gen_leading_WmJets_Pt2>15 && *gen_Subleading_WpJets_Pt2>15 && *gen_Subleading_WmJets_Pt2>15)
+        if ( *gen_leading_WpJets_Pt2>15 && *gen_leading_WmJets_Pt2>15 && *gen_Subleading_WpJets_Pt2>15 && *gen_Subleading_WmJets_Pt2>15)
         vectorOfTH1F2[i]->Fill(*vtree2[i]);
       }
   }
   // Loop over all entries of the TTree or TChain.
+  std::cout << "Reading third file..." << std::endl;
   while (myReader3->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        // if ( *gen_leading_WpJets_Pt3>15 && *gen_leading_WmJets_Pt3>15 && *gen_Subleading_WpJets_Pt3>15 && *gen_Subleading_WmJets_Pt3>15)
+        if ( *gen_leading_WpJets_Pt3>15 && *gen_leading_WmJets_Pt3>15 && *gen_Subleading_WpJets_Pt3>15 && *gen_Subleading_WmJets_Pt3>15)
         vectorOfTH1F3[i]->Fill(*vtree3[i]);
       }
   }
   // Loop over all entries of the TTree or TChain.
+  std::cout << "Reading fourth file..." << std::endl;
   while (myReader4->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        // if ( *gen_leading_WpJets_Pt4>15 && *gen_leading_WmJets_Pt4>15 && *gen_Subleading_WpJets_Pt4>15 && *gen_Subleading_WmJets_Pt4>15)
+        if ( *gen_leading_WpJets_Pt4>15 && *gen_leading_WmJets_Pt4>15 && *gen_Subleading_WpJets_Pt4>15 && *gen_Subleading_WmJets_Pt4>15)
         vectorOfTH1F4[i]->Fill(*vtree4[i]);
       }
   }  
   // Loop over all entries of the TTree or TChain.
+  std::cout << "Reading fifth file..." << std::endl;
   while (myReader5->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        // if ( *gen_leading_WpJets_Pt5>15 && *gen_leading_WmJets_Pt5>15 && *gen_Subleading_WpJets_Pt5>15 && *gen_Subleading_WmJets_Pt5>15)
+        if ( *gen_leading_WpJets_Pt5>15 && *gen_leading_WmJets_Pt5>15 && *gen_Subleading_WpJets_Pt5>15 && *gen_Subleading_WmJets_Pt5>15)
         vectorOfTH1F5[i]->Fill(*vtree5[i]);
       }
   } 
