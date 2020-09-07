@@ -1,6 +1,7 @@
 #include "variableToRead/variables_test.h"
 #include "variableToRead/variables_genParticls.h"
 #include "variableToRead/variables_AllResolvedAk4.h"
+#include "variableToRead/variables_genParticls_EFT.h"
 #include "interface/utils.C" // Tokenize
 #include "interface/TreeReaderClass.cpp"
 // #include "branches.h"
@@ -10,25 +11,85 @@
 
 void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
 {
-
+  system("mkdir plots");
   // Create a canvas
   auto c1 = new TCanvas("c1");
 
+  const int PLOTFILES = 5;  // This helps us to decide what to plot.
+
   // ToDo : update the 260 root file
   // To Do : update the 260 root file
-  TString inputFile1 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
-  TString inputFile2 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
-  TString inputFile3 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M500_LHEBqrk.root";
-  TString inputFile4 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1000_LHEBqrk.root";
-  TString inputFile5 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1500_LHEBqrk.root";
+  // TString inputFile1 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
+  // TString inputFile2 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
+  // TString inputFile3 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M500_LHEBqrk.root";
+  // TString inputFile4 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1000_LHEBqrk.root";
+  // TString inputFile5 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1500_LHEBqrk.root";
+
+  TString inputFile1 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/GF_HH_SM_slc6_LHEBqrk.root";
+  TString inputFile2 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/GF_HH_1_slc6_LHEBqrk.root";
+  TString inputFile3 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/GF_HH_2_slc6_LHEBqrk.root";
+  TString inputFile4 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/GF_HH_4_slc6_LHEBqrk.root";
+  TString inputFile5 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/GF_HH_9_slc6_LHEBqrk.root";
+
   TString TreeName = "otree";
 
   std::vector<TString> LegendString;
-  LegendString.push_back("M260");
-  LegendString.push_back("M270");
-  LegendString.push_back("M500");
-  LegendString.push_back("M1000");
-  LegendString.push_back("M1500");
+  // LegendString.push_back("SM");
+  // LegendString.push_back("Node01");
+  // LegendString.push_back("Node04");
+  // LegendString.push_back("Node10");
+  // LegendString.push_back("Node12");
+
+    //------------------------------------------
+  //  Grab Filename short string
+  vector<string> fields;
+  Tokenize((string)inputFile1,fields, "/");
+  string FileName = fields[fields.size()-1];
+  fields.clear();
+  Tokenize(FileName,fields,"_");
+  TString title = fields[2];  //
+  // std::cout << "lenght of title: " << title.Length() << "\t" << title << endl;
+  if (title.Length()==1) title = "Node"+title;
+  // std::cout << "lenght of title: " << title.Length() << "\t" << title << endl;
+  LegendString.push_back(title);
+
+
+  fields.clear();
+  Tokenize((string)inputFile2,fields, "/");
+  FileName = fields[fields.size()-1];
+  fields.clear();
+  Tokenize(FileName,fields,"_");
+  title = fields[2];  //
+  if (title.Length()==1) title = "Node"+title;
+  LegendString.push_back(title);
+
+  fields.clear();
+  Tokenize((string)inputFile3,fields, "/");
+  FileName = fields[fields.size()-1];
+  fields.clear();
+  Tokenize(FileName,fields,"_");
+  title = fields[2];  //
+  if (title.Length()==1) title = "Node"+title;
+  LegendString.push_back(title);
+
+  fields.clear();
+  Tokenize((string)inputFile4,fields, "/");
+  FileName = fields[fields.size()-1];
+  fields.clear();
+  Tokenize(FileName,fields,"_");
+  title = fields[2];  //
+  if (title.Length()==1) title = "Node"+title;
+  LegendString.push_back(title);
+
+  fields.clear();
+  Tokenize((string)inputFile5,fields, "/");
+  FileName = fields[fields.size()-1];
+  fields.clear();
+  Tokenize(FileName,fields,"_");
+  title = fields[2];  //
+  if (title.Length()==1) title = "Node"+title;
+  LegendString.push_back(title);    
+  //------------------------------------------
 
   TreeReaderClass TreeReaderClassT1(inputFile1, TreeName);
   TTreeReader *myReader1 = TreeReaderClassT1.reader();
@@ -250,7 +311,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
     {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt1>15 && *gen_leading_WmJets_Pt1>15 && *gen_Subleading_WpJets_Pt1>15 && *gen_Subleading_WmJets_Pt1>15)
+        // if ( *gen_ldeading_WpJets_Pt1>15 && *gen_leading_WmJets_Pt1>15 && *gen_Subleading_WpJets_Pt1>15 && *gen_Subleading_WmJets_Pt1>15)
         vectorOfTH1F1[i]->Fill(*vtree1[i]);
       }
     }
@@ -260,7 +321,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   while (myReader2->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt2>15 && *gen_leading_WmJets_Pt2>15 && *gen_Subleading_WpJets_Pt2>15 && *gen_Subleading_WmJets_Pt2>15)
+        // if ( *gen_leadding_WpJets_Pt2>15 && *gen_leading_WmJets_Pt2>15 && *gen_Subleading_WpJets_Pt2>15 && *gen_Subleading_WmJets_Pt2>15)
         vectorOfTH1F2[i]->Fill(*vtree2[i]);
       }
   }
@@ -269,7 +330,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   while (myReader3->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt3>15 && *gen_leading_WmJets_Pt3>15 && *gen_Subleading_WpJets_Pt3>15 && *gen_Subleading_WmJets_Pt3>15)
+        // if ( *gen_leadding_WpJets_Pt3>15 && *gen_leading_WmJets_Pt3>15 && *gen_Subleading_WpJets_Pt3>15 && *gen_Subleading_WmJets_Pt3>15)
         vectorOfTH1F3[i]->Fill(*vtree3[i]);
       }
   }
@@ -278,7 +339,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   while (myReader4->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt4>15 && *gen_leading_WmJets_Pt4>15 && *gen_Subleading_WpJets_Pt4>15 && *gen_Subleading_WmJets_Pt4>15)
+        // if ( *gen_ledading_WpJets_Pt4>15 && *gen_leading_WmJets_Pt4>15 && *gen_Subleading_WpJets_Pt4>15 && *gen_Subleading_WmJets_Pt4>15)
         vectorOfTH1F4[i]->Fill(*vtree4[i]);
       }
   }  
@@ -287,7 +348,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   while (myReader5->Next()) {
       for (int i = 0; i < variable.size(); ++i)
       {
-        if ( *gen_leading_WpJets_Pt5>15 && *gen_leading_WmJets_Pt5>15 && *gen_Subleading_WpJets_Pt5>15 && *gen_Subleading_WmJets_Pt5>15)
+        // if ( *gen_ledading_WpJets_Pt5>15 && *gen_leading_WmJets_Pt5>15 && *gen_Subleading_WpJets_Pt5>15 && *gen_Subleading_WmJets_Pt5>15)
         vectorOfTH1F5[i]->Fill(*vtree5[i]);
       }
   } 
@@ -312,11 +373,11 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
     // if (HistXmax < 1.0) vectorOfTH1F1[i]->SetMaximum(HistXmax*5.5);
 
     // Draw all histograms
-    vectorOfTH1F1[i]->Draw("hist");
-    vectorOfTH1F2[i]->Draw("histsame");
-    vectorOfTH1F3[i]->Draw("histsame");
-    vectorOfTH1F4[i]->Draw("histsame");
-    vectorOfTH1F5[i]->Draw("histsame");
+    if (PLOTFILES>=1) vectorOfTH1F1[i]->Draw("hist");
+    if (PLOTFILES>=2) vectorOfTH1F2[i]->Draw("histsame");
+    if (PLOTFILES>=3) vectorOfTH1F3[i]->Draw("histsame");
+    if (PLOTFILES>=4) vectorOfTH1F4[i]->Draw("histsame");
+    if (PLOTFILES>=5) vectorOfTH1F5[i]->Draw("histsame");
     // float xmin = 0.1, xmax = 0.7, ymin = 0.48, ymax = 0.9;
     float xmin = 0.6, xmax = 0.9, ymin = 0.48, ymax = 0.9;
     if (SetLegendPosition[i]==0)  /* Left */
@@ -333,11 +394,11 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
     }                
     TLegend *legend = new TLegend(xmin, ymin, xmax, ymax);
     // TLegend *legend = new TLegend(0.1, 0.7, 0.48, 0.9);
-    legend->AddEntry(vectorOfTH1F1[i],LegendString[0]);
-    legend->AddEntry(vectorOfTH1F2[i],LegendString[1]);
-    legend->AddEntry(vectorOfTH1F3[i],LegendString[2]);
-    legend->AddEntry(vectorOfTH1F4[i],LegendString[3]);
-    legend->AddEntry(vectorOfTH1F5[i],LegendString[4]);
+    if (PLOTFILES>=1) legend->AddEntry(vectorOfTH1F1[i],LegendString[0]);
+    if (PLOTFILES>=2) legend->AddEntry(vectorOfTH1F2[i],LegendString[1]);
+    if (PLOTFILES>=3) legend->AddEntry(vectorOfTH1F3[i],LegendString[2]);
+    if (PLOTFILES>=4) legend->AddEntry(vectorOfTH1F4[i],LegendString[3]);
+    if (PLOTFILES>=5) legend->AddEntry(vectorOfTH1F5[i],LegendString[4]);
     if (SetLegend[i]) 
     {
     std::cout << "Set legend: " << SetLegend[i] << "\t" << SetLegendPosition[i] << std::endl;
@@ -345,11 +406,11 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
     }
 
     c1->SaveAs("plots/"+outFileName[i]+".png");
-    // c1->SaveAs("plots/"+outFileName[i]+".pdf");
-    // c1->SetLogy(1);
+    c1->SaveAs("plots/"+outFileName[i]+".pdf");
+    c1->SetLogy(1);
     // c1->SaveAs("plots/Log/"+outFileName[i]+"_log.png");
-    // c1->SaveAs("plots/"+outFileName[i]+"_log.pdf");
-    // c1->SetLogy(0);
+    c1->SaveAs("plots/"+outFileName[i]+"_log.pdf");
+    c1->SetLogy(0);
     c1->Clear();
     std::cout << "\n";
   }

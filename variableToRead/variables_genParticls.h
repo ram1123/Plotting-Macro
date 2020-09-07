@@ -74,7 +74,7 @@ const plotVar_t commonplotvars_genParticles[] = {
  {"gen_deltaR_WpJ1_WmJ1", 25, 0, 4.5, "#Delta R(W1-J1, W2-J1)", "gen_deltaR_WpJ1_WmJ1", 0, 0, 0},
  {"gen_deltaR_WmJ0_WmJ1", 25, 0, 4.5, "#Delta R(W2-J0, W2-J1)", "gen_deltaR_WmJ0_WmJ1", 0, 0, 0},
  {"gen_deltaR_Wp_Wm", 25, 0, 5.5, "#Delta R(W1, W2)", "gen_deltaR_Wp_Wm", 0, 1, 2},
- {"gen_deltaR_H1_H2", 25, 0, 4.5, "#Delta R(H1, H2)", "gen_deltaR_H1_H2", 0, 1, 2},
+ {"gen_deltaR_H1_H2", 25, 0, 4.5, "#Delta R(H1, H2)", "gen_deltaR_H1_H2", 0, 1, 0},
 
  // Don't remove below line. It is used to break the loop.
  { "", 0,0.0,0.,"","",0,0 ,0}
