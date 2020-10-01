@@ -4,13 +4,15 @@
 #include "variableToRead/variables_genParticls_EFT.h"
 #include "interface/utils.C" // Tokenize
 #include "interface/TreeReaderClass.cpp"
+#include "interface/GrabLegendName.cpp"
 // #include "branches.h"
 
-// TODO: 
+// TODO:
 //  1. add runtime information.
 
 void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
 {
+  system("rm -rf plots"); // before run delete the "plots" directory then create new one.
   system("mkdir plots");
   // Create a canvas
   auto c1 = new TCanvas("c1");
@@ -19,7 +21,8 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
 
   // ToDo : update the 260 root file
   // To Do : update the 260 root file
-  // TString inputFile1 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
+  // TString WhichSample = "EFT";  // Radion or EFT
+  // TString inputFile1 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M260_LHEBqrk.root";
   // TString inputFile2 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M270_LHEBqrk.root";
   // TString inputFile3 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M500_LHEBqrk.root";
   // TString inputFile4 = "/uscms/home/rasharma/nobackup/double-higgs/GenSIMAnalyzer/CMSSW_10_2_22/src/GEN-SIM-analyzer/GenAnalyzer/Radion_hh_narrow_M1000_LHEBqrk.root";
@@ -34,61 +37,22 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   TString TreeName = "otree";
 
   std::vector<TString> LegendString;
-  // LegendString.push_back("SM");
-  // LegendString.push_back("Node01");
-  // LegendString.push_back("Node04");
-  // LegendString.push_back("Node10");
-  // LegendString.push_back("Node12");
 
-    //------------------------------------------
-  //  Grab Filename short string
-  vector<string> fields;
-  Tokenize((string)inputFile1,fields, "/");
-  string FileName = fields[fields.size()-1];
-  fields.clear();
-  Tokenize(FileName,fields,"_");
-  TString title = fields[2];  //
-  // std::cout << "lenght of title: " << title.Length() << "\t" << title << endl;
-  if (title.Length()==1) title = "Node"+title;
-  // std::cout << "lenght of title: " << title.Length() << "\t" << title << endl;
-  LegendString.push_back(title);
+  GrabLegendName GrabLegend;
+  GrabLegend = {inputFile1,0};
+  LegendString.push_back(GrabLegend.GetName());
 
+  GrabLegend = {inputFile2,0};
+  LegendString.push_back(GrabLegend.GetName());
 
-  fields.clear();
-  Tokenize((string)inputFile2,fields, "/");
-  FileName = fields[fields.size()-1];
-  fields.clear();
-  Tokenize(FileName,fields,"_");
-  title = fields[2];  //
-  if (title.Length()==1) title = "Node"+title;
-  LegendString.push_back(title);
+  GrabLegend = {inputFile3,0};
+  LegendString.push_back(GrabLegend.GetName());
 
-  fields.clear();
-  Tokenize((string)inputFile3,fields, "/");
-  FileName = fields[fields.size()-1];
-  fields.clear();
-  Tokenize(FileName,fields,"_");
-  title = fields[2];  //
-  if (title.Length()==1) title = "Node"+title;
-  LegendString.push_back(title);
+  GrabLegend = {inputFile4,0};
+  LegendString.push_back(GrabLegend.GetName());
 
-  fields.clear();
-  Tokenize((string)inputFile4,fields, "/");
-  FileName = fields[fields.size()-1];
-  fields.clear();
-  Tokenize(FileName,fields,"_");
-  title = fields[2];  //
-  if (title.Length()==1) title = "Node"+title;
-  LegendString.push_back(title);
-
-  fields.clear();
-  Tokenize((string)inputFile5,fields, "/");
-  FileName = fields[fields.size()-1];
-  fields.clear();
-  Tokenize(FileName,fields,"_");
-  title = fields[2];  //
-  if (title.Length()==1) title = "Node"+title;
-  LegendString.push_back(title);    
+  GrabLegend = {inputFile5,0};
+  LegendString.push_back(GrabLegend.GetName());
   //------------------------------------------
 
   TreeReaderClass TreeReaderClassT1(inputFile1, TreeName);
@@ -185,14 +149,14 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
     myReaderTree3->SetBranchStatus(pv.plotvar,1);
     TTreeReaderValue<double> tempTreeBranch3 = {*myReader3,pv.plotvar};
     vtree3.push_back(tempTreeBranch3);
-  
+
     myReaderTree4->SetBranchStatus(pv.plotvar,1);
     TTreeReaderValue<double> tempTreeBranch4 = {*myReader4,pv.plotvar};
-    vtree4.push_back(tempTreeBranch4);  
+    vtree4.push_back(tempTreeBranch4);
 
     myReaderTree5->SetBranchStatus(pv.plotvar,1);
     TTreeReaderValue<double> tempTreeBranch5 = {*myReader5,pv.plotvar};
-    vtree5.push_back(tempTreeBranch5);    
+    vtree5.push_back(tempTreeBranch5);
   }
 //######################################################################################
 //
@@ -207,7 +171,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   // myReaderTree1->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
   // TTreeReaderValue<double> gen_Subleading_WpJets_Pt1 = {*myReader1,"gen_Subleading_WpJets_Pt"};
   // myReaderTree1->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
-  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt1 = {*myReader1,"gen_Subleading_WmJets_Pt"};  
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt1 = {*myReader1,"gen_Subleading_WmJets_Pt"};
 
   // // access branch for application of cuts
   // myReaderTree2->SetBranchStatus("gen_leading_WpJets_Pt",1);
@@ -217,7 +181,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   // myReaderTree2->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
   // TTreeReaderValue<double> gen_Subleading_WpJets_Pt2 = {*myReader2,"gen_Subleading_WpJets_Pt"};
   // myReaderTree2->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
-  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt2 = {*myReader2,"gen_Subleading_WmJets_Pt"};  
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt2 = {*myReader2,"gen_Subleading_WmJets_Pt"};
 
   // // access branch for application of cuts
   // myReaderTree3->SetBranchStatus("gen_leading_WpJets_Pt",1);
@@ -227,7 +191,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   // myReaderTree3->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
   // TTreeReaderValue<double> gen_Subleading_WpJets_Pt3 = {*myReader3,"gen_Subleading_WpJets_Pt"};
   // myReaderTree3->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
-  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt3 = {*myReader3,"gen_Subleading_WmJets_Pt"};  
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt3 = {*myReader3,"gen_Subleading_WmJets_Pt"};
 
   // // access branch for application of cuts
   // myReaderTree4->SetBranchStatus("gen_leading_WpJets_Pt",1);
@@ -237,7 +201,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   // myReaderTree4->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
   // TTreeReaderValue<double> gen_Subleading_WpJets_Pt4 = {*myReader4,"gen_Subleading_WpJets_Pt"};
   // myReaderTree4->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
-  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt4 = {*myReader4,"gen_Subleading_WmJets_Pt"};  
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt4 = {*myReader4,"gen_Subleading_WmJets_Pt"};
 
   // // access branch for application of cuts
   // myReaderTree5->SetBranchStatus("gen_leading_WpJets_Pt",1);
@@ -247,8 +211,8 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   // myReaderTree5->SetBranchStatus("gen_Subleading_WpJets_Pt",1);
   // TTreeReaderValue<double> gen_Subleading_WpJets_Pt5 = {*myReader5,"gen_Subleading_WpJets_Pt"};
   // myReaderTree5->SetBranchStatus("gen_Subleading_WmJets_Pt",1);
-  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt5 = {*myReader5,"gen_Subleading_WmJets_Pt"};  
-  
+  // TTreeReaderValue<double> gen_Subleading_WmJets_Pt5 = {*myReader5,"gen_Subleading_WmJets_Pt"};
+
 //######################################################################################
 //
 //            CUT on the GEN-JETS
@@ -263,7 +227,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
   TTreeReaderValue<double> gen_Subleading_WpJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_offShellJet1_Pt"};
   myReaderTree1->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  TTreeReaderValue<double> gen_Subleading_WmJets_Pt1 = {*myReader1,"AK4GEN_AllResolved_offShellJet2_Pt"};
 
   // access branch for application of cuts
   myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
@@ -273,7 +237,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
   TTreeReaderValue<double> gen_Subleading_WpJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_offShellJet1_Pt"};
   myReaderTree2->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  TTreeReaderValue<double> gen_Subleading_WmJets_Pt2 = {*myReader2,"AK4GEN_AllResolved_offShellJet2_Pt"};
 
   // access branch for application of cuts
   myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
@@ -283,7 +247,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
   TTreeReaderValue<double> gen_Subleading_WpJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_offShellJet1_Pt"};
   myReaderTree3->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  TTreeReaderValue<double> gen_Subleading_WmJets_Pt3 = {*myReader3,"AK4GEN_AllResolved_offShellJet2_Pt"};
 
   // access branch for application of cuts
   myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
@@ -293,7 +257,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
   TTreeReaderValue<double> gen_Subleading_WpJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_offShellJet1_Pt"};
   myReaderTree4->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  TTreeReaderValue<double> gen_Subleading_WmJets_Pt4 = {*myReader4,"AK4GEN_AllResolved_offShellJet2_Pt"};
 
   // access branch for application of cuts
   myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_onShellJet1_Pt",1);
@@ -303,7 +267,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
   myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_offShellJet1_Pt",1);
   TTreeReaderValue<double> gen_Subleading_WpJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_offShellJet1_Pt"};
   myReaderTree5->SetBranchStatus("AK4GEN_AllResolved_offShellJet2_Pt",1);
-  TTreeReaderValue<double> gen_Subleading_WmJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_offShellJet2_Pt"};  
+  TTreeReaderValue<double> gen_Subleading_WmJets_Pt5 = {*myReader5,"AK4GEN_AllResolved_offShellJet2_Pt"};
 
   // Loop over all entries of the TTree or TChain.
   std::cout << "Reading first file..." << std::endl;
@@ -342,7 +306,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
         // if ( *gen_ledading_WpJets_Pt4>15 && *gen_leading_WmJets_Pt4>15 && *gen_Subleading_WpJets_Pt4>15 && *gen_Subleading_WmJets_Pt4>15)
         vectorOfTH1F4[i]->Fill(*vtree4[i]);
       }
-  }  
+  }
   // Loop over all entries of the TTree or TChain.
   std::cout << "Reading fifth file..." << std::endl;
   while (myReader5->Next()) {
@@ -351,16 +315,16 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
         // if ( *gen_ledading_WpJets_Pt5>15 && *gen_leading_WmJets_Pt5>15 && *gen_Subleading_WpJets_Pt5>15 && *gen_Subleading_WmJets_Pt5>15)
         vectorOfTH1F5[i]->Fill(*vtree5[i]);
       }
-  } 
+  }
 
   for (int i = 0; i < variable.size(); ++i)
   {
     // Normalize histos to unity
-    vectorOfTH1F1[i]->Scale(1/vectorOfTH1F1[i]->GetEntries());    
-    vectorOfTH1F2[i]->Scale(1/vectorOfTH1F2[i]->GetEntries());    
-    vectorOfTH1F3[i]->Scale(1/vectorOfTH1F3[i]->GetEntries());    
-    vectorOfTH1F4[i]->Scale(1/vectorOfTH1F4[i]->GetEntries());    
-    vectorOfTH1F5[i]->Scale(1/vectorOfTH1F5[i]->GetEntries());    
+    vectorOfTH1F1[i]->Scale(1/vectorOfTH1F1[i]->GetEntries());
+    vectorOfTH1F2[i]->Scale(1/vectorOfTH1F2[i]->GetEntries());
+    vectorOfTH1F3[i]->Scale(1/vectorOfTH1F3[i]->GetEntries());
+    vectorOfTH1F4[i]->Scale(1/vectorOfTH1F4[i]->GetEntries());
+    vectorOfTH1F5[i]->Scale(1/vectorOfTH1F5[i]->GetEntries());
 
     float HistXmax = vectorOfTH1F1[i]->GetMaximum();
 
@@ -391,7 +355,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
     if (SetLegendPosition[i]==2)  /* Right  */
     {
       xmin = 0.6; xmax = 0.9; ymin = 0.48;  ymax = 0.9;
-    }                
+    }
     TLegend *legend = new TLegend(xmin, ymin, xmax, ymax);
     // TLegend *legend = new TLegend(0.1, 0.7, 0.48, 0.9);
     if (PLOTFILES>=1) legend->AddEntry(vectorOfTH1F1[i],LegendString[0]);
@@ -399,7 +363,7 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_test)
     if (PLOTFILES>=3) legend->AddEntry(vectorOfTH1F3[i],LegendString[2]);
     if (PLOTFILES>=4) legend->AddEntry(vectorOfTH1F4[i],LegendString[3]);
     if (PLOTFILES>=5) legend->AddEntry(vectorOfTH1F5[i],LegendString[4]);
-    if (SetLegend[i]) 
+    if (SetLegend[i])
     {
     std::cout << "Set legend: " << SetLegend[i] << "\t" << SetLegendPosition[i] << std::endl;
     legend->Draw();

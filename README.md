@@ -10,6 +10,7 @@ root -l -b -q TreeReaderCompare_Four.C\(commonplotvars_test\)
 root -l -b -q TreeReaderCompare_Five.C\(commonplotvars_test\)
 root -l -b -q TreeReaderCompare_Five.C\(commonplotvars_genParticles\)
 root -l -b -q TreeReaderCompare_Five.C\(commonplotvars_allResolved\)
+root -l -b -q TreeReaderCompare_Five.C\(commonplotvars_genParticles_eft\) 
 ```
 
 ### Two D plot

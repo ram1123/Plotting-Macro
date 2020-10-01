@@ -18,6 +18,10 @@ const plotVar_t commonplotvars_genParticles_eft[] = {
  {"gen_Subleading_photon_Eta", 25, -5, 5, "Sub-Leading Photon #eta", "gen_Subleading_photon_Eta", 0, 0, 0},
  {"gen_Subleading_photon_Phi", 25, -3.5, 3.5, "Sub-Leading Photon #phi", "gen_Subleading_photon_Phi", 0, 0, 0},
  {"gen_Subleading_photon_M", 25, -0.00003, 0.00003, "Sub-Leading Photon mass", "gen_Subleading_photon_M", 0, 0, 0},
+ {"gen_HiggsGG_Pt", 25, 0, 1200, "HH p_{T} (GeV)", "gen_HiggsGG_Pt", 0, 1, 2},
+ {"gen_HiggsGG_Eta", 25, -5., 5., "HH #eta", "gen_HiggsGG_Eta", 0, 0, 2},
+ {"gen_HiggsGG_Phi", 25, -3.5, 3.5, "HH #phi", "gen_HiggsGG_Phi", 0, 0, 2},
+ {"gen_HiggsGG_M", 25, 0, 1000, "HH Invariant Mass (GeV)", "gen_HiggsGG_M", 0, 1, 2},
 
 //------------  W+              ------------------------
  {"gen_leading_WpJets_Pt", 25, 0, 500, "W1 Leading jet p_{T}", "gen_leading_WpJets_Pt", 0, 1, 2},
@@ -58,10 +62,10 @@ const plotVar_t commonplotvars_genParticles_eft[] = {
  {"gen_Subleading_Higgs_M", 25, 100, 130, "Sub-Leading Higgs mass", "gen_Subleading_Higgs_M", 0, 0, 0},
  
 //------------  Higgs           ------------------------
- {"gen_HiggsGG_Pt", 25, 0, 1200, "HH p_{T} (GeV)", "gen_HiggsGG_Pt", 0, 1, 2},
- {"gen_HiggsGG_Eta", 25, -5., 5., "HH #eta", "gen_HiggsGG_Eta", 0, 0, 2},
- {"gen_HiggsGG_Phi", 25, -3.5, 3.5, "HH #phi", "gen_HiggsGG_Phi", 0, 0, 2},
- {"gen_HiggsGG_M", 25, 0, 1000, "HH Invariant Mass (GeV)", "gen_HiggsGG_M", 0, 1, 2},
+ {"gen_HH_Pt", 25, 0, 600, "HH p_{T}", "gen_HH_Pt", 0, 0, 0},
+ {"gen_HH_Eta", 25, -5, 5, "HH #eta", "gen_HH_Eta", 0, 0, 0},
+ {"gen_HH_Phi", 25, -3.5, 3.5, "HH #phi", "gen_HH_Phi", 0, 0, 0},
+ {"gen_HH_M", 125, 0, 2000, "HH Invariant Mass", "gen_HH_M", 0, 0, 0},
 
 //------------  DeltaR          ------------------------
  {"gen_deltaR_Photon0_Photon1", 25, 0, 4.5, "#Delta R(#gamma 0, #gamma 1)", "gen_deltaR_Photon0_Photon1", 0, 1, 2},
@@ -82,16 +86,16 @@ const plotVar_t commonplotvars_genParticles_eft[] = {
  {"gen_deltaR_Wp_Wm", 25, 0, 5.5, "#Delta R(W1, W2)", "gen_deltaR_Wp_Wm", 0, 1, 2},
  {"gen_deltaR_H1_H2", 25, 0, 4.5, "#Delta R(H1, H2)", "gen_deltaR_H1_H2", 0, 1, 0},
 
- {"gen_deltaPhi_Photon0_Photon1", 25, -10, 10, "#Delta #phi(#gamma 0, #gamma 1)", "gen_deltaPhi_Photon0_Photon1", 0, 1, 2},
- {"gen_deltaPhi_Wp_Wm", 25, -10, 10, "#Delta #phi(W1, W2)", "gen_deltaPhi_Wp_Wm", 0, 1, 2},
- {"gen_deltaPhi_H1_H2", 25, -10, 10, "#Delta #phi(H1, H2)", "gen_deltaPhi_H1_H2", 0, 1, 2},
- {"gen_deltaPhi_WpJ0_WpJ1", 25, -10, 10, "#Delta #phi(W1-J0, W1-J1)", "gen_deltaPhi_WpJ0_WpJ1", 0, 1, 2},
- {"gen_deltaPhi_WmJ0_WmJ1", 25, -10, 10, "#Delta #phi(W2-J0, W2-J1)", "gen_deltaPhi_WmJ0_WmJ1", 0, 1, 2},
- {"gen_deltaEta_Photon0_Photon1", 25, -10, 10, "#Delta #phi(#gamma 0, #gamma 1)", "gen_deltaEta_Photon0_Photon1", 0, 1, 2},
- {"gen_deltaEta_Wp_Wm", 25, -10, 10, "#Delta #phi(W1, W2)", "gen_deltaEta_Wp_Wm", 0, 1, 2},
- {"gen_deltaEta_H1_H2", 25, -10, 10, "#Delta #phi(H1, H2)", "gen_deltaEta_H1_H2", 0, 1, 2},
- {"gen_deltaEta_WpJ0_WpJ1", 25, -10, 10, "#Delta #phi(W1-J0, W1-J1)", "gen_deltaEta_WpJ0_WpJ1", 0, 1, 2},
- {"gen_deltaEta_WmJ0_WmJ1", 25, -10, 10, "#Delta #phi(W2-J0, W2-J1)", "gen_deltaEta_WmJ0_WmJ1", 0, 1, 2},
+ {"gen_deltaPhi_Photon0_Photon1", 25, -5, 5, "#Delta #phi(#gamma 0, #gamma 1)", "gen_deltaPhi_Photon0_Photon1", 0, 0, 1},
+ {"gen_deltaPhi_Wp_Wm", 25, -5, 5, "#Delta #phi(W1, W2)", "gen_deltaPhi_Wp_Wm", 0, 0, 1},
+ {"gen_deltaPhi_H1_H2", 25, -5, 5, "#Delta #phi(H1, H2)", "gen_deltaPhi_H1_H2", 0, 0, 1},
+ {"gen_deltaPhi_WpJ0_WpJ1", 25, -5, 5, "#Delta #phi(W1-J0, W1-J1)", "gen_deltaPhi_WpJ0_WpJ1", 0, 0, 1},
+ {"gen_deltaPhi_WmJ0_WmJ1", 25, -5, 5, "#Delta #phi(W2-J0, W2-J1)", "gen_deltaPhi_WmJ0_WmJ1", 0, 0, 1},
+ {"gen_deltaEta_Photon0_Photon1", 25, -6, 6, "#Delta #eta(#gamma 0, #gamma 1)", "gen_deltaEta_Photon0_Photon1", 0, 1, 2},
+ {"gen_deltaEta_Wp_Wm", 25, -6, 6, "#Delta #eta(W1, W2)", "gen_deltaEta_Wp_Wm", 0, 1, 2},
+ {"gen_deltaEta_H1_H2", 25, -6, 6, "#Delta #eta(H1, H2)", "gen_deltaEta_H1_H2", 0, 1, 2},
+ {"gen_deltaEta_WpJ0_WpJ1", 25, -6, 6, "#Delta #eta(W1-J0, W1-J1)", "gen_deltaEta_WpJ0_WpJ1", 0, 1, 2},
+ {"gen_deltaEta_WmJ0_WmJ1", 25, -6, 6, "#Delta #eta(W2-J0, W2-J1)", "gen_deltaEta_WmJ0_WmJ1", 0, 1, 2},
 
  // Don't remove below line. It is used to break the loop.
  { "", 0,0.0,0.,"","",0,0 ,0}
