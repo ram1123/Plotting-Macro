@@ -11,8 +11,8 @@ const plotVar_t commonplotvars_test[] = {
  // {"pdgID", 7, 0, 7, "1st Quarks from W+", "pdgID", 0, 0, 0},
 //------------    Photons  		------------------------
  {"gen_leading_photon_Pt", 25, 0, 1500, "Leading Photon p_{T}", "gen_leading_photon_Pt", 0, 1, 2},
- {"gen_leading_photon_Eta", 25, -5., 5., "Leading Photon #eta", "gen_leading_photon_Eta", 0, 0, 1},
- {"gen_leading_photon_Phi", 25, -3.5, 3.5, "Leading Photon #phi", "gen_leading_photon_Phi", 0, 0, 0},
+ {"gen_leading_photon_Eta", 25, -5., 5., "Leading Photon #eta", "gen_leading_photon_Eta", 0, 1, 1},
+ {"gen_leading_photon_Phi", 25, -3.5, 3.5, "Leading Photon #phi", "gen_leading_photon_Phi", 0, 1, 0},
 //  {"gen_leading_photon_M", 25, -0.00005, 0.00005, "Leading Photon mass", "gen_leading_photon_M", 0, 0, 0},
 //  {"gen_Subleading_photon_Pt", 25, 0, 500, "Sub-Leading Photon p_{T}", "gen_Subleading_photon_Pt", 0, 1, 2},
 //  {"gen_Subleading_photon_Eta", 25, -5, 5, "Sub-Leading Photon #eta", "gen_Subleading_photon_Eta", 0, 0, 0},
@@ -28,7 +28,7 @@ const plotVar_t commonplotvars_test[] = {
 //  {"gen_Subleading_WpJets_Eta", 25, -5., 5., "W1 Sub-Leading jet #eta", "gen_Subleading_WpJets_Eta", 0, 0, 0},
 //  {"gen_Subleading_WpJets_Phi", 25, -3.5, 3.5, "W1 Sub-Leading jet #phi", "gen_Subleading_WpJets_Phi", 0, 0, 0},
 //  {"gen_Subleading_WpJets_M", 25, 0, 1.7, "W1 Sub-Leading jet mass", "gen_Subleading_WpJets_M", 0, 0, 0},
- 
+
 // //------------	W-				------------------------
 //  {"gen_leading_WmJets_Pt", 25, 0, 1250, "W2 Leading jet p_{T}", "gen_leading_WmJets_Pt", 0, 1, 2},
 //  {"gen_leading_WmJets_Eta", 25, -5., 5., "W2 Leading jet #eta", "gen_leading_WmJets_Eta", 0, 0, 0},
@@ -56,7 +56,7 @@ const plotVar_t commonplotvars_test[] = {
 //  {"gen_Subleading_Higgs_Eta", 25, -5., 5., "Sub-Leading Higgs #eta", "gen_Subleading_Higgs_Eta", 0, 0, 0},
 //  {"gen_Subleading_Higgs_Phi", 25, -3.5, 3.5, "Sub-Leading Higgs #phi", "gen_Subleading_Higgs_Phi", 0, 0, 0},
 //  {"gen_Subleading_Higgs_M", 25, 100, 130, "Sub-Leading Higgs mass", "gen_Subleading_Higgs_M", 0, 0, 0},
- 
+
 // //------------	DeltaR			------------------------
 //  {"gen_deltaR_Photon0_Photon1", 25, 0, 4.5, "#Delta R(#gamma 0, #gamma 1)", "gen_deltaR_Photon0_Photon1", 0, 1, 2},
 //  {"gen_deltaR_Photon0_WmJ0", 25, 0, 4.5, "#Delta R(#gamma 0, W2-J0)", "gen_deltaR_Photon0_WmJ0", 0, 0, 0},
