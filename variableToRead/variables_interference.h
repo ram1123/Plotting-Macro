@@ -80,13 +80,13 @@ const plotVar_t commonplotvars_interference[] = {
  {"gen_deltaR_H1_H2", 25, 0, 4.5, "#Delta R(H1, H2)", "gen_deltaR_H1_H2", 0, 1, 0},
 
  {"gen_HH_Pt", 25, 0, 1000, "gen_HH_Pt", "gen_HH_Pt", 0, 1, 2},
- {"gen_HH_Eta", 25, -5, 5, "gen_HH_Eta", "gen_HH_Eta", 0, 1, 2},
- {"gen_HH_Phi", 25, -3.5, 3.5, "gen_HH_Phi", "gen_HH_Phi", 0, 1, 2},
+ {"gen_HH_Eta", 25, -5, 5, "gen_HH_Eta", "gen_HH_Eta", 0, 0, 2},
+ {"gen_HH_Phi", 25, -3.5, 3.5, "gen_HH_Phi", "gen_HH_Phi", 0, 0, 2},
  {"gen_HH_M", 25, 0, 1500, "gen_HH_M", "gen_HH_M", 0, 1, 2},
 
  {"gen_HiggsGG_Pt", 25, 0, 1000, "gen_HiggsGG_Pt", "gen_HiggsGG_Pt", 0, 1, 2},
- {"gen_HiggsGG_Eta", 25, -5, 5, "gen_HiggsGG_Eta", "gen_HiggsGG_Eta", 0, 1, 2},
- {"gen_HiggsGG_Phi", 25, -3.5, 3.5, "gen_HiggsGG_Phi", "gen_HiggsGG_Phi", 0, 1, 2},
+ {"gen_HiggsGG_Eta", 25, -5, 5, "gen_HiggsGG_Eta", "gen_HiggsGG_Eta", 0, 0, 2},
+ {"gen_HiggsGG_Phi", 25, -3.5, 3.5, "gen_HiggsGG_Phi", "gen_HiggsGG_Phi", 0, 0, 2},
  {"gen_HiggsGG_M", 125, 0, 200, "gen_HiggsGG_M", "gen_HiggsGG_M", 0, 1, 0},
 
  // Don't remove below line. It is used to break the loop.

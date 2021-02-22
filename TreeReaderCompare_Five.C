@@ -28,8 +28,8 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_interfer
 
   TString inputFile1 = "/afs/cern.ch/user/r/rasharma/work/doubleHiggs/GEN-SIM-analyzer/CMSSW_10_6_8/src/GEN-SIM-analyzer/GenAnalyzer/WW.root";
   TString inputFile2 = "/afs/cern.ch/user/r/rasharma/work/doubleHiggs/GEN-SIM-analyzer/CMSSW_10_6_8/src/GEN-SIM-analyzer/GenAnalyzer/ZZ.root";
-  TString inputFile3 = "/afs/cern.ch/user/r/rasharma/work/doubleHiggs/GEN-SIM-analyzer/CMSSW_10_6_8/src/GEN-SIM-analyzer/GenAnalyzer/WWZZ.root";
-  TString inputFile4 = "/afs/cern.ch/user/r/rasharma/work/doubleHiggs/GEN-SIM-analyzer/CMSSW_10_6_8/src/GEN-SIM-analyzer/GenAnalyzer/Sum.root";
+  TString inputFile3 = "/afs/cern.ch/user/r/rasharma/work/doubleHiggs/GEN-SIM-analyzer/CMSSW_10_6_8/src/GEN-SIM-analyzer/GenAnalyzer/WWZZ_WithInterference.root";
+  TString inputFile4 = "/afs/cern.ch/user/r/rasharma/work/doubleHiggs/GEN-SIM-analyzer/CMSSW_10_6_8/src/GEN-SIM-analyzer/GenAnalyzer/WWZZ_WithoutInterference.root";
   TString inputFile5 = "/afs/cern.ch/user/r/rasharma/work/doubleHiggs/GEN-SIM-analyzer/CMSSW_10_6_8/src/GEN-SIM-analyzer/GenAnalyzer/WWZZ.root";
 
   TString TreeName = "otree";
@@ -37,8 +37,8 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_interfer
   std::vector<TString> LegendString;
   LegendString.push_back("WW");
   LegendString.push_back("ZZ");
-  LegendString.push_back("WW/ZZ");
-  LegendString.push_back("WW+ZZ");
+  LegendString.push_back("WW+ZZ (Interference)");
+  LegendString.push_back("WW+ZZ (No Interference)");
   LegendString.push_back("Node12");
 
     //------------------------------------------
@@ -404,8 +404,8 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_interfer
     }
     TLegend *legend = new TLegend(xmin, ymin, xmax, ymax);
     // TLegend *legend = new TLegend(0.1, 0.7, 0.48, 0.9);
-    if (PLOTFILES>=1) legend->AddEntry(vectorOfTH1F1[i],LegendString[0]);
-    if (PLOTFILES>=2) legend->AddEntry(vectorOfTH1F2[i],LegendString[1]);
+    // if (PLOTFILES>=1) legend->AddEntry(vectorOfTH1F1[i],LegendString[0]);
+    // if (PLOTFILES>=2) legend->AddEntry(vectorOfTH1F2[i],LegendString[1]);
     if (PLOTFILES>=3) legend->AddEntry(vectorOfTH1F3[i],LegendString[2]);
     if (PLOTFILES>=4) legend->AddEntry(vectorOfTH1F4[i],LegendString[3]);
     if (PLOTFILES>=5) legend->AddEntry(vectorOfTH1F5[i],LegendString[4]);
@@ -421,6 +421,19 @@ void TreeReaderCompare_Five(const plotVar_t plotvars[] = commonplotvars_interfer
     // c1->SaveAs("plots/Log/"+outFileName[i]+"_log.png");
     c1->SaveAs("plots/"+outFileName[i]+"_log.pdf");
     c1->SetLogy(0);
+    c1->Clear();
+    auto rp = new TRatioPlot(vectorOfTH1F3[i], vectorOfTH1F4[i]);
+    c1->SetTicks(0, 1);
+    rp->Draw();
+    legend->Draw();
+    rp->GetLowerRefYaxis()->SetTitle("ratio");
+    rp->GetUpperRefYaxis()->SetTitle("entries");
+    rp->GetLowerRefGraph()->SetMinimum(0.5);
+    rp->GetLowerRefGraph()->SetMaximum(1.5);
+    rp->GetLowYaxis()->SetNdivisions(505);
+    c1->Update();
+    c1->SaveAs("plots/TRatioPlot_"+outFileName[i]+".png");
+    c1->SaveAs("plots/TRatioPlot_"+outFileName[i]+".pdf");
     c1->Clear();
     std::cout << "\n";
   }
