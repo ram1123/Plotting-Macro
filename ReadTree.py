@@ -13,8 +13,7 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpForm
     description='''
     Example Command:
     ----------------
-    python ReadTree3.py -i InputRootFile.root  -t TreeName  --dir temp -var_file variableListToPlot.py
-    python ReadTree3.py -i /afs/cern.ch/user/r/rasharma/work/h4L_analysis/UFHZZAnalyzer/CMSSW_10_6_12/src/Sync_1031_2018_GluGluHToZZTo4L_final.root  -t Ana/passedEvents  --dir temp -var_file variableListToPlot.py
+    python ReadTree.py -i InputRootFile.root  -t TreeName  --dir temp -var_file variableListToPlot.py
 
     ----------------
     '''
@@ -25,7 +24,7 @@ parser.add_argument('-i', '--input_file',
     help='Input root file'
     )
 parser.add_argument('-t', '--tree_name',
-    default='',
+    default='Ana/passedEvents',
     type=str,
     help='tree name of input root file'
     )
@@ -79,7 +78,7 @@ branchesToPlot  = variableListToPlot.branchesToPlot
 
 total_number_of_plots = len(branchesToPlot)
 for count,var_plots in enumerate(branchesToPlot):
-    print("Plotting branch: {0:3}/{1:<3}, {2:45}, {3:12}".format(
+    print("===> Plotting branch: {0:3}/{1:<3}, {2:31}, {3:12}".format(
         count+1,total_number_of_plots,
         var_plots,
         branchesToPlot[var_plots]
@@ -93,10 +92,12 @@ for count,var_plots in enumerate(branchesToPlot):
         )
     plt.xlabel(var_plots)
     plt.ylabel('Number of events')
-    plt.yscale('log')
     plt.legend()
     plt.ioff() # to turn off the displaying plots.
     # plt.show()
     plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'.png')
     plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'.pdf')
+    plt.yscale('log')
+    plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.png')
+    plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.pdf')
     plt.close()
