@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 # @Author: Ram Krishna Sharma
 # @Author Email: ram.krishna.sharma@cern.ch
-# @Date:   2021-06-02
+# @Date:   2021-06-03
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-06-10
+# @Last Modified time: 2021-06-08
 import uproot
 import argparse
 import matplotlib.pyplot as plt
+plt.ioff() # to turn off the displaying plots.
 import os
 import numpy
 
@@ -30,7 +31,7 @@ parser.add_argument('-t', '--tree_name',
     help='tree name of input root file'
     )
 parser.add_argument('-var_file', '--var_file',
-    default="Variables_Simple1DPlots.py",
+    default="TwoD_VariableListToPlot.py",
     type=str,
     help='text file having list of all variables.'
     )
@@ -40,7 +41,7 @@ parser.add_argument('-d', '--debug',
     help='debug true or false'
     )
 parser.add_argument('-v', '--var_set_to_plot',
-    default="nJettiness",
+    default="twoD_var_list",
     type=str,
     help='''
     Which variable set to plot.
@@ -59,20 +60,8 @@ if not os.path.isdir(args.dir_to_save_plots):
     os.makedirs(args.dir_to_save_plots)
 
 file = uproot.open(args.input_file)
-if (args.debug): print(file)
-if (args.debug): print(file.keys())
 
 tree = file[args.tree_name]
-if (args.debug):
-#     print(tree.keys())
-    print(tree)
-
-if (args.debug):
-    print("|{count:5} | {branch_name:46} |".format(count="count", branch_name="Branch Name"))
-    print("|{count:5} | {branch_name:46} |".format(count="---", branch_name="---"))
-    for i,name in enumerate(tree.arrays()):
-        print("|{count:5} | {branch_name:46} |".format(count=i, branch_name=name))
-        if i>11: break
 
 branches = tree.arrays()
 number_of_branches = len(branches)
@@ -83,44 +72,51 @@ cwd = os.getcwd()
 sys.path.insert(0, cwd)  # mypath = path of module to be imported
 variableListToPlot = __import__((args.var_file).replace(".py","")) # __import__ accepts string
 
+# branchesToPlot  = variableListToPlot.nJettinessMELA
 branchesToPlot  = getattr(variableListToPlot, args.var_set_to_plot)
 
 total_number_of_plots = len(branchesToPlot)
 for count,var_plots in enumerate(branchesToPlot):
-    plt.ioff() # to turn off the displaying plots.
-    print("===> Plotting branch: {0:3}/{1:<3}, {2:31}, {3:12}".format(
+    print count,var_plots
+    var1 = var_plots[0]
+    var2 = var_plots[4]
+    print("var1: {}".format(var1))
+    print("var2: {}".format(var2))
+    print("===> Plotting branch: {0:3}/{1:<3}, {2:31}".format(
         count+1,total_number_of_plots,
-        var_plots,
-        branchesToPlot[var_plots]
+        var_plots
         )
     )
-    n, bins, patches = plt.hist(branches[var_plots],
-        bins='auto',
-        range=(branchesToPlot[var_plots][1], branchesToPlot[var_plots][2]),
-        label=var_plots,
-        # alpha=0.6,
-        fill=False,
-        linewidth=2,
-        # facecolor='c',
-        # hatch='/',
-        edgecolor='red',
-        histtype='step',
-        normed=True,
+    print "type(var1): ",type(var1)
+    print "type(branches[var1]): ",type(branches[var1])
+    # n, bins, patches = plt.hist(branches[var1],
+    #     # branches[var2],
+    #     bins='auto',
+    #     # bins=(51,51),
+    #     range=(var_plots[2], var_plots[3] ),# [var_plots[6], var_plots[7]] ),
+    #     )
+    plt.hist2d(branches[var1], branches[var2],
+        # bins='auto',
+        bins=(var_plots[1],var_plots[5]),
+        range=((var_plots[2], var_plots[3]),(var_plots[6], var_plots[7] )),
+        # cmap=plt.cm.jet,
+        # cmap=plt.cm.BuPu,
+        cmap=plt.cm.Reds,
+        # cmap=plt.cm.Greys
         )
-    # print("n = {}, \nbins = {}, \npatches = {}".format(n,bins,patches))
-    # print "type(n): ",type(n)
-    # print("type(n): {}".format(str(type(n))))
-    # print "Entries: ",numpy.sum(n)
-    plt.xlabel(var_plots,fontsize=21)
-    plt.ylabel('Number of events',fontsize=21)
-    plt.legend(loc='best')
-    plt.tight_layout()
+    # plt.plot(branches[var1], branches[var2], 'ro')
+    # plt.axis([var_plots[2], var_plots[3], var_plots[6], var_plots[7]])
+
+    plt.xlabel(var1)
+    plt.ylabel(var2)
+    # plt.legend(loc='best')
     # plt.text(30,400,"Entries: "+str(numpy.sum(n)))
     # plt.show()
-    plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'.png')
-    plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'.pdf')
-    plt.yscale('log')
-    plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.png')
-    plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.pdf')
-    plt.yscale('linear')
+    plt.tight_layout()
+    plt.savefig(args.dir_to_save_plots+os.sep+var2+'_2D.png')
+    plt.savefig(args.dir_to_save_plots+os.sep+var2+'_2D.pdf')
+    # plt.yscale('log')
+    # plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.png')
+    # plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.pdf')
+    # plt.yscale('linear')
     plt.close()
