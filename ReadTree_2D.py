@@ -3,7 +3,7 @@
 # @Author Email: ram.krishna.sharma@cern.ch
 # @Date:   2021-06-03
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-06-08
+# @Last Modified time: 2021-06-10
 import uproot
 import argparse
 import matplotlib.pyplot as plt
@@ -31,7 +31,7 @@ parser.add_argument('-t', '--tree_name',
     help='tree name of input root file'
     )
 parser.add_argument('-var_file', '--var_file',
-    default="TwoD_VariableListToPlot.py",
+    default="Variables_TwoDPlots.py",
     type=str,
     help='text file having list of all variables.'
     )
@@ -87,8 +87,8 @@ for count,var_plots in enumerate(branchesToPlot):
         var_plots
         )
     )
-    print "type(var1): ",type(var1)
-    print "type(branches[var1]): ",type(branches[var1])
+    # print "type(var1): ",type(var1)
+    # print "type(branches[var1]): ",type(branches[var1])
     # n, bins, patches = plt.hist(branches[var1],
     #     # branches[var2],
     #     bins='auto',

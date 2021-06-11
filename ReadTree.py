@@ -39,6 +39,11 @@ parser.add_argument('-d', '--debug',
     type=bool,
     help='debug true or false'
     )
+parser.add_argument('-logY', '--logY',
+    default=False,
+    type=bool,
+    help='make y-axis as log: true/false'
+    )
 parser.add_argument('-v', '--var_set_to_plot',
     default="nJettiness",
     type=str,
@@ -67,12 +72,24 @@ if (args.debug):
 #     print(tree.keys())
     print(tree)
 
-if (args.debug):
-    print("|{count:5} | {branch_name:46} |".format(count="count", branch_name="Branch Name"))
-    print("|{count:5} | {branch_name:46} |".format(count="---", branch_name="---"))
-    for i,name in enumerate(tree.arrays()):
-        print("|{count:5} | {branch_name:46} |".format(count=i, branch_name=name))
-        if i>11: break
+# print "type: ",type(tree.arrays())
+# print tree.arrays()
+
+# list_of_branches = list((tree.arrays()).keys())
+
+# # print "type(list_of_branches):",type(list_of_branches)
+# # list_of_branches_sorted = (list(list_of_branches)).sort()
+# list_of_branches_sorted = sorted(list_of_branches)
+# # print "type(list_of_branches):",type(list_of_branches_sorted)
+# # print "(list_of_branches):",(list_of_branches)
+# # print "(list_of_branches):",(list_of_branches_sorted)
+# if (True):
+#     print("|{count:5} | {branch_name:46} |".format(count="count", branch_name="Branch Name"))
+#     print("|{count:5} | {branch_name:46} |".format(count="---", branch_name="---"))
+#     # for i,name in enumerate((tree.arrays()).sort()):
+#     for i,name in enumerate(list_of_branches_sorted):
+#         print("|{count:5} | {branch_name:46} |".format(count=i, branch_name=name))
+#         # if i>11: break
 
 branches = tree.arrays()
 number_of_branches = len(branches)
@@ -88,10 +105,10 @@ branchesToPlot  = getattr(variableListToPlot, args.var_set_to_plot)
 total_number_of_plots = len(branchesToPlot)
 for count,var_plots in enumerate(branchesToPlot):
     plt.ioff() # to turn off the displaying plots.
-    print("===> Plotting branch: {0:3}/{1:<3}, {2:31}, {3:12}".format(
+    print("===> Plotting branch: {0:3}/{1:<3}, {2:19}, {3:45}".format(
         count+1,total_number_of_plots,
-        var_plots,
-        branchesToPlot[var_plots]
+        branchesToPlot[var_plots],
+        var_plots
         )
     )
     n, bins, patches = plt.hist(branches[var_plots],
@@ -105,7 +122,7 @@ for count,var_plots in enumerate(branchesToPlot):
         # hatch='/',
         edgecolor='red',
         histtype='step',
-        normed=True,
+        # normed=True,
         )
     # print("n = {}, \nbins = {}, \npatches = {}".format(n,bins,patches))
     # print "type(n): ",type(n)
@@ -119,8 +136,9 @@ for count,var_plots in enumerate(branchesToPlot):
     # plt.show()
     plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'.png')
     plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'.pdf')
-    plt.yscale('log')
-    plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.png')
-    plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.pdf')
-    plt.yscale('linear')
+    if (args.logY):
+        plt.yscale('log')
+        plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.png')
+        plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.pdf')
+        plt.yscale('linear')
     plt.close()
