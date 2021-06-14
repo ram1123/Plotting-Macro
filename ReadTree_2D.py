@@ -3,7 +3,7 @@
 # @Author Email: ram.krishna.sharma@cern.ch
 # @Date:   2021-06-03
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-06-10
+# @Last Modified time: 2021-06-14
 import uproot
 import argparse
 import matplotlib.pyplot as plt
@@ -53,6 +53,11 @@ parser.add_argument('-dir', '--dir_to_save_plots',
     type=str,
     help='Directory name to keep plots'
     )
+parser.add_argument('-zaxis', '--zaxis',
+    default=50,
+    type=int,
+    help='z-axis upper limit'
+    )
 args = parser.parse_args()
 # print(args.accumulate(args.integers))
 
@@ -100,15 +105,21 @@ for count,var_plots in enumerate(branchesToPlot):
         bins=(var_plots[1],var_plots[5]),
         range=((var_plots[2], var_plots[3]),(var_plots[6], var_plots[7] )),
         # cmap=plt.cm.jet,
+        # cmap=plt.cm.Oranges,
         # cmap=plt.cm.BuPu,
         cmap=plt.cm.Reds,
         # cmap=plt.cm.Greys
         )
+    plt.clim(0, args.zaxis)
+    plt.colorbar()
+    plt.title("")
+    axes = plt.axes()
+    # axes.set_ylim([0, 1.1])
     # plt.plot(branches[var1], branches[var2], 'ro')
     # plt.axis([var_plots[2], var_plots[3], var_plots[6], var_plots[7]])
 
-    plt.xlabel(var1)
-    plt.ylabel(var2)
+    plt.xlabel(var_plots[8],fontsize=18)
+    plt.ylabel(var_plots[9],fontsize=18)
     # plt.legend(loc='best')
     # plt.text(30,400,"Entries: "+str(numpy.sum(n)))
     # plt.show()

@@ -3,7 +3,7 @@
 # @Author Email: ram.krishna.sharma@cern.ch
 # @Date:   2021-06-03
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-06-09
+# @Last Modified time: 2021-06-13
 import uproot
 import argparse
 import matplotlib.pyplot as plt
@@ -42,7 +42,7 @@ parser.add_argument('-t', '--tree_name',
     help='tree name of input root file'
     )
 parser.add_argument('-var_file', '--var_file',
-    default="Hist_overlap_variables.py",
+    default="Variables_Hist_Overlap.py",
     type=str,
     help='text file having list of all variables.'
     )
@@ -100,22 +100,23 @@ branchesToPlot  = getattr(variableListToPlot, args.var_set_to_plot)
 
 total_number_of_plots = len(branchesToPlot)
 
-print total_number_of_plots
+# print total_number_of_plots
 for count, var_plots in enumerate(branchesToPlot):
-    print count,var_plots
+    # print count,var_plots
     # print "\t",len(var_plots)/4.0
     color_count = 0
     for VarCount in range(0,len(var_plots),4):
-        print VarCount
+        # print VarCount
         plt.ioff() # to turn off the displaying plots.
-        print("===> Plotting branch: {0:3}/{1:<3}, {2:31}".format(
+        print("===> Plotting branch: {0:3}/{1:<3}, {2:31}, {3:3}, {4:3}, {5:3}".format(
             count+1,total_number_of_plots,
-            var_plots[VarCount]
+            var_plots[VarCount],
+            var_plots[VarCount+1], var_plots[VarCount+2],var_plots[VarCount+3]
             # branchesToPlot[var_plots]
             )
         )
-        print var_plots[VarCount],var_plots[VarCount+1], var_plots[VarCount+2],var_plots[VarCount+3]
-        plt.hist(branches[var_plots[VarCount]],
+        # print var_plots[VarCount],var_plots[VarCount+1], var_plots[VarCount+2],var_plots[VarCount+3]
+        n, bins, patches = plt.hist(branches[var_plots[VarCount]],
             # bins=branchesToPlot[var_plots][0],
             bins=var_plots[VarCount+1],
             range=(var_plots[VarCount+2], var_plots[VarCount+3]),
@@ -127,7 +128,7 @@ for count, var_plots in enumerate(branchesToPlot):
             # hatch='/',
             # edgecolor='red',
             edgecolor=pick_color[color_count],
-            histtype='step'
+            histtype='step',
             # normed=True,
             )
         color_count = color_count+1
@@ -136,7 +137,7 @@ for count, var_plots in enumerate(branchesToPlot):
         # print("type(n): {}".format(str(type(n))))
         # converting list to array
         # arr = numpy.array(n)
-        # print "Sum: ",numpy.sum(n)
+        print "\t",var_plots[VarCount],"Total Entries: ",numpy.sum(n),"\tarea: ",sum(numpy.diff(bins)*n)
         # plt.xlabel(var_plots[VarCount],fontsize=15)
         plt.xlabel("")
         plt.ylabel('Number of events',fontsize=15)

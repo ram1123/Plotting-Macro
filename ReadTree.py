@@ -3,7 +3,7 @@
 # @Author Email: ram.krishna.sharma@cern.ch
 # @Date:   2021-06-02
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-06-10
+# @Last Modified time: 2021-06-11
 import uproot
 import argparse
 import matplotlib.pyplot as plt
@@ -103,7 +103,7 @@ variableListToPlot = __import__((args.var_file).replace(".py","")) # __import__ 
 branchesToPlot  = getattr(variableListToPlot, args.var_set_to_plot)
 
 total_number_of_plots = len(branchesToPlot)
-for count,var_plots in enumerate(branchesToPlot):
+for count,var_plots in enumerate(sorted(branchesToPlot)):
     plt.ioff() # to turn off the displaying plots.
     print("===> Plotting branch: {0:3}/{1:<3}, {2:19}, {3:45}".format(
         count+1,total_number_of_plots,
@@ -128,9 +128,9 @@ for count,var_plots in enumerate(branchesToPlot):
     # print "type(n): ",type(n)
     # print("type(n): {}".format(str(type(n))))
     # print "Entries: ",numpy.sum(n)
-    plt.xlabel(var_plots,fontsize=21)
-    plt.ylabel('Number of events',fontsize=21)
-    plt.legend(loc='best')
+    plt.xlabel(branchesToPlot[var_plots][3],fontsize=15)
+    plt.ylabel('Number of events',fontsize=15)
+    # plt.legend(loc='best')
     plt.tight_layout()
     # plt.text(30,400,"Entries: "+str(numpy.sum(n)))
     # plt.show()
