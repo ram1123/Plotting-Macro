@@ -45,43 +45,43 @@ twoD_var_list = [
         # 50, 0.4, 70.0,
         50, 0.4, 70.0,
         r'$\eta_{j}$',
-        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j})}$ '
-        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j})}$ '
+        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j} - Y_H)}$ '
+        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j} - Y_H)}$ '
     ],
     ['TauC_Inc_1j_CorrRapidity', 51,-4.7, 4.7, 'TauC_Inc_1j',
         # 50, 0.4, 70.0,
         50, 0.4, 70.0,
         r'$\eta_{j}$',
-        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j})}$ '
-        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j})}$ '
+        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j} - Y_H)}$ '
+        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j} - Y_H)}$ '
     ],
     ['TauC_Inc_2j_CorrRapidity', 51,-4.7, 4.7, 'TauC_Inc_2j',
         # 50, 0.4, 70.0,
         50, 0.4, 70.0,
         r'$\eta_{j}$',
-        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j})}$ '
-        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j})}$ '
+        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j} - Y_H)}$ '
+        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j} - Y_H)}$ '
     ],
     ['TauC_JetConstituents_0j_CorrRapidity', 51,-4.7, 4.7, 'TauC_JetConstituents_0j',
         # 50, 0, 70.0,
         50, 0, 70.0,
         r'$\eta_{j}$',
-        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j})}$'
-        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j})}$'
+        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j} - Y_H)}$'
+        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j} - Y_H)}$'
     ],
     ['TauC_JetConstituents_1j_CorrRapidity', 51,-4.7, 4.7, 'TauC_JetConstituents_1j',
         # 50, 0, 70.0,
         50, 0, 70.0,
         r'$\eta_{j}$',
-        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j})}$'
-        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j})}$'
+        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j} - Y_H)}$'
+        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j} - Y_H)}$'
     ],
     ['TauC_JetConstituents_2j_CorrRapidity', 51,-4.7, 4.7, 'TauC_JetConstituents_2j',
         # 50, 0, 70.0,
         50, 0, 70.0,
         r'$\eta_{j}$',
-        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j})}$'
-        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j})}$'
+        r'$f(y_{j})=\frac{\sqrt{E^2_j-p^2_{Z,j}}}{2cosh(y_{j} - Y_H)}$'
+        # r'$f(y_{j})=\frac{p_{Tj}}{2cosh(y_{j} - Y_H)}$'
     ],
     ['TauCnoHRapidity_JetConstituents_0j_CorrRapidity', 51,-4.7, 4.7, 'TauCnoHRapidity_JetConstituents_0j',
         # 50, 0, 70.0,

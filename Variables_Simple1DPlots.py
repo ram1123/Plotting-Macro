@@ -10,29 +10,29 @@ nJettiness = {
 
     # nJettiness variables
     #
-    # "GeneralTau": [51,0,0.01],
-    # "GeneralTau1": [51,0,0.01],
-    # "GeneralTau2": [51,0,0.01],
-    # "GeneralTau3": [25,-100,100]
+    "Tau0": [100,0,6, r'$\tau_0$'],
+    "GeneralizedTau0": [100,0,6, r'$\tau_0$'],
+    "GeneralizedTau1": [100,0,6, r'$\tau_1$'],
+    "GeneralizedTau2": [100,0,6, r'$\tau_2$']
 
-    "TauB_Inc_0j": [100, 0, 1.0, r'$\tau_{B,0}$ (Inclusive Jets)'],
-    "TauB_Inc_1j": [100, 0, 1.0, r'$\tau_{B,1}$ (Inclusive Jets)'],
-    "TauB_Inc_2j": [100, 0, 1.0, r'$\tau_{B,2}$ (Inclusive Jets)'],
-    "TauB_JetConstituents_0j": [100, 0, 10.0, r'$\tau_{B,0}$  (Using Jet Const.)'],
-    "TauB_JetConstituents_1j": [100, 0, 10.0, r'$\tau_{B,1}$  (Using Jet Const.)'],
-    "TauB_JetConstituents_2j": [100, 0, 10.0, r'$\tau_{B,2}$  (Using Jet Const.)'],
-    "TauC_Inc_0j": [100, 0, 1.5, r'$\tau_{C,0}$ (Inclusive Jets)'],
-    "TauC_Inc_1j": [100, 0, 1.5, r'$\tau_{C,1}$ (Inclusive Jets)'],
-    "TauC_Inc_2j": [50, 0, 1.5, r'$\tau_{C,2}$ (Inclusive Jets)'],
-    "TauC_JetConstituents_0j": [100, 0, 10, r'$\tau_{C,0}$  (Using Jet Const.)'],
-    "TauC_JetConstituents_1j": [100, 0, 10, r'$\tau_{C,1}$  (Using Jet Const.)'],
-    "TauC_JetConstituents_2j": [50, 0, 10, r'$\tau_{C,2}$  (Using Jet Const.)'],
-    "TauCnoHRapidity_JetConstituents_0j": [100, 0, 10, r'$\tau_{C,0}$  (Using Jet Const., without H)'],
-    "TauCnoHRapidity_JetConstituents_1j": [100, 0, 10, r'$\tau_{C,1}$  (Using Jet Const., without H)'],
-    "TauCnoHRapidity_JetConstituents_2j": [50, 0, 10, r'$\tau_{C,2}$  (Using Jet Const., without H)'],
-    "TauCnoHRapidity_Inc_0j": [100, 0, 0.5, r'$\tau_{C,0}$  (Inclusive Jets, without H)'],
-    "TauCnoHRapidity_Inc_1j": [100, 0, 0.5, r'$\tau_{C,1}$  (Inclusive Jets, without H)'],
-    "TauCnoHRapidity_Inc_2j": [50, 0, 0.5, r'$\tau_{C,2}$  (Inclusive Jets, without H)'],
+    # "TauB_Inc_0j": [100, 0, 1.0, r'$\tau_{B,0}$ (Inclusive Jets)'],
+    # "TauB_Inc_1j": [100, 0, 1.0, r'$\tau_{B,1}$ (Inclusive Jets)'],
+    # "TauB_Inc_2j": [100, 0, 1.0, r'$\tau_{B,2}$ (Inclusive Jets)'],
+    # "TauB_JetConstituents_0j": [100, 0, 10.0, r'$\tau_{B,0}$  (Using Jet Const.)'],
+    # "TauB_JetConstituents_1j": [100, 0, 10.0, r'$\tau_{B,1}$  (Using Jet Const.)'],
+    # "TauB_JetConstituents_2j": [100, 0, 10.0, r'$\tau_{B,2}$  (Using Jet Const.)'],
+    # "TauC_Inc_0j": [100, 0, 1.5, r'$\tau_{C,0}$ (Inclusive Jets)'],
+    # "TauC_Inc_1j": [100, 0, 1.5, r'$\tau_{C,1}$ (Inclusive Jets)'],
+    # "TauC_Inc_2j": [50, 0, 1.5, r'$\tau_{C,2}$ (Inclusive Jets)'],
+    # "TauC_JetConstituents_0j": [100, 0, 10, r'$\tau_{C,0}$  (Using Jet Const.)'],
+    # "TauC_JetConstituents_1j": [100, 0, 10, r'$\tau_{C,1}$  (Using Jet Const.)'],
+    # "TauC_JetConstituents_2j": [50, 0, 10, r'$\tau_{C,2}$  (Using Jet Const.)'],
+    # "TauCnoHRapidity_JetConstituents_0j": [100, 0, 10, r'$\tau_{C,0}$  (Using Jet Const., without H)'],
+    # "TauCnoHRapidity_JetConstituents_1j": [100, 0, 10, r'$\tau_{C,1}$  (Using Jet Const., without H)'],
+    # "TauCnoHRapidity_JetConstituents_2j": [50, 0, 10, r'$\tau_{C,2}$  (Using Jet Const., without H)'],
+    # "TauCnoHRapidity_Inc_0j": [100, 0, 0.5, r'$\tau_{C,0}$  (Inclusive Jets, without H)'],
+    # "TauCnoHRapidity_Inc_1j": [100, 0, 0.5, r'$\tau_{C,1}$  (Inclusive Jets, without H)'],
+    # "TauCnoHRapidity_Inc_2j": [50, 0, 0.5, r'$\tau_{C,2}$  (Inclusive Jets, without H)'],
 }
 
 nJettiness_Rapidity = {
