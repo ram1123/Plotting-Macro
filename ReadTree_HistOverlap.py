@@ -3,7 +3,7 @@
 # @Author Email: ram.krishna.sharma@cern.ch
 # @Date:   2021-06-03
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-06-15
+# @Last Modified time: 2021-06-27
 import uproot
 import argparse
 import matplotlib.pyplot as plt
@@ -37,7 +37,7 @@ parser.add_argument('-i', '--input_file',
     help='Input root file'
     )
 parser.add_argument('-t', '--tree_name',
-    default='Ana/passedEvents',
+    default='tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1',
     type=str,
     help='tree name of input root file'
     )
@@ -91,8 +91,6 @@ if (args.debug):
         print("|{count:5} | {branch_name:46} |".format(count=i, branch_name=name))
         if i>11: break
 
-branches = tree.arrays()
-number_of_branches = len(branches)
 
 
 import sys
@@ -104,6 +102,11 @@ variableListToPlot = __import__((args.var_file).replace(".py","")) # __import__ 
 branchesToPlot  = getattr(variableListToPlot, args.var_set_to_plot)
 
 total_number_of_plots = len(branchesToPlot)
+
+# print(branchesToPlot[0])
+# """
+branches = tree.arrays()
+number_of_branches = len(branches)
 
 # print total_number_of_plots
 for count, var_plots in enumerate(branchesToPlot):
@@ -159,3 +162,4 @@ for count, var_plots in enumerate(branchesToPlot):
         plt.savefig(args.dir_to_save_plots+os.sep+var_plots[VarCount]+'_'+str(count)+'_log.pdf')
         plt.yscale('linear')
     plt.close()
+# """
