@@ -3,7 +3,7 @@
 # @Author Email: ram.krishna.sharma@cern.ch
 # @Date:   2021-06-10
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-06-27
+# @Last Modified time: 2021-06-30
 import uproot
 import argparse
 import matplotlib.pyplot as plt
@@ -166,7 +166,7 @@ for count,var_plots in enumerate(sorted(branchesToPlot)):
                 # edgecolor='red',
                 edgecolor=pick_color[color_count],
                 histtype='step',
-                normed=True,
+                density=True
                 )
         else:
             n, bins, patches = plt.hist(branches[fileCount][var_plots],
@@ -181,16 +181,16 @@ for count,var_plots in enumerate(sorted(branchesToPlot)):
                 # edgecolor='red',
                 edgecolor=pick_color[color_count],
                 histtype='step',
-                normed=True,
+                density=True
                 )
         color_count = color_count+1
-    # print("n = {}, \nbins = {}, \npatches = {}".format(n,bins,patches))
+        # print("n = {}, \nbins = {}, \npatches = {}".format(n,bins,patches))
     # print "type(n): ",type(n)
     # print("type(n): {}".format(str(type(n))))
     # print "Entries: ",numpy.sum(n)
     plt.xlabel(branchesToPlot[var_plots][3],fontsize=15)
     plt.ylabel('Number of events',fontsize=15)
-    plt.legend(loc='best')
+    plt.legend(loc=2)
     plt.tight_layout()
     # plt.text(30,400,"Entries: "+str(numpy.sum(n)))
     # plt.show()
