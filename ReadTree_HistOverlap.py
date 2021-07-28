@@ -3,7 +3,7 @@
 # @Author Email: ram.krishna.sharma@cern.ch
 # @Date:   2021-06-03
 # @Last Modified by:   Ram Krishna Sharma
-# @Last Modified time: 2021-06-15
+# @Last Modified time: 2021-07-06
 import uproot
 import argparse
 import matplotlib.pyplot as plt
@@ -60,7 +60,7 @@ parser.add_argument('-v', '--var_set_to_plot',
     # choices=["nJettiness", "mela", "others", "nJettinessMELA","all"]
     )
 parser.add_argument('-logY', '--logY',
-    default=False,
+    default=True,
     type=bool,
     help='make y-axis as log: true/false'
     )
