@@ -9,6 +9,12 @@ VarSet1 = {
     # Style:
     # "branch_name": [nBin, minX, maxX, "X-axis title"]
 
+    "diphoton_m": [100, 80, 170, r"Hgg Mass"],
+    "FullyResolved_TwoLeadingJets_m": [100, 0, 3000, r"Leading 2 Jet mass"],
+    "FullyResolved_ThirdFourthJets_m": [100, 0, 3000, r"(3rd+4th) leading jet mass"],
+    "FullyResolved_FourJets_m": [100, 0, 3000, r"Leading 4 jet mass"],
+    "FullyResolved_Radion_m": [100, 0, 5000, r"Radion Mass"]
+
     # "N_goodJets": [11, 4, 15, r'N_goodJets'],
 
     # "New_SumTwoMaxBScore": [100,0,2, r'Sum of Two max B-Score'],
@@ -32,10 +38,10 @@ VarSet1 = {
     # "MaxBScore_MaxPt_Jet_mass": [100, 0.0, 200.0, r'MaxBScore_MaxPt_Jet_mass'],
 
      # "CMS_hgg_mass": [100,100,160, r'CMS_hgg_mass'],
-     "New_OnShellW_LeadingJet_bDis": [100, 0, 1, r'OnShellW_LeadingJet_bDis'],
-     "New_OnShellW_SubLeadingJet_bDis": [100, 0, 1, r'OnShellW_SubLeadingJet_bDis'],
-     "New_OffShellW_LeadingJet_bDis": [100, 0, 1, r'OffShellW_LeadingJet_bDis'],
-     "New_OffShellW_SubLeadingJet_bDis": [100, 0, 1, r'OffShellW_SubLeadingJet_bDis'],
+     # "New_OnShellW_LeadingJet_bDis": [100, 0, 1, r'OnShellW_LeadingJet_bDis'],
+     # "New_OnShellW_SubLeadingJet_bDis": [100, 0, 1, r'OnShellW_SubLeadingJet_bDis'],
+     # "New_OffShellW_LeadingJet_bDis": [100, 0, 1, r'OffShellW_LeadingJet_bDis'],
+     # "New_OffShellW_SubLeadingJet_bDis": [100, 0, 1, r'OffShellW_SubLeadingJet_bDis'],
      # "New_pTBasedSel_W1_pT": [100, 0.0, 500.0 ,r'W1 $p_T$'],
      # "New_pTBasedSel_W1_eta": [100, -2.4, 2.4 ,r'W1 $\eta$'],
      # "New_pTBasedSel_W1_phi": [100, -5.0, 5.0 ,r'W1 $\phi$'],

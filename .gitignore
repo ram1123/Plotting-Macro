@@ -1,6 +1,7 @@
 # Plots
 *.png
 *.pdf
+*.root
 
 # Prerequisites
 *.d

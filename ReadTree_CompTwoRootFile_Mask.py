@@ -111,7 +111,7 @@ total_number_of_plots = len(branchesToPlot)
 GrabBranches = []
 if (args.DataPosition != -1):
     GrabBranches = branchesToPlot.keys()
-    GrabBranches.append('CMS_hgg_mass')
+    GrabBranches.append('diphoton_m')
 
 for count,files in enumerate(input_root_file_list):
     root_files.append(uproot.open(files))
@@ -136,7 +136,7 @@ for count,files in enumerate(input_root_file_list):
 
 # print len(branches[0]['run'])
 # print len(branches[1]['run'])
-# DataSB_mask = (branches[3]['CMS_hgg_mass'] < 115 or branches[3]['CMS_hgg_mass'] > 135)
+# DataSB_mask = (branches[3]['diphoton_m'] < 115 or branches[3]['diphoton_m'] > 135)
 
 print total_number_of_plots
 
@@ -152,8 +152,8 @@ for count,var_plots in enumerate(sorted(branchesToPlot)):
     for fileCount in range(0, len(input_root_file_list)):
         if fileCount == args.DataPosition:
             print("Applied the data SB cut on ",input_root_file_list[fileCount])
-            DataLB_mask = branches[fileCount]['CMS_hgg_mass'] > 115
-            DataUB_mask = branches[fileCount]['CMS_hgg_mass'] < 135
+            DataLB_mask = branches[fileCount]['diphoton_m'] > 115
+            DataUB_mask = branches[fileCount]['diphoton_m'] < 135
             n, bins, patches = plt.hist(branches[fileCount][var_plots][~(DataLB_mask & DataUB_mask)],
                 bins='auto',
                 range=(branchesToPlot[var_plots][1], branchesToPlot[var_plots][2]),

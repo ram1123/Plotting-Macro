@@ -3,6 +3,11 @@
 # @Last Modified by:   Ram Krishna Sharma
 # @Last Modified time: 2021-06-30
 
+## resonant commands
+python ReadTree_CompTwoRootFile_Mask.py  -i GluGluToRadionToHHTo2G4Q_M250.root,GluGluToRadionToHHTo2G4Q_M1000.root,GluGluToRadionToHHTo2G4Q_M3000.root -t Events,Events,Events -l M250,M1000,M3000 -DataPosition 5 --dir pltos
+
+
+## Non-resonant commands
 
 python ReadTree_CompTwoRootFile.py -i /afs/cern.ch/user/r/rasharma/work/doubleHiggs/flashgg/ScaleWWZZ/CMSSW_10_6_8/src/WWZZ_Signal_Addition/GluGluToHHTo2G4Q_node_cHHH1_2017.root,/afs/cern.ch/user/r/rasharma/work/doubleHiggs/flashgg/ScaleWWZZ/CMSSW_10_6_8/src/WWZZ_Signal_Addition/GluGluToHHTo2B2G_node_cHHH1_2017.root,/afs/cern.ch/user/r/rasharma/work/doubleHiggs/flashgg/ScaleWWZZ/CMSSW_10_6_8/src/WWZZ_Signal_Addition/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_2017.root -t tagsDumper/trees/GluGluToHHTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1,tagsDumper/trees/GluGluToHHTo2B2G_node_cHHH1_13TeV_HHWWggTag_1,tagsDumper/trees/GluGluToHHTo2G2ZTo2G4Q_node_cHHH1_13TeV_HHWWggTag_1 -l WWgg,bbgg,ZZgg --dir MorVar
 
