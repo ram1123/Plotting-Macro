@@ -20,6 +20,11 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpForm
     ----------------
     '''
     )
+parser.add_argument('-il', '--inputFileLocation',
+    default='./',
+    type=str,
+    help='location of input files'
+    )
 parser.add_argument('-i', '--input_file',
     default='TnP_ntuple.root',
     type=str,
@@ -64,7 +69,7 @@ args = parser.parse_args()
 if not os.path.isdir(args.dir_to_save_plots):
     os.makedirs(args.dir_to_save_plots)
 
-file = uproot.open(args.input_file)
+file = uproot.open(args.inputFileLocation+"/"+args.input_file)
 
 tree = file[args.tree_name]
 
@@ -124,8 +129,8 @@ for count,var_plots in enumerate(branchesToPlot):
     # plt.text(30,400,"Entries: "+str(numpy.sum(n)))
     # plt.show()
     plt.tight_layout()
-    plt.savefig(args.dir_to_save_plots+os.sep+var2+'_2D.png')
-    plt.savefig(args.dir_to_save_plots+os.sep+var2+'_2D.pdf')
+    plt.savefig(args.dir_to_save_plots+os.sep+var1+"_"+var2+'_2D.png')
+    plt.savefig(args.dir_to_save_plots+os.sep+var1+"_"+var2+'_2D.pdf')
     # plt.yscale('log')
     # plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.png')
     # plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.pdf')

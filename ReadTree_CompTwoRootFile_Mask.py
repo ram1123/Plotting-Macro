@@ -31,6 +31,11 @@ parser = argparse.ArgumentParser(formatter_class=argparse.RawDescriptionHelpForm
     ----------------
     '''
     )
+parser.add_argument('-il', '--inputFileLocation',
+    default='./',
+    type=str,
+    help='location of input files'
+    )
 parser.add_argument('-i', '--input_file',
     default='TnP_ntuple.root,TnP_ntuple.root',
     type=str,
@@ -114,7 +119,7 @@ if (args.DataPosition != -1):
     GrabBranches.append('diphoton_m')
 
 for count,files in enumerate(input_root_file_list):
-    root_files.append(uproot.open(files))
+    root_files.append(uproot.open(args.inputFileLocation+'/'+files))
     if (args.debug): print root_files[count]
     if (args.debug): print root_files[count].keys()
     trees.append(root_files[count][input_tree_list[count]])
