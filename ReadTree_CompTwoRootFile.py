@@ -5,19 +5,20 @@
 # @Last Modified by:   Ram Krishna Sharma
 # @Last Modified time: 2021-06-26
 import uproot
+import awkward
+import numpy as np
+
 import argparse
 import matplotlib.pyplot as plt
 import os
-import numpy
+import sys
+# import numpy
+
 import matplotlib.colors as mcolors
 
 pick_color = []
-# print mcolors
-# print "===="
-# print mcolors.TABLEAU_COLORS
-# print "===="
 names = list(mcolors.TABLEAU_COLORS)
-# print "===="
+
 for i, name in enumerate(names):
     # print "***> ",mcolors.TABLEAU_COLORS[name]
     pick_color.append(mcolors.TABLEAU_COLORS[name])
@@ -80,18 +81,16 @@ args = parser.parse_args()
 if not os.path.isdir(args.dir_to_save_plots):
     os.makedirs(args.dir_to_save_plots)
 
-if (args.debug): print args.input_file
+if (args.debug): print( args.input_file)
 
-if (args.debug): print "Number of root files: ",len((args.input_file).split(","))
+if (args.debug): print( "Number of root files: ",len((args.input_file).split(",")))
 
 input_root_file_list = (args.input_file).split(",")
 input_tree_list = (args.tree_name).split(",")
 input_label_list = (args.label).split(",")
 
-if (args.debug): print "Input root files: ",input_root_file_list
+if (args.debug): print( "Input root files: ",input_root_file_list)
 
-
-import sys
 cwd = os.getcwd()
 sys.path.insert(0, cwd)  # mypath = path of module to be imported
 variableListToPlot = __import__((args.var_file).replace(".py","")) # __import__ accepts string
@@ -100,8 +99,8 @@ branchesToPlot  = getattr(variableListToPlot, args.var_set_to_plot)
 
 total_number_of_plots = len(branchesToPlot)
 
-print total_number_of_plots
-print branchesToPlot.keys()
+print( total_number_of_plots)
+print( branchesToPlot.keys())
 
 root_files = []
 trees = []
@@ -109,24 +108,29 @@ branches = []
 
 for count,files in enumerate(input_root_file_list):
     root_files.append(uproot.open(files))
-    if (args.debug): print root_files[count]
-    if (args.debug): print root_files[count].keys()
+    if (args.debug): print( root_files[count])
+    if (args.debug): print( root_files[count].keys())
     trees.append(root_files[count][input_tree_list[count]])
-    # if (args.debug): print trees[count].keys()
+    if (args.debug): print( trees[count].keys())
+    print(trees[count].show())
     branches.append(trees[count].arrays(branchesToPlot.keys()))
     # branches.append(trees[count].arrays(branchesToPlot.keys()))
     number_of_branches = len(branches[count])
-    print "number_of_branches: ",number_of_branches
+    print("number_of_branches: ",number_of_branches)
 
 
-# if (args.debug):
-#     print("|{count:5} | {branch_name:46} |".format(count="count", branch_name="Branch Name"))
-#     print("|{count:5} | {branch_name:46} |".format(count="---", branch_name="---"))
-#     for i,name in enumerate(tree.arrays()):
-#         print("|{count:5} | {branch_name:46} |".format(count=i, branch_name=name))
-#         if i>11: break
+if (args.debug):
+    print("|{count:5} | {branch_name:46} |".format(count="count", branch_name="Branch Name"))
+    print("|{count:5} | {branch_name:46} |".format(count="---", branch_name="---"))
+    # for i,name in enumerate(tree.arrays()):
+    #     print("|{count:5} | {branch_name:46} |".format(count=i, branch_name=name))
+    #     if i>11: break
 
-# print branches[0]['run']
+# print("type of lumiSec: {}".format(type(branches[0]['lumiSec'])))
+# print(branches[0]['lumiSec'])
+# print("type of eg_rawEnergy[0]: {}".format(type(branches[0]['eg_rawEnergy'])))
+# print(branches[0]['eg_rawEnergy'])
+
 # print branches[1]['run']
 
 # print len(branches[0]['run'])
@@ -134,15 +138,17 @@ for count,files in enumerate(input_root_file_list):
 
 for count,var_plots in enumerate(sorted(branchesToPlot)):
     plt.ioff() # to turn off the displaying plots.
-    print("===> Plotting branch: {0:3}/{1:<3}, {2:19}, {3:45}".format(
-        count+1,total_number_of_plots,
-        branchesToPlot[var_plots],
-        var_plots
-        )
-    )
+    # print("===> Plotting branch: {0:3}/{1:<3}, {2:19}, {3:45}".format(
+    #     count+1,total_number_of_plots,
+    #     branchesToPlot[var_plots],
+    #     var_plots
+    #     )
+    # )
     color_count = 0
     for fileCount in range(0, len(input_root_file_list)):
-        n, bins, patches = plt.hist(branches[fileCount][var_plots],
+        # n, bins, patches = plt.hist(branches[fileCount][var_plots],
+        print("var_plots: {}".format(var_plots))
+        n, bins, patches = plt.hist(branches[fileCount][var_plots].flatten(),
             bins='auto',
             range=(branchesToPlot[var_plots][1], branchesToPlot[var_plots][2]),
             label=input_label_list[fileCount],
@@ -154,7 +160,8 @@ for count,var_plots in enumerate(sorted(branchesToPlot)):
             # edgecolor='red',
             edgecolor=pick_color[color_count],
             histtype='step',
-            normed=True,
+            # normed=True,
+            density=True
             )
         color_count = color_count+1
     # print("n = {}, \nbins = {}, \npatches = {}".format(n,bins,patches))

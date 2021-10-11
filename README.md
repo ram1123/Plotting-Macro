@@ -13,6 +13,10 @@ These macro needs `uproot` and `matplotlib` packages.
 
 On lxplus this is available with `CMSSW_11_2_4` onwards.
 
+```bash
+source /cvmfs/sft.cern.ch/lcg/views/dev4cuda/latest/x86_64-centos7-gcc8-opt/setup.sh
+```
+
 # Simple plotting using variables from file
 
 If you want to plot one variable on one canvas. Then add each variable with its nbins, minX and maxX info in the file [variableListToPlot.py](variableListToPlot.py). Then run the macro [ReadTree.py](ReadTree.py).

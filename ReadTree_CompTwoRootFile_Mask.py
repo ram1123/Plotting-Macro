@@ -8,16 +8,13 @@ import uproot
 import argparse
 import matplotlib.pyplot as plt
 import os
-import numpy
+import sys
+# import numpy
 import matplotlib.colors as mcolors
 
 pick_color = []
-# print mcolors
-# print "===="
-# print mcolors.TABLEAU_COLORS
-# print "===="
 names = list(mcolors.TABLEAU_COLORS)
-# print "===="
+
 for i, name in enumerate(names):
     # print "***> ",mcolors.TABLEAU_COLORS[name]
     pick_color.append(mcolors.TABLEAU_COLORS[name])
@@ -104,7 +101,6 @@ root_files = []
 trees = []
 branches = []
 
-import sys
 cwd = os.getcwd()
 sys.path.insert(0, cwd)  # mypath = path of module to be imported
 variableListToPlot = __import__((args.var_file).replace(".py","")) # __import__ accepts string
