@@ -1,7 +1,7 @@
 /*
  * =====================================================================================
  *
- *       Filename:  plotEfficiency.C
+ *       Filename:  plotEfficiency_ZPrime.C
  *
  *    Description:
  *
@@ -22,7 +22,9 @@ void plotEfficiency_ZPrime()
     gROOT->ForceStyle(kTRUE);
     // TGaxis::SetMaxDigits(3);
 
-    auto c1 = new TCanvas("c1", "A ratio example");
+    TCanvas* c1 = new TCanvas("c1", "A ratio example");
+    TLegend* l1 = new TLegend(0.6,0.79,0.90,0.95);
+    TLegend* l2 = new TLegend(0.6,0.1,0.90,0.35);
 
     TFile* f1 = new TFile("../ZPrime_default.root");
     TFile* f2 = new TFile("../ZPrime_PetaTrk.root");
@@ -30,30 +32,16 @@ void plotEfficiency_ZPrime()
     TTree* t1 = (TTree*) f1->Get("egHLTRun3Tree");
     TTree* t2 = (TTree*) f2->Get("egHLTRun3Tree");
 
-
-    // Double_t Et_edges[] = {0, 1, 2, 3, 4, 5, 7, 9, 11, 15, 20, 50, 70, 100, 130, 160, 180, 200, 250, 300, 350, 400, 450, 500, 700, 1000};
-    // Int_t Et_NBINS = (sizeof(Et_edges)/sizeof(*Et_edges))-1;
-
-    // TH1F* h1_num = new TH1F("h1_num", ";E_{T};Number of entrise", Et_NBINS, Et_edges);
-    // TH1F* h1_den = new TH1F("h1_den", ";E_{T};Number of entrise", Et_NBINS, Et_edges);
-    // TH1F* h2_num = new TH1F("h2_num", ";E_{T};Number of entrise", Et_NBINS, Et_edges);
-    // TH1F* h2_den = new TH1F("h2_den", ";E_{T};Number of entrise", Et_NBINS, Et_edges);
-
-    TH1F* h1_num = new TH1F("h1_num", ";E_{T};Number of entrise", 51, 0, 2000);
-    TH1F* h1_den = new TH1F("h1_den", ";E_{T};Number of entrise", 51, 0, 2000);
-    TH1F* h2_num = new TH1F("h2_num", ";E_{T};Number of entrise", 51, 0, 2000);
-    TH1F* h2_den = new TH1F("h2_den", ";E_{T};Number of entrise", 51, 0, 2000);
-
-    //////////////////////////////////////////////////
+    // =====================================================================================
+    //       Track Isolation plot
+    // =====================================================================================
 
     Double_t TrkIso_edges[] = {0,0.1, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, 14.0, 18.0, 22.0, 26.0, 30.0, 34, 38, 42};
     Int_t TrkIso_NBINS = (sizeof(TrkIso_edges)/sizeof(*TrkIso_edges))-1;
 
-    TH1F* h1_trkIso = new TH1F("h1_trkIso", ";Track Isolation;Number of entrise", TrkIso_NBINS, TrkIso_edges);
-    TH1F* h2_trkIso = new TH1F("h2_trkIso", ";Track Isolation;Number of entrise", TrkIso_NBINS, TrkIso_edges);
+    TH1F* h1_trkIso = new TH1F("h1_trkIso", ";Track Isolation;Number of entries", TrkIso_NBINS, TrkIso_edges);
+    TH1F* h2_trkIso = new TH1F("h2_trkIso", ";Track Isolation;Number of entries", TrkIso_NBINS, TrkIso_edges);
 
-    TLegend* l1 = new TLegend(0.6,0.79,0.90,0.95);
-    TLegend* l2 = new TLegend(0.6,0.1,0.90,0.35);
 
     t1->Draw("eg_trkIsol>>h1_trkIso");
     t2->Draw("eg_trkIsol>>h2_trkIso");
@@ -67,7 +55,7 @@ void plotEfficiency_ZPrime()
     h2_trkIso->SetLineColor(2);
 
     c1->SetLogy(1);
-    auto rp = new TRatioPlot(h1_trkIso, h2_trkIso);
+    TRatioPlot* rp = new TRatioPlot(h1_trkIso, h2_trkIso);
     c1->SetTicks(0, 1);
     rp->SetSeparationMargin(0.0);
     rp->Draw();
@@ -77,12 +65,37 @@ void plotEfficiency_ZPrime()
     c1->Update();
     c1->SaveAs("ZPrime_eg_trkIsol.png");
 
-    //////////////////////////////////////////////////
+    // =====================================================================================
+    //       Et Distribution
+    // =====================================================================================
 
-    t1->Draw("eg_et>>h1_num","eg_trkIsol<1.0");
-    t1->Draw("eg_et>>h1_den");
-    t2->Draw("eg_et>>h2_num","eg_trkIsol<1.0");
-    t2->Draw("eg_et>>h2_den");
+    // Double_t Et_edges[] = {0, 1, 2, 3, 4, 5, 7, 9, 11, 15, 20, 50, 70, 100, 130, 160, 180, 200, 250, 300, 350, 400, 450, 500, 700, 1000};
+    // Int_t Et_NBINS = (sizeof(Et_edges)/sizeof(*Et_edges))-1;
+
+    // TH1F* h1_num = new TH1F("h1_num", ";E_{T};Number of entries", Et_NBINS, Et_edges);
+    // TH1F* h1_den = new TH1F("h1_den", ";E_{T};Number of entries", Et_NBINS, Et_edges);
+    // TH1F* h2_num = new TH1F("h2_num", ";E_{T};Number of entries", Et_NBINS, Et_edges);
+    // TH1F* h2_den = new TH1F("h2_den", ";E_{T};Number of entries", Et_NBINS, Et_edges);
+
+    TH1F* h1_num = new TH1F("h1_num", ";E_{T} (TrkIso<1.0);Number of entries", 51, 0, 2000);
+    TH1F* h1_den = new TH1F("h1_den", ";E_{T};Number of entries", 51, 0, 2000);
+    TH1F* h2_num = new TH1F("h2_num", ";E_{T} (TrkIso<1.0);Number of entries", 51, 0, 2000);
+    TH1F* h2_den = new TH1F("h2_den", ";E_{T};Number of entries", 51, 0, 2000);
+
+    TH1F* h1_num_LR = new TH1F("h1_num_LR", ";E_{T} (TrkIso<1.0);Number of entries", 50, 0, 100);
+    TH1F* h1_den_LR = new TH1F("h1_den_LR", ";E_{T};Number of entries", 50, 0, 100);
+    TH1F* h2_num_LR = new TH1F("h2_num_LR", ";E_{T} (TrkIso<1.0);Number of entries", 50, 0, 100);
+    TH1F* h2_den_LR = new TH1F("h2_den_LR", ";E_{T};Number of entries", 50, 0, 100);
+
+    t1->Draw("eg_gen_et>>h1_num","eg_trkIsol<1.0");
+    t1->Draw("eg_gen_et>>h1_den");
+    t2->Draw("eg_gen_et>>h2_num","eg_trkIsol<1.0");
+    t2->Draw("eg_gen_et>>h2_den");
+
+    t1->Draw("eg_gen_et>>h1_num_LR","eg_trkIsol<1.0");
+    t1->Draw("eg_gen_et>>h1_den_LR");
+    t2->Draw("eg_gen_et>>h2_num_LR","eg_trkIsol<1.0");
+    t2->Draw("eg_gen_et>>h2_den_LR");
 
     TH1F* h1_num_NormUnity = (TH1F*) h1_num->Clone();
     TH1F* h1_den_NormUnity = (TH1F*) h1_den->Clone();
@@ -104,7 +117,19 @@ void plotEfficiency_ZPrime()
     h2_den_NormUnity->SetLineColor(2);
 
     c1->SetLogy(0);
-    auto rp2 = new TRatioPlot(h1_num_NormUnity, h2_num_NormUnity);
+    h1_num_NormUnity->Draw();
+    h2_num_NormUnity->Draw("same");
+    c1->SaveAs("ZPrime_eg_et_WithTrkIsoCut_NoRatio.png");
+    c1->Clear();
+
+    c1->SetLogy(0);
+    h1_den_NormUnity->Draw();
+    h2_den_NormUnity->Draw("same");
+    c1->SaveAs("ZPrime_eg_et_WithoutTrkIsoCut_NoRatio.png");
+    c1->Clear();
+
+    c1->SetLogy(0);
+    TRatioPlot* rp2 = new TRatioPlot(h1_num_NormUnity, h2_num_NormUnity);
     c1->SetTicks(0, 1);
     rp2->SetSeparationMargin(0.0);
     rp2->Draw();
@@ -115,7 +140,7 @@ void plotEfficiency_ZPrime()
     c1->SaveAs("ZPrime_eg_et_WithTrkIsoCut.png");
 
     c1->SetLogy(0);
-    auto rp3 = new TRatioPlot(h1_den_NormUnity, h2_den_NormUnity);
+    TRatioPlot* rp3 = new TRatioPlot(h1_den_NormUnity, h2_den_NormUnity);
     c1->SetTicks(0, 1);
     rp3->SetSeparationMargin(0.0);
     rp3->Draw();
@@ -169,37 +194,26 @@ void plotEfficiency_ZPrime()
     l2->Draw();
     c2->SaveAs("ZPrime_Efficiency_PataTrkVsDefault.png");
 
+    // =====================================================================================
+    //       Efficiency in 0-200
+    // =====================================================================================
 
-    // // TH1* clone1 = 0;
-    // // TH1* clone2 = 0;
-    // TH1F* clone1 = new TH1F("clone1", ";E_{T};Number of entrise", 75, 0, 1000);
-    // TH1F* clone2 = new TH1F("clone2", ";E_{T};Number of entrise", 75, 0, 1000);
+    TEfficiency* pEff_sig_LR = new TEfficiency(*h1_num_LR,*h1_den_LR);
+    pEff_sig_LR->SetLineColor(1);
+    pEff_sig_LR->SetMarkerColor(1);
+    pEff_sig_LR->SetTitle(";gen E_{T} [GeV];per electron efficiency");
 
-    // std::cout << "Bins: " << clone1->GetNbinsX() << std::endl;
 
-    // for (int i = 0; i < clone1->GetNbinsX(); ++i)
-    // {
-    //     clone1->SetBinContent(i+1,pEff_sig->GetEfficiency(i+1));
-    //     clone1->SetBinError(i+1,0.0);
-    //     clone2->SetBinContent(i+1,pEff_sig_PataTrk->GetEfficiency(i+1));
-    //     clone2->SetBinError(i+1,0.0);
-    //     std::cout << "===> " << pEff_sig->GetEfficiency(i+1) << "\t" << pEff_sig_PataTrk->GetEfficiency(i+1) << std::endl;
-    // }
+    TEfficiency* pEff_sig_PataTrk_LR = new TEfficiency(*h2_num_LR,*h2_den_LR);
+    pEff_sig_PataTrk_LR->SetLineColor(2);
+    pEff_sig_PataTrk_LR->SetMarkerColor(2);
+    pEff_sig_PataTrk_LR->SetTitle(";gen E_{T} [GeV];per electron efficiency");
 
-    // clone1->SetLineColor(1);
-    // clone2->SetLineColor(2);
-
-    // auto c9 = new TCanvas("c9", "A ratio example");
-    // auto rp9 = new TRatioPlot(clone1, clone2);
-    // c9->SetTicks(0, 1);
-    // rp9->SetSeparationMargin(0.0);
-    // rp9->Draw("p");
-    // rp9->GetLowerRefYaxis()->SetTitle("ratio");
-    // // rp9->GetUpperRefYaxis()->SetTitle("entries");
-    // rp9->GetLowerRefGraph()->SetMinimum(0.6);
-    // rp9->GetLowerRefGraph()->SetMaximum(1.6);
-    // l1->Draw();
-    // c9->Update();
-    // c9->SaveAs("test3.png");
-
+    c2->Clear();
+    pEff_sig_LR->Draw();
+    pEff_sig_PataTrk_LR->Draw("same");
+    // l2->AddEntry(pEff_sig_LR,"ZPrime default");
+    // l2->AddEntry(pEff_sig_PataTrk_LR,"ZPrime PataTrk");
+    l2->Draw();
+    c2->SaveAs("ZPrime_Efficiency_PataTrkVsDefault_LR.png");
 }
