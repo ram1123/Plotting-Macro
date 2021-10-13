@@ -1,9 +1,11 @@
+__pycache__
 # Plots
 *.png
 *.pdf
 
 # Prerequisites
 *.d
+*.pyc
 
 # Compiled Object files
 *.slo
