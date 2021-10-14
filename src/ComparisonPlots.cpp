@@ -1,18 +1,22 @@
 #include "../interface/ComparisonPlots.hpp"
 
-ComparisonPlots::ComparisonPlots(TString InputFile1, TString InputFile1_leg, TString InputFile2, TString InputFile2_leg,  TString Tree1)
+ComparisonPlots::ComparisonPlots(TString InputFile1, TString InputFile1_leg, TString Tree1, TString InputFile2, TString InputFile2_leg, TString Tree2)
 {
     gStyle->SetOptStat(0);
     gROOT->ForceStyle(kTRUE);
     // TGaxis::SetMaxDigits(3);
 
-    this->InputFile1 = new TFile(InputFile1);
-    this->InputFile2 = new TFile(InputFile2);
+    this->InputFile1 = new TFile(InputFile1, "READ");
     this->Tree1 = (TTree*) this->InputFile1->Get(Tree1);
-    this->Tree2 = (TTree*) this->InputFile2->Get(Tree1);
-
     this->InputFile1_leg = InputFile1_leg;
-    this->InputFile2_leg = InputFile2_leg;
+
+    if (InputFile2 != "")
+    {
+        if (Tree2 == "") Tree2 = Tree1;
+        this->InputFile2 = new TFile(InputFile2, "READ");
+        this->Tree2 = (TTree*) this->InputFile2->Get(Tree2);
+        this->InputFile2_leg = InputFile2_leg;
+    }
 }
 
 ComparisonPlots::~ComparisonPlots() {}

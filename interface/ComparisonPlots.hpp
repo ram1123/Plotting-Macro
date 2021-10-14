@@ -24,19 +24,18 @@ private:
 public:
 	bool DEBUG = true;
 	bool logY = true;
-    // TLegend* l1 = new TLegend(x1, y1, x2, y2);
-	ComparisonPlots(TString InputFile1, TString InputFile1_leg, TString InputFile2, TString InputFile2_leg,  TString Tree1);
+    ComparisonPlots(TString InputFile1, TString InputFile1_leg, TString Tree1, TString InputFile2 = "", TString InputFile2_leg = "", TString Tree2 = "");
 	~ComparisonPlots();
 
+    TCanvas* SetCanvas();
+    TLegend* GetLegend();
+    void SetLegendPos(float x1, float x2, float y1, float y2);
+
     TH1F* GetHist(TString h1, int nBins, float minX, float maxX);
+
     TCanvas* SimpleHistComparison(TString h1, int nBins, float minX, float maxX, bool NormUnity);
     TCanvas* SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, bool NormUnity, TCut cut="");
     TCanvas* GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, bool NormUnity, TCut cut="");
-    TLegend* GetLegend();
-    void SetLegendPos(float x1, float x2, float y1, float y2);
-    // TH1F* DefineTH1F()
+
     // TString SearchTree(TFile&InputFile1);
-
-    TCanvas* SetCanvas();
-
 };
