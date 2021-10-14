@@ -77,6 +77,12 @@ void ComparisonPlots::SetLegendPos(float x1, float x2, float y1, float y2)
     this->y2 = y2;
 }
 
+/**
+ * @brief      Update the legend names
+ *
+ * @param[in]  InputFile1_leg  The input file 1 legend
+ * @param[in]  InputFile2_leg  The input file 2 legend
+ */
 void ComparisonPlots::ChangeLegendNames(TString InputFile1_leg, TString InputFile2_leg)
 {
     this->InputFile1_leg = InputFile1_leg;
@@ -214,6 +220,17 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
     return c1;
 }
 
+/**
+ * @brief      Compare the two histograms and plot them with the ratio plot and save as png
+ *
+ * @param[in]  h1              Name of branch to compare
+ * @param[in]  nBins           Number of bins
+ * @param[in]  minX            The minimum x
+ * @param[in]  maxX            The maximum x
+ * @param[in]  outputFileName  The output file name
+ * @param[in]  NormUnity       The normalize unity or not
+ * @param[in]  cut             the cut string to be applied
+ */
 void ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, TString outputFileName, bool NormUnity, TCut cut)
 {
     this->nBins = nBins;
