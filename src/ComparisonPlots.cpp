@@ -99,16 +99,121 @@ void ComparisonPlots::ChangeLegendNames(TString InputFile1_leg, TString InputFil
  *
  * @return     The hist.
  */
-TH1F* ComparisonPlots::GetHist(TString h1, int nBins, float minX, float maxX)
+TH1F* ComparisonPlots::GetHist(TString h1, int nBins, float minX, float maxX, int LineColor)
 {
-    this->nBins = nBins;
-    this->minX = minX;
-    this->maxX = maxX;
+    std::cout << "hist name: " << h1 << std::endl;
     delete gROOT->FindObject("hist1");
     hist1 = 0;
     hist1 = new TH1F("hist1", "", nBins, minX, maxX);
     this->Tree1->Draw(h1+">>hist1");
+    hist1->SetLineColor(LineColor);
     return hist1;
+}
+
+/**
+ * @brief      Compares two branches from single tree.
+ *
+ * @param[in]  h1              First branch name
+ * @param[in]  h2              Second branch name to compare
+ * @param[in]  nBins           Number of bins
+ * @param[in]  minX            The minimum x
+ * @param[in]  maxX            The maximum x
+ * @param[in]  outputFileName  The output file name
+ */
+void ComparisonPlots::CompareTwoBranchesOneTree(TString h1, TString h2, int nBins, float minX, float maxX, TString outputFileName = "")
+{
+    delete gROOT->FindObject("hist1");
+    delete gROOT->FindObject("hist2");
+    hist1 = 0;
+    hist2 = 0;
+    hist1 = new TH1F("hist1", "", nBins, minX, maxX);
+    hist2 = new TH1F("hist2", "", nBins, minX, maxX);
+
+    hist1->SetLineColor(1);
+    hist2->SetLineColor(2);
+
+    hist1->SetStats(1);
+    hist1->SetLineWidth(3);
+    hist1->SetLineStyle(1);
+    hist1->SetLineColor(1);
+
+    hist1->GetYaxis()->CenterTitle();
+    hist1->GetYaxis()->SetTitleOffset(1.30);
+    hist1->GetXaxis()->SetTitle(h1);
+    hist1->GetXaxis()->CenterTitle();
+
+    hist2->SetStats(1);
+    hist2->SetLineWidth(3);
+    hist2->SetLineStyle(2);
+    hist2->SetLineColor(2);
+
+    hist2->GetYaxis()->CenterTitle();
+    hist2->GetYaxis()->SetTitleOffset(1.30);
+    hist2->GetXaxis()->SetTitle(h1);
+    hist2->GetXaxis()->CenterTitle();
+
+    this->Tree1->Draw(h1+">>hist1");
+    this->Tree1->Draw(h2+">>hist2");
+
+    TCanvas* c1 = SetCanvas();
+    hist2->Draw();
+    hist1->Draw("same");
+
+    TLegend* l1 = GetLegend();
+    l1->AddEntry(hist1,h1);
+    l1->AddEntry(hist2,h2);
+    l1->Draw();
+
+    if (outputFileName == "") outputFileName = h1+".png";
+    c1->SaveAs(outputFileName);
+}
+
+/**
+ * @brief      Compares the branches from same tree.
+ *
+ * @param      branchesList    Array have name of all branches to compare on one canvas
+ * @param[in]  branchesSize    size of branch array
+ * @param[in]  nBins           The bins
+ * @param[in]  minX            The minimum x
+ * @param[in]  maxX            The maximum x
+ * @param[in]  outputFileName  The output file name
+ */
+void ComparisonPlots::CompareBranchesFromSameTree(TString branchesList[], int branchesSize,  int nBins, float minX, float maxX, TString outputFileName = "")
+{
+    vectorOfTH1F.clear();
+    TCanvas* c1 = SetCanvas();
+
+    // int nBranches = (sizeof(branchesList)/sizeof(branchesList[0]));
+    // One should not call sizeof inside a function
+    // Reference: https://www.geeksforgeeks.org/using-sizof-operator-with-array-paratmeters/
+    for (int i = 0; i < branchesSize; ++i)
+    {
+        vectorOfTH1F.push_back((new TH1F(Form("th%i",i),"",nBins,minX,maxX)));
+
+        this->Tree1->Draw(Form("%s>>th%i",(std::string(branchesList[i])).c_str(),i));
+
+        vectorOfTH1F[i]->SetStats(1);
+        vectorOfTH1F[i]->SetLineWidth(3);
+        vectorOfTH1F[i]->SetLineStyle(i+1);
+        vectorOfTH1F[i]->SetLineColor(i+1);
+
+        vectorOfTH1F[i]->GetYaxis()->CenterTitle();
+        vectorOfTH1F[i]->GetYaxis()->SetTitleOffset(1.30);
+        vectorOfTH1F[i]->GetXaxis()->SetTitle(branchesList[0]);
+        vectorOfTH1F[i]->GetXaxis()->CenterTitle();
+
+        // if (i==0) vectorOfTH1F[i]->Draw();
+        // else vectorOfTH1F[i]->Draw("same");
+    }
+
+    for (int i = 0; i < vectorOfTH1F.size(); ++i)
+    {
+        if (i==0) vectorOfTH1F[i]->Draw();
+        else vectorOfTH1F[i]->Draw("same");
+    }
+
+    if (outputFileName == "") outputFileName = branchesList[0]+"_test_.png";
+    c1->SaveAs(outputFileName);
 }
 
 /**
@@ -131,10 +236,6 @@ TCanvas* ComparisonPlots::SimpleHistComparison(TString h1, int nBins, float minX
     hist1 = new TH1F("hist1", "", nBins, minX, maxX);
     hist2 = new TH1F("hist2", "", nBins, minX, maxX);
     TLegend* l1 = GetLegend();
-
-    this->nBins = nBins;
-    this->minX = minX;
-    this->maxX = maxX;
 
     this->Tree1->Draw(h1+">>hist1");
     this->Tree2->Draw(h1+">>hist2");
@@ -174,10 +275,6 @@ TCanvas* ComparisonPlots::SimpleHistComparison(TString h1, int nBins, float minX
  */
 TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, bool NormUnity, TCut cut)
 {
-    this->nBins = nBins;
-    this->minX = minX;
-    this->maxX = maxX;
-
     TLegend* l1 = GetLegend();
 
     delete gROOT->FindObject("hist1");

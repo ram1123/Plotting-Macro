@@ -91,9 +91,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f13b5487ac3cfdc41782c983f9f70da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a1f13b5487ac3cfdc41782c983f9f70da">SetLegendPos</a> (float x1, float x2, float y1, float y2)</td></tr>
 <tr class="memdesc:a1f13b5487ac3cfdc41782c983f9f70da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the legend position.  <a href="classComparisonPlots.html#a1f13b5487ac3cfdc41782c983f9f70da">More...</a><br /></td></tr>
 <tr class="separator:a1f13b5487ac3cfdc41782c983f9f70da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c9863fd84ebf9a16a4f0842a23fe2af"><td class="memItemLeft" align="right" valign="top">TH1F *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a0c9863fd84ebf9a16a4f0842a23fe2af">GetHist</a> (TString h1, int nBins, float minX, float maxX)</td></tr>
-<tr class="memdesc:a0c9863fd84ebf9a16a4f0842a23fe2af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the hist from first root file.  <a href="classComparisonPlots.html#a0c9863fd84ebf9a16a4f0842a23fe2af">More...</a><br /></td></tr>
-<tr class="separator:a0c9863fd84ebf9a16a4f0842a23fe2af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31146fed20d7dde2126f1bfb698f73b3"><td class="memItemLeft" align="right" valign="top">TH1F *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a31146fed20d7dde2126f1bfb698f73b3">GetHist</a> (TString h1, int nBins, float minX, float maxX, int LineColor=1)</td></tr>
+<tr class="memdesc:a31146fed20d7dde2126f1bfb698f73b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the hist from first root file.  <a href="classComparisonPlots.html#a31146fed20d7dde2126f1bfb698f73b3">More...</a><br /></td></tr>
+<tr class="separator:a31146fed20d7dde2126f1bfb698f73b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf2616c98020fe0c30903029938b7013"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#adf2616c98020fe0c30903029938b7013">CompareTwoBranchesOneTree</a> (TString h1, TString h2, int nBins, float minX, float maxX, TString outputFileName=&quot;&quot;)</td></tr>
+<tr class="memdesc:adf2616c98020fe0c30903029938b7013"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares two branches from single tree.  <a href="classComparisonPlots.html#adf2616c98020fe0c30903029938b7013">More...</a><br /></td></tr>
+<tr class="separator:adf2616c98020fe0c30903029938b7013"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3974c7054d7c6451746c0fa2d54342cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a3974c7054d7c6451746c0fa2d54342cb">CompareBranchesFromSameTree</a> (TString branchesList[], int branchesSize, int nBins, float minx, float maxX, TString outputFileName=&quot;&quot;)</td></tr>
+<tr class="memdesc:a3974c7054d7c6451746c0fa2d54342cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares the branches from same tree.  <a href="classComparisonPlots.html#a3974c7054d7c6451746c0fa2d54342cb">More...</a><br /></td></tr>
+<tr class="separator:a3974c7054d7c6451746c0fa2d54342cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0b9ee4a13269894e5e25e0fb81fb7af"><td class="memItemLeft" align="right" valign="top">TCanvas *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#ae0b9ee4a13269894e5e25e0fb81fb7af">SimpleHistComparison</a> (TString h1, int nBins, float minX, float maxX, bool NormUnity)</td></tr>
 <tr class="memdesc:ae0b9ee4a13269894e5e25e0fb81fb7af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the comparison of histogram from two input root file.  <a href="classComparisonPlots.html#ae0b9ee4a13269894e5e25e0fb81fb7af">More...</a><br /></td></tr>
 <tr class="separator:ae0b9ee4a13269894e5e25e0fb81fb7af"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,8 +229,138 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
 
 </div>
 </div>
-<a id="a0c9863fd84ebf9a16a4f0842a23fe2af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c9863fd84ebf9a16a4f0842a23fe2af">&#9670;&nbsp;</a></span>GetHist()</h2>
+<a id="a3974c7054d7c6451746c0fa2d54342cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3974c7054d7c6451746c0fa2d54342cb">&#9670;&nbsp;</a></span>CompareBranchesFromSameTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ComparisonPlots::CompareBranchesFromSameTree </td>
+          <td>(</td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>branchesList</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>branchesSize</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nBins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>outputFileName</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares the branches from same tree. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">branchesList</td><td>Array have name of all branches to compare on one canvas </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">branchesSize</td><td>size of branch array </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nBins</td><td>The bins </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">minX</td><td>The minimum x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxX</td><td>The maximum x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">outputFileName</td><td>The output file name </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="adf2616c98020fe0c30903029938b7013"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adf2616c98020fe0c30903029938b7013">&#9670;&nbsp;</a></span>CompareTwoBranchesOneTree()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ComparisonPlots::CompareTwoBranchesOneTree </td>
+          <td>(</td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>h1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>h2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nBins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>outputFileName</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compares two branches from single tree. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">h1</td><td>First branch name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">h2</td><td>Second branch name to compare </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nBins</td><td>Number of bins </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">minX</td><td>The minimum x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxX</td><td>The maximum x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">outputFileName</td><td>The output file name </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a31146fed20d7dde2126f1bfb698f73b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31146fed20d7dde2126f1bfb698f73b3">&#9670;&nbsp;</a></span>GetHist()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,7 +387,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>maxX</em>&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>LineColor</em> = <code>1</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

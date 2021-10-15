@@ -14,6 +14,8 @@ private:
     TH1F* hist1= 0; ///< First histogram
     TH1F* hist2= 0; ///< Second histogram
 
+    std::vector<TH1F*> vectorOfTH1F;
+
     float x1 = 0.60; ///< Legend x1 positons
     float x2 = 0.90; ///< Legend x2 positons
     float y1 = 0.79; ///< Legend x3 positons
@@ -31,7 +33,10 @@ public:
     void ChangeLegendNames(TString InputFile1_leg, TString InputFile2_leg);
     void SetLegendPos(float x1, float x2, float y1, float y2);
 
-    TH1F* GetHist(TString h1, int nBins, float minX, float maxX);
+    TH1F* GetHist(TString h1, int nBins, float minX, float maxX, int LineColor = 1);
+    void CompareTwoBranchesOneTree(TString h1, TString h2, int nBins, float minX, float maxX, TString outputFileName = "");
+
+    void CompareBranchesFromSameTree(TString branchesList[], int branchesSize, int nBins, float minx, float maxX, TString outputFileName = "");
 
     TCanvas* SimpleHistComparison(TString h1, int nBins, float minX, float maxX, bool NormUnity);
 
