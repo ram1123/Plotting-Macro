@@ -23,20 +23,12 @@ void plotter()
     CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_TrkIsoCut_Endcap.png", true, "eg_trkIsol<1.0 && abs(eg_eta)>1.47");
 
 
-    TCanvas* c1 = new TCanvas();
     CompareFun.logY = false;
-    CompareFun.SetLegendPos(0.6,0.90,0.1,0.35);
-    c1 = CompareFun.GetTEfficiencyByDividingTwoHist("eg_gen_et", 35, 0, 1000, false, "eg_trkIsol<1.0");
-    c1->SaveAs(TString(path)+"/ZPrime_eg_gen_et_EfficiencyComp.png");
-    c1->Clear();
-
-    c1 = CompareFun.GetTEfficiencyByDividingTwoHist("eg_gen_et", 35, 0, 1000, false, "eg_trkIsol<1.0 && abs(eg_eta)<1.47");
-    c1->SaveAs(TString(path)+"/ZPrime_eg_gen_et_EfficiencyComp_Barrel.png");
-    c1->Clear();
-
-    c1 = CompareFun.GetTEfficiencyByDividingTwoHist("eg_gen_et", 35, 0, 1000, false, "eg_trkIsol<1.0 && abs(eg_eta)>1.47");
-    c1->SaveAs(TString(path)+"/ZPrime_eg_gen_et_EfficiencyComp_Endcap.png");
-    c1->Clear();
+    CompareFun.SetLegendPos(0.6,0.90,0.1,0.35); // Bottom Right
+    CompareFun.GetTEfficiencyByDividingTwoHist("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_EfficiencyComp.png", false, "eg_trkIsol<1.0");
+    CompareFun.GetTEfficiencyByDividingTwoHist("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_EfficiencyComp_Barrel.png", false, "eg_trkIsol<1.0 && abs(eg_eta)<1.47");
+    CompareFun.SetLegendPos(0.6,0.90,0.79,0.95); // Top Right
+    CompareFun.GetTEfficiencyByDividingTwoHist("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_EfficiencyComp_Endcap.png", false, "eg_trkIsol<1.0 && abs(eg_eta)>1.47");
 
     /**
      * plot for QCD
@@ -48,6 +40,8 @@ void plotter()
 
     ComparisonPlots CompareFun_QCD(inputFile1, "default", TreeName, inputFile2, "PataTrk");
 
+    CompareFun.logY = true;
+    CompareFun.SetLegendPos(0.6,0.90,0.79,0.95);
     CompareFun_QCD.SimpleHistComparisonWithRatio("eg_trkIsol", 125, 0, 40, TString(path)+"/QCD_eg_trkIsol.png", true);
     CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 125, 0, 120, TString(path)+"/QCD_eg_et.png", true);
     CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 125, 0, 120, TString(path)+"/QCD_eg_et_Barrel.png", true, "abs(eg_eta)<1.47");

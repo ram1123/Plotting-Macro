@@ -103,9 +103,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a83112f93cd34e773aebcd932347393e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a83112f93cd34e773aebcd932347393e6">SimpleHistComparisonWithRatio</a> (TString h1, int nBins, float minX, float maxX, TString outputFileName=&quot;&quot;, bool NormUnity=true, TCut cut=&quot;&quot;)</td></tr>
 <tr class="memdesc:a83112f93cd34e773aebcd932347393e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare the two histograms and plot them with the ratio plot and save as png.  <a href="classComparisonPlots.html#a83112f93cd34e773aebcd932347393e6">More...</a><br /></td></tr>
 <tr class="separator:a83112f93cd34e773aebcd932347393e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06bc9d2b65f167e4baebaa8bf17a583b"><td class="memItemLeft" align="right" valign="top">TCanvas *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a06bc9d2b65f167e4baebaa8bf17a583b">GetTEfficiencyByDividingTwoHist</a> (TString h1, int nBins, float minX, float maxX, bool NormUnity, TCut cut=&quot;&quot;)</td></tr>
-<tr class="memdesc:a06bc9d2b65f167e4baebaa8bf17a583b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the efficiency plot where numerator is reconstructed SC at HLT matched with GEN} &amp;&amp; TrkIso&lt;1.0.  <a href="classComparisonPlots.html#a06bc9d2b65f167e4baebaa8bf17a583b">More...</a><br /></td></tr>
-<tr class="separator:a06bc9d2b65f167e4baebaa8bf17a583b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5e947d9d42c49b5093f21ced03d901b"><td class="memItemLeft" align="right" valign="top">TCanvas *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#af5e947d9d42c49b5093f21ced03d901b">GetTEfficiencyByDividingTwoHist</a> (TString h1, int nBins, float minX, float maxX, bool NormUnity=false, TCut cut=&quot;&quot;)</td></tr>
+<tr class="memdesc:af5e947d9d42c49b5093f21ced03d901b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the efficiency plot where numerator is reconstructed SC at HLT matched with GEN} &amp;&amp; TrkIso&lt;1.0.  <a href="classComparisonPlots.html#af5e947d9d42c49b5093f21ced03d901b">More...</a><br /></td></tr>
+<tr class="separator:af5e947d9d42c49b5093f21ced03d901b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21f8bde4a0032e1945d74f2be3e2be0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a21f8bde4a0032e1945d74f2be3e2be0c">GetTEfficiencyByDividingTwoHist</a> (TString h1, int nBins, float minX, float maxX, TString outputFileName=&quot;&quot;, bool NormUnity=false, TCut cut=&quot;&quot;)</td></tr>
+<tr class="memdesc:a21f8bde4a0032e1945d74f2be3e2be0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the efficiency plot where numerator is reconstructed SC at HLT matched with GEN} &amp;&amp; TrkIso&lt;1.0 and save it in a png/pdf file.  <a href="classComparisonPlots.html#a21f8bde4a0032e1945d74f2be3e2be0c">More...</a><br /></td></tr>
+<tr class="separator:a21f8bde4a0032e1945d74f2be3e2be0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -292,8 +295,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
 
 </div>
 </div>
-<a id="a06bc9d2b65f167e4baebaa8bf17a583b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a06bc9d2b65f167e4baebaa8bf17a583b">&#9670;&nbsp;</a></span>GetTEfficiencyByDividingTwoHist()</h2>
+<a id="af5e947d9d42c49b5093f21ced03d901b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5e947d9d42c49b5093f21ced03d901b">&#9670;&nbsp;</a></span>GetTEfficiencyByDividingTwoHist() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -326,7 +329,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>NormUnity</em>, </td>
+          <td class="paramname"><em>NormUnity</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -355,6 +358,78 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Returns the canvas having the efficiency comparison. </dd></dl>
+
+</div>
+</div>
+<a id="a21f8bde4a0032e1945d74f2be3e2be0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21f8bde4a0032e1945d74f2be3e2be0c">&#9670;&nbsp;</a></span>GetTEfficiencyByDividingTwoHist() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ComparisonPlots::GetTEfficiencyByDividingTwoHist </td>
+          <td>(</td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>h1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nBins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>outputFileName</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>NormUnity</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TCut&#160;</td>
+          <td class="paramname"><em>cut</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the efficiency plot where numerator is reconstructed SC at HLT matched with GEN} &amp;&amp; TrkIso&lt;1.0 and save it in a png/pdf file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">h1</td><td>Name of branch for which the efficiency is going to compute </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nBins</td><td>Number of bins </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">minX</td><td>The minimum x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxX</td><td>The maximum x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">outputFileName</td><td>The output file name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">NormUnity</td><td>The normalize unity </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cut</td><td>The cut </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

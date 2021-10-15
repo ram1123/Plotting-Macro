@@ -233,49 +233,8 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
  */
 void ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, TString outputFileName, bool NormUnity, TCut cut)
 {
-    this->nBins = nBins;
-    this->minX = minX;
-    this->maxX = maxX;
-
-    TLegend* l1 = GetLegend();
-
-    delete gROOT->FindObject("hist1");
-    delete gROOT->FindObject("hist2");
-
-    hist1 = 0;
-    hist2 = 0;
-    hist1 = new TH1F("hist1", "", nBins, minX, maxX);
-    hist2 = new TH1F("hist2", "", nBins, minX, maxX);
-
-    this->Tree1->Draw(h1+">>hist1",cut);
-    this->Tree2->Draw(h1+">>hist2",cut);
-
-    if (NormUnity)
-    {
-        hist1->Scale(1.0/hist1->Integral());
-        hist2->Scale(1.0/hist2->Integral());
-    }
-
-    l1->AddEntry(hist1,this->InputFile1_leg);
-    l1->AddEntry(hist2,this->InputFile2_leg);
-
-    hist1->SetLineColor(1);
-    hist2->SetLineColor(2);
-
     TCanvas* c1 = SetCanvas();
-
-    hist1->Draw();
-    hist2->Draw("same");
-
-    c1->SetLogy(1);
-    TRatioPlot* rp = new TRatioPlot(hist1, hist2);
-    c1->SetTicks(0, 1);
-    rp->SetSeparationMargin(0.0);
-    rp->Draw();
-    rp->GetLowerRefYaxis()->SetTitle("ratio");
-    l1->Draw();
-    c1->Update();
-
+    c1 = SimpleHistComparisonWithRatio(h1, nBins, minX, maxX, NormUnity, cut);
     if (outputFileName == "") outputFileName = h1+".png";
     c1->SaveAs(outputFileName);
 }
@@ -340,7 +299,25 @@ TCanvas* ComparisonPlots::GetTEfficiencyByDividingTwoHist(TString h1, int nBins,
     return c1;
 }
 
-
+/**
+ * @brief      Get the efficiency plot where numerator is reconstructed SC at HLT
+ *             matched with GEN} \&\& TrkIso<1.0 and save it in a png/pdf file
+ *
+ * @param[in]  h1              Name of branch for which the efficiency is going to compute
+ * @param[in]  nBins           Number of bins
+ * @param[in]  minX            The minimum x
+ * @param[in]  maxX            The maximum x
+ * @param[in]  outputFileName  The output file name
+ * @param[in]  NormUnity       The normalize unity
+ * @param[in]  cut             The cut
+ */
+void ComparisonPlots::GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, TString outputFileName= "", bool NormUnity = false, TCut cut="")
+{
+    TCanvas* c1 = SetCanvas();
+    c1 = GetTEfficiencyByDividingTwoHist(h1, nBins, minX, maxX, NormUnity, cut);
+    if (outputFileName == "") outputFileName = h1+".png";
+    c1->SaveAs(outputFileName);
+}
 
 
 
