@@ -14,7 +14,10 @@ private:
     TH1F* hist1= 0; ///< First histogram
     TH1F* hist2= 0; ///< Second histogram
 
-    std::vector<TH1F*> vectorOfTH1F;
+    std::vector<TFile*>     vectorOfTFile;
+    std::vector<TTree*>     vectorOfTTree;
+    std::vector<TString>   vectorOfFileLegend;
+    std::vector<TH1F*>      vectorOfTH1F;
 
     float x1 = 0.60; ///< Legend x1 positons
     float x2 = 0.90; ///< Legend x2 positons
@@ -26,6 +29,7 @@ public:
 	bool logY = true;
     ComparisonPlots(TString InputFile1, TString InputFile1_leg, TString Tree1,
                     TString InputFile2 = "", TString InputFile2_leg = "", TString Tree2 = "");
+    ComparisonPlots(TString TFileList[], TString LegendNames [], TString TTreeList[], int sizeOfArray);
 	~ComparisonPlots();
 
     TCanvas* SetCanvas();
@@ -40,11 +44,11 @@ public:
 
     TCanvas* SimpleHistComparison(TString h1, int nBins, float minX, float maxX, bool NormUnity);
 
-    TCanvas* SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, bool NormUnity = true, TCut cut="");
+    TCanvas* SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, bool NormUnity = true, TCut cut="" );
     void     SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, TString outputFileName = "", bool NormUnity = true, TCut cut="");
 
-    TCanvas* GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, bool NormUnity = false, TCut cut="");
-    void GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, TString outputFileName= "", bool NormUnity = false, TCut cut="");
+    TCanvas* GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, bool NormUnity = false, TCut NumeratorCut = "", TCut DenominatorCut = "");
+    void     GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, TString outputFileName= "", bool NormUnity = false, TCut NumeratorCut = "", TCut DenominatorCut = "");
 
     // TString SearchTree(TFile&InputFile1);
 };

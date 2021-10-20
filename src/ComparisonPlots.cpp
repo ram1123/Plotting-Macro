@@ -30,6 +30,27 @@ ComparisonPlots::ComparisonPlots(TString InputFile1, TString InputFile1_leg, TSt
     }
 }
 
+ComparisonPlots::ComparisonPlots(TString TFileList[], TString LegendNames [], TString TTreeList[], int sizeOfArray)
+{
+    vectorOfTFile.clear();
+    vectorOfTTree.clear();
+    vectorOfFileLegend.clear();
+
+    TCanvas* c1 = SetCanvas();
+
+    for (int i = 0; i < sizeOfArray; ++i)
+    {
+        std::cout << "\n=================" << std::endl;
+        std::cout << "File Name: " << TFileList[i] << std::endl;
+        std::cout << "Legend Name: " << LegendNames[i] << std::endl;
+        std::cout << "Tree Names: " << TTreeList[i] << std::endl;
+
+        vectorOfTFile.push_back(new TFile(TFileList[i], "READ"));
+        vectorOfTTree.push_back((TTree*) vectorOfTFile[i]->Get(TTreeList[i]));
+        vectorOfFileLegend.push_back(LegendNames[i]);
+    }
+}
+
 /**
  * @brief      Destroys the object.
  */
@@ -109,6 +130,17 @@ TH1F* ComparisonPlots::GetHist(TString h1, int nBins, float minX, float maxX, in
     hist1->SetLineColor(LineColor);
     return hist1;
 }
+
+// TH1F* ComparisonPlots::GetHist(TString h1, int nBins, float minX, float maxX, int LineColor)
+// {
+//     std::cout << "hist name: " << h1 << std::endl;
+//     delete gROOT->FindObject("hist1");
+//     hist1 = 0;
+//     hist1 = new TH1F("hist1", "", nBins, minX, maxX);
+//     vectorOfTTree[0]->Draw(h1+">>hist1");
+//     hist1->SetLineColor(LineColor);
+//     return hist1;
+// }
 
 /**
  * @brief      Compares two branches from single tree.
@@ -282,8 +314,14 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
 
     hist1 = 0;
     hist2 = 0;
+
     hist1 = new TH1F("hist1", "", nBins, minX, maxX);
     hist2 = new TH1F("hist2", "", nBins, minX, maxX);
+
+    // Double_t TrkIso_edges[] = {0,0.1, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, 14.0, 18.0, 22.0, 26.0, 30.0, 34, 38, 42};
+    // Int_t TrkIso_NBINS = (sizeof(TrkIso_edges)/sizeof(*TrkIso_edges))-1;
+    // hist1 = new TH1F("hist1", "",  TrkIso_NBINS, TrkIso_edges);
+    // hist2 = new TH1F("hist2", "",  TrkIso_NBINS, TrkIso_edges);
 
     this->Tree1->Draw(h1+">>hist1",cut);
     this->Tree2->Draw(h1+">>hist2",cut);
@@ -311,6 +349,8 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
     rp->SetSeparationMargin(0.0);
     rp->Draw();
     rp->GetLowerRefYaxis()->SetTitle("ratio");
+    rp->GetLowerRefGraph()->SetMinimum(0);
+    rp->GetLowerRefGraph()->SetMaximum(2);
     l1->Draw();
     c1->Update();
 
@@ -349,7 +389,7 @@ void ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, float
  *
  * @return     Returns the canvas having the efficiency comparison.
  */
-TCanvas* ComparisonPlots::GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, bool NormUnity, TCut cut)
+TCanvas* ComparisonPlots::GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, bool NormUnity, TCut NumeratorCut, TCut DenominatorCut)
 {
     delete gROOT->FindObject("hist1");
     delete gROOT->FindObject("hist2");
@@ -365,10 +405,12 @@ TCanvas* ComparisonPlots::GetTEfficiencyByDividingTwoHist(TString h1, int nBins,
 
     TLegend* l1 = GetLegend();
 
-    this->Tree1->Draw(h1+">>hist1");
-    this->Tree2->Draw(h1+">>hist2");
-    this->Tree1->Draw(h1+">>hist1_num",cut);
-    this->Tree2->Draw(h1+">>hist2_num",cut);
+// NumeratorCut
+// DenominatorCut
+    this->Tree1->Draw(h1+">>hist1", DenominatorCut);
+    this->Tree2->Draw(h1+">>hist2", DenominatorCut);
+    this->Tree1->Draw(h1+">>hist1_num",NumeratorCut);
+    this->Tree2->Draw(h1+">>hist2_num",NumeratorCut);
 
     hist1->SetLineColor(1);
     hist2->SetLineColor(2);
@@ -408,10 +450,10 @@ TCanvas* ComparisonPlots::GetTEfficiencyByDividingTwoHist(TString h1, int nBins,
  * @param[in]  NormUnity       The normalize unity
  * @param[in]  cut             The cut
  */
-void ComparisonPlots::GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, TString outputFileName= "", bool NormUnity = false, TCut cut="")
+void ComparisonPlots::GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, TString outputFileName= "", bool NormUnity = false, TCut NumeratorCut = "", TCut DenominatorCut = "")
 {
     TCanvas* c1 = SetCanvas();
-    c1 = GetTEfficiencyByDividingTwoHist(h1, nBins, minX, maxX, NormUnity, cut);
+    c1 = GetTEfficiencyByDividingTwoHist(h1, nBins, minX, maxX, NormUnity, NumeratorCut, DenominatorCut);
     if (outputFileName == "") outputFileName = h1+".png";
     c1->SaveAs(outputFileName);
 }
