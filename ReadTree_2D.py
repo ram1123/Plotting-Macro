@@ -6,6 +6,8 @@
 # @Last Modified time: 2021-06-14
 import uproot
 import argparse
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 plt.ioff() # to turn off the displaying plots.
 import os
@@ -63,13 +65,18 @@ parser.add_argument('-zaxis', '--zaxis',
     type=int,
     help='z-axis upper limit'
     )
+parser.add_argument('-whichfile', '--whichfile',
+    default="MC250",
+    type=str,
+    help='which MC file, name to distinguish different mass'
+    )
 args = parser.parse_args()
 # print(args.accumulate(args.integers))
 
 if not os.path.isdir(args.dir_to_save_plots):
     os.makedirs(args.dir_to_save_plots)
 
-file = uproot.open(args.inputFileLocation+"/"+args.input_file)
+file = uproot.open(args.input_file)
 
 tree = file[args.tree_name]
 
@@ -117,7 +124,7 @@ for count,var_plots in enumerate(branchesToPlot):
         )
     plt.clim(0, args.zaxis)
     plt.colorbar()
-    plt.title("")
+    plt.title(args.whichfile+"-"+var_plots[8]+"-"+var_plots[9])
     axes = plt.axes()
     # axes.set_ylim([0, 1.1])
     # plt.plot(branches[var1], branches[var2], 'ro')
@@ -129,8 +136,8 @@ for count,var_plots in enumerate(branchesToPlot):
     # plt.text(30,400,"Entries: "+str(numpy.sum(n)))
     # plt.show()
     plt.tight_layout()
-    plt.savefig(args.dir_to_save_plots+os.sep+var1+"_"+var2+'_2D.png')
-    plt.savefig(args.dir_to_save_plots+os.sep+var1+"_"+var2+'_2D.pdf')
+    plt.savefig(args.dir_to_save_plots+os.sep+args.whichfile+var_plots[8]+"_"+var2+'_2D.png')
+    plt.savefig(args.dir_to_save_plots+os.sep+args.whichfile+var_plots[8]+"_"+var2+'_2D.pdf')
     # plt.yscale('log')
     # plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.png')
     # plt.savefig(args.dir_to_save_plots+os.sep+var_plots+'_log.pdf')
