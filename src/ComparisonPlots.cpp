@@ -111,6 +111,38 @@ void ComparisonPlots::ChangeLegendNames(TString InputFile1_leg, TString InputFil
 }
 
 /**
+ * @brief      Define TH1F based on hist name, bin and x-axis range and return it
+ *
+ * @param[in]  h1         TH1F name
+ * @param[in]  nBins      number of bins
+ * @param[in]  minX       The minimum x
+ * @param[in]  maxX       The maximum x
+ * @param[in]  LineColor  The line color
+ *
+ * @return     Retruns the defined TH1F
+ */
+TH1F* ComparisonPlots::DefineHist(TString h1, int nBins, float minX, float maxX, int LineColor = 1)
+{
+    TH1F* hist1 = new TH1F(h1, "", nBins, minX, maxX);
+    return hist1;
+}
+
+/**
+ * @brief      Define the custom bin size TH1F based on hist name, bin and x-axis range and return it.
+ *
+ * @param[in]  h1           TH1F name
+ * @param[in]  nBins        Number of bins
+ * @param      nBins_Edges  array containing the bins edges
+ *
+ * @return     Return the defined TH1F having custom bins
+ */
+TH1F* ComparisonPlots::DefineHist(TString h1, Int_t nBins, Double_t nBins_Edges[])
+{
+    TH1F* hist1 = new TH1F(h1, "",  nBins, nBins_Edges);
+    return hist1;
+}
+
+/**
  * @brief      Gets the hist from first root file
  *
  * @param[in]  h1     Name of branch to be extracted from TTree
@@ -315,13 +347,10 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
     hist1 = 0;
     hist2 = 0;
 
-    hist1 = new TH1F("hist1", "", nBins, minX, maxX);
-    hist2 = new TH1F("hist2", "", nBins, minX, maxX);
-
-    // Double_t TrkIso_edges[] = {0,0.1, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, 14.0, 18.0, 22.0, 26.0, 30.0, 34, 38, 42};
-    // Int_t TrkIso_NBINS = (sizeof(TrkIso_edges)/sizeof(*TrkIso_edges))-1;
-    // hist1 = new TH1F("hist1", "",  TrkIso_NBINS, TrkIso_edges);
-    // hist2 = new TH1F("hist2", "",  TrkIso_NBINS, TrkIso_edges);
+    // hist1 = new TH1F("hist1", "", nBins, minX, maxX);
+    // hist2 = new TH1F("hist2", "", nBins, minX, maxX);
+    hist1 = DefineHist("hist1", nBins, minX, maxX);
+    hist2 = DefineHist("hist2", nBins, minX, maxX);
 
     this->Tree1->Draw(h1+">>hist1",cut);
     this->Tree2->Draw(h1+">>hist2",cut);
@@ -344,7 +373,7 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
     hist2->Draw("same");
 
     c1->SetLogy(1);
-    TRatioPlot* rp = new TRatioPlot(hist1, hist2);
+    auto rp = new TRatioPlot(hist1, hist2);
     c1->SetTicks(0, 1);
     rp->Draw();
     l1->Draw();
@@ -356,6 +385,65 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
 
     return c1;
 }
+
+/**
+ * @brief      Compare the two histograms and plot them with the ratio plot
+ *
+ * @param[in]  h1           Name of branch to compare
+ * @param[in]  nBins        Number of bins
+ * @param      nBins_Edges  Array having defined edges of each bins, i.e. custom bins
+ * @param[in]  NormUnity    The normalize to unity or not
+ * @param[in]  cut          The cut string to be applied
+ *
+ * @return     Retruns the canvas having the comparison plot and the ratio plot
+ */
+TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, Int_t nBins, Double_t nBins_Edges[], bool NormUnity, TCut cut)
+{
+    TLegend* l1 = GetLegend();
+
+    delete gROOT->FindObject("hist1");
+    delete gROOT->FindObject("hist2");
+
+    hist1 = 0;
+    hist2 = 0;
+
+    hist1 = DefineHist("hist1", nBins, nBins_Edges);
+    hist2 = DefineHist("hist2", nBins, nBins_Edges);
+
+    this->Tree1->Draw(h1+">>hist1",cut);
+    this->Tree2->Draw(h1+">>hist2",cut);
+
+    if (NormUnity)
+    {
+        hist1->Scale(1.0/hist1->Integral());
+        hist2->Scale(1.0/hist2->Integral());
+    }
+
+    l1->AddEntry(hist1,this->InputFile1_leg);
+    l1->AddEntry(hist2,this->InputFile2_leg);
+
+    hist1->SetLineColor(1);
+    hist2->SetLineColor(2);
+
+    TCanvas* c1 = SetCanvas();
+
+    hist1->Draw();
+    hist2->Draw("same");
+
+    c1->SetLogy(1);
+    auto rp = new TRatioPlot(hist1, hist2);
+    c1->SetTicks(0, 1);
+    rp->Draw();
+    l1->Draw();
+    rp->SetSeparationMargin(0.0);
+    rp->GetLowerRefYaxis()->SetTitle("ratio");
+    rp->GetLowerRefGraph()->SetMinimum(0);
+    rp->GetLowerRefGraph()->SetMaximum(2);
+    // c1->Update();
+
+    return c1;
+}
+
 
 /**
  * @brief      Compare the two histograms and plot them with the ratio plot and save as png
@@ -372,6 +460,24 @@ void ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, float
 {
     TCanvas* c1 = SetCanvas();
     c1 = SimpleHistComparisonWithRatio(h1, nBins, minX, maxX, NormUnity, cut);
+    if (outputFileName == "") outputFileName = h1+".png";
+    c1->SaveAs(outputFileName);
+}
+
+/**
+ * @brief      Compare the two histograms and plot them with the ratio plot and save as png
+ *
+ * @param[in]  h1              Name of branch to compare
+ * @param[in]  nBins           Number of bins
+ * @param[in]  nBins_Edges     Array having defined edges of each bins, i.e. custom bins
+ * @param[in]  outputFileName  The output file name
+ * @param[in]  NormUnity       The normalize unity or not
+ * @param[in]  cut             the cut string to be applied
+ */
+void ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, Int_t nBins, Double_t nBins_Edges[], TString outputFileName, bool NormUnity, TCut cut)
+{
+    TCanvas* c1 = SetCanvas();
+    c1 = SimpleHistComparisonWithRatio(h1, nBins, nBins_Edges, NormUnity, cut);
     if (outputFileName == "") outputFileName = h1+".png";
     c1->SaveAs(outputFileName);
 }

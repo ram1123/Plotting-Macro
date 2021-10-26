@@ -6,15 +6,18 @@ void plotter()
 {
     // system("mkdir plots_ZPrime");
     // fs::create_directory("plots_ZPrime");
-    const char *path = "plots_ZPrimev2";
+    const char *path = "plots_ZPrimev3_1";
     mkdir(path,S_IRWXU);
-    TString inputFile1 = "../ZPrime_defaultv2.root";
-    TString inputFile2 = "../ZPrime_PetaTrkv2.root";
+    TString inputFile1 = "../Defaultv3_1.root";
+    TString inputFile2 = "../Patatrackv3_1.root";
     TString TreeName = "egHLTRun3Tree";
 
     ComparisonPlots CompareFun(inputFile1, "default", TreeName, inputFile2, "PataTrk");
 
-    CompareFun.SimpleHistComparisonWithRatio("eg_trkIsol", 125, 0, 40, TString(path)+"/ZPrime_eg_trkIsol.png", true);
+    Double_t TrkIso_edges[] = {0, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, 14.0, 18.0, 22.0, 26.0, 30.0, 34, 38, 42, 80};
+    Int_t TrkIso_NBINS = (sizeof(TrkIso_edges)/sizeof(*TrkIso_edges))-1;
+    CompareFun.SimpleHistComparisonWithRatio("eg_trkIsol", TrkIso_NBINS, TrkIso_edges, TString(path)+"/ZPrime_eg_trkIsol.png", true);
+
     CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et.png", true);
     CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_Barrel.png", true, "abs(eg_eta)<1.47");
     CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_Endcap.png", true, "abs(eg_eta)>1.47");
@@ -33,16 +36,16 @@ void plotter()
     /**
      * plot for QCD
      */
-    path = "plots_QCDv2";
+    path = "plots_QCDv3";
     mkdir(path,S_IRWXU);
-    inputFile1 = "../QCD_defaultv2.root";
-    inputFile2 = "../QCD_PetaTrkv2.root";
+    inputFile1 = "../QCD_defaultv3.root";
+    inputFile2 = "../QCD_PetaTrkv3.root";
 
     ComparisonPlots CompareFun_QCD(inputFile1, "default", TreeName, inputFile2, "PataTrk");
 
     CompareFun_QCD.logY = true;
     CompareFun_QCD.SetLegendPos(0.6,0.90,0.79,0.95);
-    CompareFun_QCD.SimpleHistComparisonWithRatio("eg_trkIsol", 100, 0, 40, TString(path)+"/QCD_eg_trkIsol.png", true);
+    // CompareFun_QCD.SimpleHistComparisonWithRatio("eg_trkIsol", 100, 0, 40, TString(path)+"/QCD_eg_trkIsol.png", true);
     CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 35, 0, 120, TString(path)+"/QCD_eg_et.png", true);
     CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 35, 0, 120, TString(path)+"/QCD_eg_et_Barrel.png", true, "abs(eg_eta)<1.47");
     CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 35, 0, 120, TString(path)+"/QCD_eg_et_Endcap.png", true, "abs(eg_eta)>1.47");
