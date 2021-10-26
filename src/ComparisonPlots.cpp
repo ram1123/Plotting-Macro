@@ -346,13 +346,13 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
     c1->SetLogy(1);
     TRatioPlot* rp = new TRatioPlot(hist1, hist2);
     c1->SetTicks(0, 1);
-    rp->SetSeparationMargin(0.0);
     rp->Draw();
+    l1->Draw();
+    rp->SetSeparationMargin(0.0);
     rp->GetLowerRefYaxis()->SetTitle("ratio");
     rp->GetLowerRefGraph()->SetMinimum(0);
     rp->GetLowerRefGraph()->SetMaximum(2);
-    l1->Draw();
-    c1->Update();
+    // c1->Update();
 
     return c1;
 }
