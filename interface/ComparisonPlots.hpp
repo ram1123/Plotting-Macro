@@ -37,6 +37,8 @@ public:
     void ChangeLegendNames(TString InputFile1_leg, TString InputFile2_leg);
     void SetLegendPos(float x1, float x2, float y1, float y2);
 
+    TH1F* DefineHist(TString h1, int nBins, float minX, float maxX, int LineColor = 1);
+    TH1F* DefineHist(TString h1, Int_t nBins, Double_t nBins_Edges[]);
     TH1F* GetHist(TString h1, int nBins, float minX, float maxX, int LineColor = 1);
     void CompareTwoBranchesOneTree(TString h1, TString h2, int nBins, float minX, float maxX, TString outputFileName = "");
 
@@ -45,7 +47,9 @@ public:
     TCanvas* SimpleHistComparison(TString h1, int nBins, float minX, float maxX, bool NormUnity);
 
     TCanvas* SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, bool NormUnity = true, TCut cut="" );
+    TCanvas* SimpleHistComparisonWithRatio(TString h1, Int_t nBins, Double_t nBins_Edges[], bool NormUnity = true, TCut cut="");
     void     SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, TString outputFileName = "", bool NormUnity = true, TCut cut="");
+    void     SimpleHistComparisonWithRatio(TString h1, Int_t nBins, Double_t nBins_Edges[], TString outputFileName = "", bool NormUnity = true, TCut cut="");
 
     TCanvas* GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, bool NormUnity = false, TCut NumeratorCut = "", TCut DenominatorCut = "");
     void     GetTEfficiencyByDividingTwoHist(TString h1, int nBins, float minX, float maxX, TString outputFileName= "", bool NormUnity = false, TCut NumeratorCut = "", TCut DenominatorCut = "");
