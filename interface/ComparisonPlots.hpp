@@ -24,9 +24,13 @@ private:
     float y1 = 0.79; ///< Legend x3 positons
     float y2 = 0.95; ///< Legend x4 positons
 
+    float TRatioPlot_LG_min = 0.0;
+    float TRatioPlot_LG_max = 2.0;
+
 public:
 	bool DEBUG = true;
 	bool logY = true;
+    bool AddOverFlowBin = true;
     ComparisonPlots(TString InputFile1, TString InputFile1_leg, TString Tree1,
                     TString InputFile2 = "", TString InputFile2_leg = "", TString Tree2 = "");
     ComparisonPlots(TString TFileList[], TString LegendNames [], TString TTreeList[], int sizeOfArray);
@@ -36,6 +40,7 @@ public:
     TLegend* GetLegend();
     void ChangeLegendNames(TString InputFile1_leg, TString InputFile2_leg);
     void SetLegendPos(float x1, float x2, float y1, float y2);
+    void SetTRatioPlot_MinMax(float minY, float maxY);
 
     TH1F* DefineHist(TString h1, int nBins, float minX, float maxX, int LineColor = 1);
     TH1F* DefineHist(TString h1, Int_t nBins, Double_t nBins_Edges[]);

@@ -99,6 +99,18 @@ void ComparisonPlots::SetLegendPos(float x1, float x2, float y1, float y2)
 }
 
 /**
+ * @brief      Sets the min and max of ratio plot.
+ *
+ * @param[in]  minY  The minimum y
+ * @param[in]  maxY  The maximum y
+ */
+void ComparisonPlots::SetTRatioPlot_MinMax(float minY, float maxY)
+{
+    this->TRatioPlot_LG_min = minY;
+    this->TRatioPlot_LG_max = maxY;
+}
+
+/**
  * @brief      Update the legend names
  *
  * @param[in]  InputFile1_leg  The input file 1 legend
@@ -219,6 +231,12 @@ void ComparisonPlots::CompareTwoBranchesOneTree(TString h1, TString h2, int nBin
     this->Tree1->Draw(h1+">>hist1");
     this->Tree1->Draw(h2+">>hist2");
 
+    if (AddOverFlowBin)
+    {
+        hist1->SetBinContent(nBins, hist1->GetBinContent(nBins)+hist1->GetBinContent(nBins+1));
+        hist2->SetBinContent(nBins, hist2->GetBinContent(nBins)+hist2->GetBinContent(nBins+1));
+    }
+
     TCanvas* c1 = SetCanvas();
     hist2->Draw();
     hist1->Draw("same");
@@ -266,6 +284,11 @@ void ComparisonPlots::CompareBranchesFromSameTree(TString branchesList[], int br
         vectorOfTH1F[i]->GetXaxis()->SetTitle(branchesList[0]);
         vectorOfTH1F[i]->GetXaxis()->CenterTitle();
 
+        if (AddOverFlowBin)
+        {
+            vectorOfTH1F[i]->SetBinContent(nBins, vectorOfTH1F[i]->GetBinContent(nBins)+vectorOfTH1F[i]->GetBinContent(nBins+1));
+        }
+
         // if (i==0) vectorOfTH1F[i]->Draw();
         // else vectorOfTH1F[i]->Draw("same");
     }
@@ -303,6 +326,12 @@ TCanvas* ComparisonPlots::SimpleHistComparison(TString h1, int nBins, float minX
 
     this->Tree1->Draw(h1+">>hist1");
     this->Tree2->Draw(h1+">>hist2");
+
+    if (AddOverFlowBin)
+    {
+        hist1->SetBinContent(nBins, hist1->GetBinContent(nBins)+hist1->GetBinContent(nBins+1));
+        hist2->SetBinContent(nBins, hist2->GetBinContent(nBins)+hist2->GetBinContent(nBins+1));
+    }
 
     if (NormUnity)
     {
@@ -355,6 +384,12 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
     this->Tree1->Draw(h1+">>hist1",cut);
     this->Tree2->Draw(h1+">>hist2",cut);
 
+    if (AddOverFlowBin)
+    {
+        hist1->SetBinContent(nBins, hist1->GetBinContent(nBins)+hist1->GetBinContent(nBins+1));
+        hist2->SetBinContent(nBins, hist2->GetBinContent(nBins)+hist2->GetBinContent(nBins+1));
+    }
+
     if (NormUnity)
     {
         hist1->Scale(1.0/hist1->Integral());
@@ -379,8 +414,8 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, f
     l1->Draw();
     rp->SetSeparationMargin(0.0);
     rp->GetLowerRefYaxis()->SetTitle("ratio");
-    rp->GetLowerRefGraph()->SetMinimum(0);
-    rp->GetLowerRefGraph()->SetMaximum(2);
+    rp->GetLowerRefGraph()->SetMinimum(this->TRatioPlot_LG_min);
+    rp->GetLowerRefGraph()->SetMaximum(this->TRatioPlot_LG_max);
     // c1->Update();
 
     return c1;
@@ -413,6 +448,12 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, Int_t nBins,
     this->Tree1->Draw(h1+">>hist1",cut);
     this->Tree2->Draw(h1+">>hist2",cut);
 
+    if (AddOverFlowBin)
+    {
+        hist1->SetBinContent(nBins, hist1->GetBinContent(nBins)+hist1->GetBinContent(nBins+1));
+        hist2->SetBinContent(nBins, hist2->GetBinContent(nBins)+hist2->GetBinContent(nBins+1));
+    }
+
     if (NormUnity)
     {
         hist1->Scale(1.0/hist1->Integral());
@@ -437,8 +478,8 @@ TCanvas* ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, Int_t nBins,
     l1->Draw();
     rp->SetSeparationMargin(0.0);
     rp->GetLowerRefYaxis()->SetTitle("ratio");
-    rp->GetLowerRefGraph()->SetMinimum(0);
-    rp->GetLowerRefGraph()->SetMaximum(2);
+    rp->GetLowerRefGraph()->SetMinimum(this->TRatioPlot_LG_min);
+    rp->GetLowerRefGraph()->SetMaximum(this->TRatioPlot_LG_max);
     // c1->Update();
 
     return c1;
@@ -517,6 +558,14 @@ TCanvas* ComparisonPlots::GetTEfficiencyByDividingTwoHist(TString h1, int nBins,
     this->Tree2->Draw(h1+">>hist2", DenominatorCut);
     this->Tree1->Draw(h1+">>hist1_num",NumeratorCut);
     this->Tree2->Draw(h1+">>hist2_num",NumeratorCut);
+
+    if (AddOverFlowBin)
+    {
+        hist1->SetBinContent(nBins, hist1->GetBinContent(nBins)+hist1->GetBinContent(nBins+1));
+        hist2->SetBinContent(nBins, hist2->GetBinContent(nBins)+hist2->GetBinContent(nBins+1));
+        hist1_num->SetBinContent(nBins, hist1_num->GetBinContent(nBins)+hist1_num->GetBinContent(nBins+1));
+        hist2_num->SetBinContent(nBins, hist2_num->GetBinContent(nBins)+hist2_num->GetBinContent(nBins+1));
+    }
 
     hist1->SetLineColor(1);
     hist2->SetLineColor(2);
