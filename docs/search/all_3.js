@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['setcanvas_8',['SetCanvas',['../classComparisonPlots.html#a6e1a48c2bff0244d1c0bdb5ae04a5418',1,'ComparisonPlots']]],
-  ['setlegendpos_9',['SetLegendPos',['../classComparisonPlots.html#a1f13b5487ac3cfdc41782c983f9f70da',1,'ComparisonPlots']]],
-  ['simplehistcomparison_10',['SimpleHistComparison',['../classComparisonPlots.html#ae0b9ee4a13269894e5e25e0fb81fb7af',1,'ComparisonPlots']]],
-  ['simplehistcomparisonwithratio_11',['SimpleHistComparisonWithRatio',['../classComparisonPlots.html#a51c44b0ff50afdccd872fadcdcd4ebf0',1,'ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, bool NormUnity=true, TCut cut=&quot;&quot;)'],['../classComparisonPlots.html#a83112f93cd34e773aebcd932347393e6',1,'ComparisonPlots::SimpleHistComparisonWithRatio(TString h1, int nBins, float minX, float maxX, TString outputFileName=&quot;&quot;, bool NormUnity=true, TCut cut=&quot;&quot;)']]]
+  ['plotting_2dmacro_8',['Plotting-Macro',['../md__afs_cern_8ch_work_r_rasharma_EGamma-POG_HLT_tasks_CPUtoGPUTransition_analyzer_CMSSW_12_0_1_src_Plotting-Macro_Simple_README.html',1,'']]]
 ];

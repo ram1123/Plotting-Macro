@@ -30,6 +30,14 @@ ComparisonPlots::ComparisonPlots(TString InputFile1, TString InputFile1_leg, TSt
     }
 }
 
+/**
+ * @brief      Constructs a new instance.
+ *
+ * @param      TFileList    Array having list of input root files
+ * @param      LegendNames  Array containing the legend names corresponding to the input tree in TFileList
+ * @param      TTreeList    Array containing the corresponding tree names for the files in TFileList
+ * @param[in]  sizeOfArray  The size of the array TFileList
+ */
 ComparisonPlots::ComparisonPlots(TString TFileList[], TString LegendNames [], TString TTreeList[], int sizeOfArray)
 {
     vectorOfTFile.clear();

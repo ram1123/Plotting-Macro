@@ -75,6 +75,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1d46e2b79e2f631906fd49028cf1745d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a1d46e2b79e2f631906fd49028cf1745d">ComparisonPlots</a> (TString InputFile1, TString InputFile1_leg, TString Tree1, TString InputFile2=&quot;&quot;, TString InputFile2_leg=&quot;&quot;, TString Tree2=&quot;&quot;)</td></tr>
 <tr class="memdesc:a1d46e2b79e2f631906fd49028cf1745d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new instance.  <a href="classComparisonPlots.html#a1d46e2b79e2f631906fd49028cf1745d">More...</a><br /></td></tr>
 <tr class="separator:a1d46e2b79e2f631906fd49028cf1745d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a785c470fd514e1d41d868e1c758d4923"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a785c470fd514e1d41d868e1c758d4923">ComparisonPlots</a> (TString TFileList[], TString LegendNames[], TString TTreeList[], int sizeOfArray)</td></tr>
+<tr class="memdesc:a785c470fd514e1d41d868e1c758d4923"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new instance.  <a href="classComparisonPlots.html#a785c470fd514e1d41d868e1c758d4923">More...</a><br /></td></tr>
+<tr class="separator:a785c470fd514e1d41d868e1c758d4923"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab6cb6914754811ef3b864fda8d4d7a9"><td class="memItemLeft" align="right" valign="top"><a id="aab6cb6914754811ef3b864fda8d4d7a9"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#aab6cb6914754811ef3b864fda8d4d7a9">~ComparisonPlots</a> ()</td></tr>
 <tr class="memdesc:aab6cb6914754811ef3b864fda8d4d7a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destroys the object. <br /></td></tr>
@@ -91,6 +94,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1f13b5487ac3cfdc41782c983f9f70da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a1f13b5487ac3cfdc41782c983f9f70da">SetLegendPos</a> (float x1, float x2, float y1, float y2)</td></tr>
 <tr class="memdesc:a1f13b5487ac3cfdc41782c983f9f70da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the legend position.  <a href="classComparisonPlots.html#a1f13b5487ac3cfdc41782c983f9f70da">More...</a><br /></td></tr>
 <tr class="separator:a1f13b5487ac3cfdc41782c983f9f70da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2184285be74189a7f6fae9475997f6c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a2184285be74189a7f6fae9475997f6c0">SetTRatioPlot_MinMax</a> (float minY, float maxY)</td></tr>
+<tr class="memdesc:a2184285be74189a7f6fae9475997f6c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the min and max of ratio plot.  <a href="classComparisonPlots.html#a2184285be74189a7f6fae9475997f6c0">More...</a><br /></td></tr>
+<tr class="separator:a2184285be74189a7f6fae9475997f6c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a133c52386bf9f19cf1afc6c605a433ce"><td class="memItemLeft" align="right" valign="top">TH1F *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a133c52386bf9f19cf1afc6c605a433ce">DefineHist</a> (TString h1, int nBins, float minX, float maxX, int LineColor=1)</td></tr>
+<tr class="memdesc:a133c52386bf9f19cf1afc6c605a433ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define TH1F based on hist name, bin and x-axis range and return it.  <a href="classComparisonPlots.html#a133c52386bf9f19cf1afc6c605a433ce">More...</a><br /></td></tr>
+<tr class="separator:a133c52386bf9f19cf1afc6c605a433ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70501e156dacdc17a3dcfcf39771e8e8"><td class="memItemLeft" align="right" valign="top">TH1F *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a70501e156dacdc17a3dcfcf39771e8e8">DefineHist</a> (TString h1, Int_t nBins, Double_t nBins_Edges[])</td></tr>
+<tr class="memdesc:a70501e156dacdc17a3dcfcf39771e8e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Define the custom bin size TH1F based on hist name, bin and x-axis range and return it.  <a href="classComparisonPlots.html#a70501e156dacdc17a3dcfcf39771e8e8">More...</a><br /></td></tr>
+<tr class="separator:a70501e156dacdc17a3dcfcf39771e8e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31146fed20d7dde2126f1bfb698f73b3"><td class="memItemLeft" align="right" valign="top">TH1F *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a31146fed20d7dde2126f1bfb698f73b3">GetHist</a> (TString h1, int nBins, float minX, float maxX, int LineColor=1)</td></tr>
 <tr class="memdesc:a31146fed20d7dde2126f1bfb698f73b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the hist from first root file.  <a href="classComparisonPlots.html#a31146fed20d7dde2126f1bfb698f73b3">More...</a><br /></td></tr>
 <tr class="separator:a31146fed20d7dde2126f1bfb698f73b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -106,15 +118,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a51c44b0ff50afdccd872fadcdcd4ebf0"><td class="memItemLeft" align="right" valign="top">TCanvas *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a51c44b0ff50afdccd872fadcdcd4ebf0">SimpleHistComparisonWithRatio</a> (TString h1, int nBins, float minX, float maxX, bool NormUnity=true, TCut cut=&quot;&quot;)</td></tr>
 <tr class="memdesc:a51c44b0ff50afdccd872fadcdcd4ebf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare the two histograms and plot them with the ratio plot.  <a href="classComparisonPlots.html#a51c44b0ff50afdccd872fadcdcd4ebf0">More...</a><br /></td></tr>
 <tr class="separator:a51c44b0ff50afdccd872fadcdcd4ebf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4999ee8c3c6172de23212c0333f51991"><td class="memItemLeft" align="right" valign="top">TCanvas *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a4999ee8c3c6172de23212c0333f51991">SimpleHistComparisonWithRatio</a> (TString h1, Int_t nBins, Double_t nBins_Edges[], bool NormUnity=true, TCut cut=&quot;&quot;)</td></tr>
+<tr class="memdesc:a4999ee8c3c6172de23212c0333f51991"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare the two histograms and plot them with the ratio plot.  <a href="classComparisonPlots.html#a4999ee8c3c6172de23212c0333f51991">More...</a><br /></td></tr>
+<tr class="separator:a4999ee8c3c6172de23212c0333f51991"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83112f93cd34e773aebcd932347393e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a83112f93cd34e773aebcd932347393e6">SimpleHistComparisonWithRatio</a> (TString h1, int nBins, float minX, float maxX, TString outputFileName=&quot;&quot;, bool NormUnity=true, TCut cut=&quot;&quot;)</td></tr>
 <tr class="memdesc:a83112f93cd34e773aebcd932347393e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare the two histograms and plot them with the ratio plot and save as png.  <a href="classComparisonPlots.html#a83112f93cd34e773aebcd932347393e6">More...</a><br /></td></tr>
 <tr class="separator:a83112f93cd34e773aebcd932347393e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5e947d9d42c49b5093f21ced03d901b"><td class="memItemLeft" align="right" valign="top">TCanvas *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#af5e947d9d42c49b5093f21ced03d901b">GetTEfficiencyByDividingTwoHist</a> (TString h1, int nBins, float minX, float maxX, bool NormUnity=false, TCut cut=&quot;&quot;)</td></tr>
-<tr class="memdesc:af5e947d9d42c49b5093f21ced03d901b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the efficiency plot where numerator is reconstructed SC at HLT matched with GEN} &amp;&amp; TrkIso&lt;1.0.  <a href="classComparisonPlots.html#af5e947d9d42c49b5093f21ced03d901b">More...</a><br /></td></tr>
-<tr class="separator:af5e947d9d42c49b5093f21ced03d901b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21f8bde4a0032e1945d74f2be3e2be0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#a21f8bde4a0032e1945d74f2be3e2be0c">GetTEfficiencyByDividingTwoHist</a> (TString h1, int nBins, float minX, float maxX, TString outputFileName=&quot;&quot;, bool NormUnity=false, TCut cut=&quot;&quot;)</td></tr>
-<tr class="memdesc:a21f8bde4a0032e1945d74f2be3e2be0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the efficiency plot where numerator is reconstructed SC at HLT matched with GEN} &amp;&amp; TrkIso&lt;1.0 and save it in a png/pdf file.  <a href="classComparisonPlots.html#a21f8bde4a0032e1945d74f2be3e2be0c">More...</a><br /></td></tr>
-<tr class="separator:a21f8bde4a0032e1945d74f2be3e2be0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17247e105fa21c25ead8fdd417233da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#ab17247e105fa21c25ead8fdd417233da">SimpleHistComparisonWithRatio</a> (TString h1, Int_t nBins, Double_t nBins_Edges[], TString outputFileName=&quot;&quot;, bool NormUnity=true, TCut cut=&quot;&quot;)</td></tr>
+<tr class="memdesc:ab17247e105fa21c25ead8fdd417233da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare the two histograms and plot them with the ratio plot and save as png.  <a href="classComparisonPlots.html#ab17247e105fa21c25ead8fdd417233da">More...</a><br /></td></tr>
+<tr class="separator:ab17247e105fa21c25ead8fdd417233da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acec68630da87884d089f4f1d6c6d2a1f"><td class="memItemLeft" align="right" valign="top">TCanvas *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#acec68630da87884d089f4f1d6c6d2a1f">GetTEfficiencyByDividingTwoHist</a> (TString h1, int nBins, float minX, float maxX, bool NormUnity=false, TCut NumeratorCut=&quot;&quot;, TCut DenominatorCut=&quot;&quot;)</td></tr>
+<tr class="memdesc:acec68630da87884d089f4f1d6c6d2a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the efficiency plot where numerator is reconstructed SC at HLT matched with GEN} &amp;&amp; TrkIso&lt;1.0.  <a href="classComparisonPlots.html#acec68630da87884d089f4f1d6c6d2a1f">More...</a><br /></td></tr>
+<tr class="separator:acec68630da87884d089f4f1d6c6d2a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2d8fa5c5a32bd84739a3c6271a59bb3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classComparisonPlots.html#ad2d8fa5c5a32bd84739a3c6271a59bb3">GetTEfficiencyByDividingTwoHist</a> (TString h1, int nBins, float minX, float maxX, TString outputFileName=&quot;&quot;, bool NormUnity=false, TCut NumeratorCut=&quot;&quot;, TCut DenominatorCut=&quot;&quot;)</td></tr>
+<tr class="memdesc:ad2d8fa5c5a32bd84739a3c6271a59bb3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the efficiency plot where numerator is reconstructed SC at HLT matched with GEN} &amp;&amp; TrkIso&lt;1.0 and save it in a png/pdf file.  <a href="classComparisonPlots.html#ad2d8fa5c5a32bd84739a3c6271a59bb3">More...</a><br /></td></tr>
+<tr class="separator:ad2d8fa5c5a32bd84739a3c6271a59bb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -124,10 +142,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>DEBUG</b> = true</td>
 <tr class="memitem:a9b38b7660c4764727ee9ad1b9dce981f"><td class="memItemLeft" align="right" valign="top"><a id="a9b38b7660c4764727ee9ad1b9dce981f"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td></tr>
 <tr class="separator:a9b38b7660c4764727ee9ad1b9dce981f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51dc52837cb8730c307fa33f10bfd09d"><td class="memItemLeft" align="right" valign="top"><a id="a51dc52837cb8730c307fa33f10bfd09d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>AddOverFlowBin</b> = true</td></tr>
+<tr class="separator:a51dc52837cb8730c307fa33f10bfd09d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1d46e2b79e2f631906fd49028cf1745d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d46e2b79e2f631906fd49028cf1745d">&#9670;&nbsp;</a></span>ComparisonPlots()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d46e2b79e2f631906fd49028cf1745d">&#9670;&nbsp;</a></span>ComparisonPlots() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,6 +206,57 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
     <tr><td class="paramdir">[in]</td><td class="paramname">InputFile2</td><td>Input root file2 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">InputFile2_leg</td><td>Second input root file legend name </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">Tree2</td><td>Name of tree to read from file2 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a785c470fd514e1d41d868e1c758d4923"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a785c470fd514e1d41d868e1c758d4923">&#9670;&nbsp;</a></span>ComparisonPlots() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ComparisonPlots::ComparisonPlots </td>
+          <td>(</td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>TFileList</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>LegendNames</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>TTreeList</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>sizeOfArray</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new instance. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">TFileList</td><td>Array having list of input root files </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">LegendNames</td><td>Array containing the legend names corresponding to the input tree in TFileList </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">TTreeList</td><td>Array containing the corresponding tree names for the files in TFileList </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">sizeOfArray</td><td>The size of the array TFileList </td></tr>
   </table>
   </dd>
 </dl>
@@ -359,6 +431,110 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
 
 </div>
 </div>
+<a id="a133c52386bf9f19cf1afc6c605a433ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a133c52386bf9f19cf1afc6c605a433ce">&#9670;&nbsp;</a></span>DefineHist() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TH1F * ComparisonPlots::DefineHist </td>
+          <td>(</td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>h1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nBins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxX</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>LineColor</em> = <code>1</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define TH1F based on hist name, bin and x-axis range and return it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">h1</td><td>TH1F name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nBins</td><td>number of bins </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">minX</td><td>The minimum x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxX</td><td>The maximum x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">LineColor</td><td>The line color</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Retruns the defined TH1F </dd></dl>
+
+</div>
+</div>
+<a id="a70501e156dacdc17a3dcfcf39771e8e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70501e156dacdc17a3dcfcf39771e8e8">&#9670;&nbsp;</a></span>DefineHist() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TH1F * ComparisonPlots::DefineHist </td>
+          <td>(</td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>h1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Int_t&#160;</td>
+          <td class="paramname"><em>nBins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Double_t&#160;</td>
+          <td class="paramname"><em>nBins_Edges</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Define the custom bin size TH1F based on hist name, bin and x-axis range and return it. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">h1</td><td>TH1F name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nBins</td><td>Number of bins </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">nBins_Edges</td><td>array containing the bins edges</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Return the defined TH1F having custom bins </dd></dl>
+
+</div>
+</div>
 <a id="a31146fed20d7dde2126f1bfb698f73b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a31146fed20d7dde2126f1bfb698f73b3">&#9670;&nbsp;</a></span>GetHist()</h2>
 
@@ -437,8 +613,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
 
 </div>
 </div>
-<a id="af5e947d9d42c49b5093f21ced03d901b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af5e947d9d42c49b5093f21ced03d901b">&#9670;&nbsp;</a></span>GetTEfficiencyByDividingTwoHist() <span class="overload">[1/2]</span></h2>
+<a id="acec68630da87884d089f4f1d6c6d2a1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acec68630da87884d089f4f1d6c6d2a1f">&#9670;&nbsp;</a></span>GetTEfficiencyByDividingTwoHist() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -477,7 +653,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">TCut&#160;</td>
-          <td class="paramname"><em>cut</em> = <code>&quot;&quot;</code>&#160;</td>
+          <td class="paramname"><em>NumeratorCut</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TCut&#160;</td>
+          <td class="paramname"><em>DenominatorCut</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -503,8 +685,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
 
 </div>
 </div>
-<a id="a21f8bde4a0032e1945d74f2be3e2be0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a21f8bde4a0032e1945d74f2be3e2be0c">&#9670;&nbsp;</a></span>GetTEfficiencyByDividingTwoHist() <span class="overload">[2/2]</span></h2>
+<a id="ad2d8fa5c5a32bd84739a3c6271a59bb3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2d8fa5c5a32bd84739a3c6271a59bb3">&#9670;&nbsp;</a></span>GetTEfficiencyByDividingTwoHist() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -549,7 +731,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">TCut&#160;</td>
-          <td class="paramname"><em>cut</em> = <code>&quot;&quot;</code>&#160;</td>
+          <td class="paramname"><em>NumeratorCut</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TCut&#160;</td>
+          <td class="paramname"><em>DenominatorCut</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -646,6 +834,43 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
 
 </div>
 </div>
+<a id="a2184285be74189a7f6fae9475997f6c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2184285be74189a7f6fae9475997f6c0">&#9670;&nbsp;</a></span>SetTRatioPlot_MinMax()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ComparisonPlots::SetTRatioPlot_MinMax </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>minY</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>maxY</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the min and max of ratio plot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">minY</td><td>The minimum y </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">maxY</td><td>The maximum y </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ae0b9ee4a13269894e5e25e0fb81fb7af"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae0b9ee4a13269894e5e25e0fb81fb7af">&#9670;&nbsp;</a></span>SimpleHistComparison()</h2>
 
@@ -706,7 +931,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
 </div>
 </div>
 <a id="a51c44b0ff50afdccd872fadcdcd4ebf0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a51c44b0ff50afdccd872fadcdcd4ebf0">&#9670;&nbsp;</a></span>SimpleHistComparisonWithRatio() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a51c44b0ff50afdccd872fadcdcd4ebf0">&#9670;&nbsp;</a></span>SimpleHistComparisonWithRatio() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -772,7 +997,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
 </div>
 </div>
 <a id="a83112f93cd34e773aebcd932347393e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a83112f93cd34e773aebcd932347393e6">&#9670;&nbsp;</a></span>SimpleHistComparisonWithRatio() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a83112f93cd34e773aebcd932347393e6">&#9670;&nbsp;</a></span>SimpleHistComparisonWithRatio() <span class="overload">[2/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -834,6 +1059,130 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>logY</b> = true</td><
     <tr><td class="paramdir">[in]</td><td class="paramname">nBins</td><td>Number of bins </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">minX</td><td>The minimum x </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">maxX</td><td>The maximum x </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">outputFileName</td><td>The output file name </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">NormUnity</td><td>The normalize unity or not </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cut</td><td>the cut string to be applied </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4999ee8c3c6172de23212c0333f51991"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4999ee8c3c6172de23212c0333f51991">&#9670;&nbsp;</a></span>SimpleHistComparisonWithRatio() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TCanvas * ComparisonPlots::SimpleHistComparisonWithRatio </td>
+          <td>(</td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>h1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Int_t&#160;</td>
+          <td class="paramname"><em>nBins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Double_t&#160;</td>
+          <td class="paramname"><em>nBins_Edges</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>NormUnity</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TCut&#160;</td>
+          <td class="paramname"><em>cut</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compare the two histograms and plot them with the ratio plot. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">h1</td><td>Name of branch to compare </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nBins</td><td>Number of bins </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">nBins_Edges</td><td>Array having defined edges of each bins, i.e. custom bins </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">NormUnity</td><td>The normalize to unity or not </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cut</td><td>The cut string to be applied</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Retruns the canvas having the comparison plot and the ratio plot </dd></dl>
+
+</div>
+</div>
+<a id="ab17247e105fa21c25ead8fdd417233da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab17247e105fa21c25ead8fdd417233da">&#9670;&nbsp;</a></span>SimpleHistComparisonWithRatio() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ComparisonPlots::SimpleHistComparisonWithRatio </td>
+          <td>(</td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>h1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Int_t&#160;</td>
+          <td class="paramname"><em>nBins</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Double_t&#160;</td>
+          <td class="paramname"><em>nBins_Edges</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TString&#160;</td>
+          <td class="paramname"><em>outputFileName</em> = <code>&quot;&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>NormUnity</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">TCut&#160;</td>
+          <td class="paramname"><em>cut</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compare the two histograms and plot them with the ratio plot and save as png. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">h1</td><td>Name of branch to compare </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nBins</td><td>Number of bins </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nBins_Edges</td><td>Array having defined edges of each bins, i.e. custom bins </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">outputFileName</td><td>The output file name </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">NormUnity</td><td>The normalize unity or not </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">cut</td><td>the cut string to be applied </td></tr>
