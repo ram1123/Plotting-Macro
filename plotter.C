@@ -2,54 +2,27 @@
 // #include <filesystem>
 // namespace fs = std::filesystem;
 #include <sys/stat.h>
-void plotter()
+#include "PlottingVariable.h"
+
+void plotter(const plotVar_t plotvars[] = commonplotvars_test)
 {
-    // system("mkdir plots_ZPrime");
-    // fs::create_directory("plots_ZPrime");
-    const char *path = "plots_ZPrimev3_1";
+    // create a directory with name path
     mkdir(path,S_IRWXU);
-    TString inputFile1 = "../Defaultv3_1.root";
-    TString inputFile2 = "../Patatrackv3_1.root";
-    TString TreeName = "egHLTRun3Tree";
 
-    ComparisonPlots CompareFun(inputFile1, "default", TreeName, inputFile2, "PataTrk");
+    // initialize the class `ComparisonPlots`
+    ComparisonPlots CompareFun(inputFile1, "OLD", TreeName, inputFile2, "NEW_Petr");
 
-    Double_t TrkIso_edges[] = {0, 0.5, 1.0, 2.0, 4.0, 6.0, 8.0, 10.0, 14.0, 18.0, 22.0, 26.0, 30.0, 34, 38, 42, 80};
-    Int_t TrkIso_NBINS = (sizeof(TrkIso_edges)/sizeof(*TrkIso_edges))-1;
-    CompareFun.SimpleHistComparisonWithRatio("eg_trkIsol", TrkIso_NBINS, TrkIso_edges, TString(path)+"/ZPrime_eg_trkIsol.png", true);
+    // for loop over all input variables defined in `PlottingVariable.h`
+    for (int ivar=0; ; ivar++)
+    {
+        plotVar_t pv = plotvars[ivar];
+        if ( !pv.plotvar.Length() ) break;
 
-    CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et.png", true);
-    CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_Barrel.png", true, "abs(eg_eta)<1.47");
-    CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_Endcap.png", true, "abs(eg_eta)>1.47");
-    CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_TrkIsoCut.png", true, "eg_trkIsol<1.0");
-    CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_TrkIsoCut_Barrel.png", true, "eg_trkIsol<1.0 && abs(eg_eta)<1.47");
-    CompareFun.SimpleHistComparisonWithRatio("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_TrkIsoCut_Endcap.png", true, "eg_trkIsol<1.0 && abs(eg_eta)>1.47");
+        std::cout << "\n\n===========================" << std::endl;
+        std::cout << "var: " << ivar+1 << " : " << pv.plotvar << std::endl;
 
+        CompareFun.SimpleHistComparisonWithRatio(pv.plotvar, pv.NBINS, pv.MINRange, pv.MAXRange, TString(path)+"/"+TString(pv.outfile)+".png", true);
+    }
+    std::cout << "\n\n===========================" << std::endl;
 
-    CompareFun.logY = false;
-    CompareFun.SetLegendPos(0.6,0.90,0.1,0.35); // Bottom Right
-    CompareFun.GetTEfficiencyByDividingTwoHist("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_EfficiencyComp.png", false, "eg_trkIsol<1.0","");
-    CompareFun.GetTEfficiencyByDividingTwoHist("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_EfficiencyComp_Barrel.png", false, "eg_trkIsol<1.0 && abs(eg_eta)<1.47","abs(eg_eta)<1.47");
-    // CompareFun.SetLegendPos(0.6,0.90,0.79,0.95); // Top Right
-    CompareFun.GetTEfficiencyByDividingTwoHist("eg_gen_et", 35, 0, 1000, TString(path)+"/ZPrime_eg_gen_et_EfficiencyComp_Endcap.png", false, "eg_trkIsol<1.0 && abs(eg_eta)>1.47","abs(eg_eta)>1.47");
-
-    /**
-     * plot for QCD
-     */
-    path = "plots_QCDv3";
-    mkdir(path,S_IRWXU);
-    inputFile1 = "../QCD_defaultv3.root";
-    inputFile2 = "../QCD_PetaTrkv3.root";
-
-    ComparisonPlots CompareFun_QCD(inputFile1, "default", TreeName, inputFile2, "PataTrk");
-
-    CompareFun_QCD.logY = true;
-    CompareFun_QCD.SetLegendPos(0.6,0.90,0.79,0.95);
-    // CompareFun_QCD.SimpleHistComparisonWithRatio("eg_trkIsol", 100, 0, 40, TString(path)+"/QCD_eg_trkIsol.png", true);
-    CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 35, 0, 120, TString(path)+"/QCD_eg_et.png", true);
-    CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 35, 0, 120, TString(path)+"/QCD_eg_et_Barrel.png", true, "abs(eg_eta)<1.47");
-    CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 35, 0, 120, TString(path)+"/QCD_eg_et_Endcap.png", true, "abs(eg_eta)>1.47");
-    CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 35, 0, 120, TString(path)+"/QCD_eg_et_TrkIsoCut.png", true, "eg_trkIsol<1.0");
-    CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 35, 0, 120, TString(path)+"/QCD_eg_et_TrkIsoCut_Barrel.png", true, "eg_trkIsol<1.0 && abs(eg_eta)<1.47");
-    CompareFun_QCD.SimpleHistComparisonWithRatio("eg_et", 35, 0, 120, TString(path)+"/QCD_eg_et_TrkIsoCut_Endcap.png", true, "eg_trkIsol<1.0 && abs(eg_eta)>1.47");
 }
