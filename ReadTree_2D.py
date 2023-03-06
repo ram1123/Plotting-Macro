@@ -115,7 +115,7 @@ for count,var_plots in enumerate(branchesToPlot):
         cmap=plt.cm.Reds,
         # cmap=plt.cm.Greys
         )
-    plt.clim(0, args.zaxis)
+    # plt.clim(0, args.zaxis)
     plt.colorbar()
     plt.title("")
     axes = plt.axes()

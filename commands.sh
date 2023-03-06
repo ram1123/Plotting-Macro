@@ -13,6 +13,7 @@ python ReadTree_HistOverlap.py -var_file Variables_Hist_Overlap.py -i GluGluToRa
 
 # 2D plot
 # python ReadTree_2D.py  -il /afs/cern.ch/user/r/rasharma/work/doubleHiggs/ResonantAnalysis/nanoAnalyzer/CMSSW_10_6_20/src/DoubleHiggs/Selection/ -i GluGluToRadionToHHTo2G4Q_M250.root -t Events --dir plots_2D -var_file Variables_TwoDPlots.py
-python ReadTree_2D.py  -il /afs/cern.ch/user/r/rasharma/work/doubleHiggs/ResonantAnalysis/nanoAnalyzer/CMSSW_10_6_20/src/DoubleHiggs/Selection/ -i GluGluToRadionToHHTo2G4Q_M250.root -t Events --dir plots_2D_New_M250 -var_file Variables_TwoDPlots.py
-python ReadTree_2D.py  -il /afs/cern.ch/user/r/rasharma/work/doubleHiggs/ResonantAnalysis/nanoAnalyzer/CMSSW_10_6_20/src/DoubleHiggs/Selection/ -i GluGluToRadionToHHTo2G4Q_M1000.root -t Events --dir plots_2D_New_M1000 -var_file Variables_TwoDPlots.py
-python ReadTree_2D.py  -il /afs/cern.ch/user/r/rasharma/work/doubleHiggs/ResonantAnalysis/nanoAnalyzer/CMSSW_10_6_20/src/DoubleHiggs/Selection/ -i GluGluToRadionToHHTo2G4Q_M3000.root -t Events --dir plots_2D_New_M3000 -var_file Variables_TwoDPlots.py
+python ReadTree_2D.py  -il /afs/cern.ch/user/r/rasharma/work/doubleHiggs/ResonantAnalysis/nanoAnalyzer/CMSSW_10_6_20/src/DoubleHiggs/Selection/ -i GluGluToRadionToHHTo2G4Q_M250.root -t Events --dir plots2D_M250_mass -var_file Variables_2D_Mass.py
+python ReadTree_2D.py  -il /afs/cern.ch/user/r/rasharma/work/doubleHiggs/ResonantAnalysis/nanoAnalyzer/CMSSW_10_6_20/src/DoubleHiggs/Selection/ -i GluGluToRadionToHHTo2G4Q_M800.root -t Events --dir plots2D_M800_mass -var_file Variables_2D_Mass.py
+python ReadTree_2D.py  -il /afs/cern.ch/user/r/rasharma/work/doubleHiggs/ResonantAnalysis/nanoAnalyzer/CMSSW_10_6_20/src/DoubleHiggs/Selection/ -i GluGluToRadionToHHTo2G4Q_M1000.root -t Events --dir plots2D_M1000_mass -var_file Variables_2D_Mass.py
+python ReadTree_2D.py  -il /afs/cern.ch/user/r/rasharma/work/doubleHiggs/ResonantAnalysis/nanoAnalyzer/CMSSW_10_6_20/src/DoubleHiggs/Selection/ -i GluGluToRadionToHHTo2G4Q_M3000.root -t Events --dir plots2D_M3000_mass -var_file Variables_2D_Mass.py
